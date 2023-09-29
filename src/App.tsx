@@ -1,14 +1,10 @@
 import React from 'react';
-import Test from './components/Test';
 
-const App = () => {
-  const app = 1;
-
+const App = (): JSX.Element => {
   return (
-    <>
-      <Test />
-      <h1>React without CRA...</h1>
-    </>
+    <div>
+      <h2>Hello.</h2>
+    </div>
   );
 };
 
