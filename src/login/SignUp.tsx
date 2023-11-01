@@ -25,12 +25,17 @@ const SignUp = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <button onClick={openModal}>Sign Up</button>
+      <button
+        className="w-24 h-8 text-white bg-green-500 border-2 border-green-500 border-solid shadow-lg rounded-xl"
+        onClick={openModal}>
+        Sign Up
+      </button>
       <ReactModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         ariaHideApp={false}
-        contentLabel="SignUpModal">
+        contentLabel="SignUpModal"
+        className="w-96 h-96 p-2.5 border border-solid border-gray-950 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <h2>Sign Up</h2>
         <form onSubmit={onSubmit}>
           <input
