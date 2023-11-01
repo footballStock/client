@@ -9,7 +9,7 @@ import {auth} from './fire-base';
 import ReactModal from 'react-modal';
 
 const Login = (): JSX.Element => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -57,15 +57,20 @@ const Login = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <button onClick={openModal}>login</button>
+      <button
+        className="w-24 h-8 text-green-500 bg-white border-2 border-green-500 border-solid shadow-lg rounded-xl"
+        onClick={openModal}>
+        login
+      </button>
       <ReactModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         ariaHideApp={false}
-        contentLabel="loginModal">
+        contentLabel="loginModal"
+        className="w-96 h-96 p-2.5 border border-solid border-gray-950 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <h2>login</h2>
         <form onSubmit={handleSignIn}>
-          <label>
+          <div>
             <input
               type="email"
               name="email"
@@ -74,8 +79,8 @@ const Login = (): JSX.Element => {
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
-          </label>
-          <label>
+          </div>
+          <div>
             <input
               type="password"
               name="password"
@@ -84,10 +89,7 @@ const Login = (): JSX.Element => {
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
-          </label>
-          {/* <button type="submit" data-testid="login-btn">
-            login
-          </button> */}
+          </div>
           <input type="submit" value="login" data-testid="login-btn" />
         </form>
         <div>
