@@ -34,10 +34,12 @@ const Sidebar = () => {
 
   return (
     <section>
-      <div className="px-20 py-8 text-lg font-bold">Teams</div>
+      <div className="px-20 py-8 text-lg font-bold text-left">Teams</div>
       <ul className="flex flex-col">
         {teamData.map((team, index) => (
-          <li key={index} className="flex flex-row items-center mb-4 ml-12">
+          <li
+            key={index}
+            className="flex flex-row items-center mb-4 ml-4 text-xs">
             <img src={team.src} alt={team.alt} className="w-7 h-7" />
             <div>{team.name}</div>
           </li>
