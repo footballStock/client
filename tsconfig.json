@@ -13,9 +13,9 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"],
-      "@srcs/*": ["src/*"]
+      // "@components/*": ["components/*"],
+      // "@pages/*": ["pages/*"],
+      // "@static/*": ["static/*"]
     },
     "typeRoots": ["src/types"],
     "allowSyntheticDefaultImports": true,

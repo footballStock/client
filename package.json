@@ -10,7 +10,7 @@
     "start": "webpack --config webpack.dev.js",
     "test": "jest",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",

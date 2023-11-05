@@ -1,22 +1,17 @@
 import React from 'react';
+import {TeamImage} from 'src/states/types';
 
-type Team = {
-  src: string;
-  alt: string;
-  name: string;
-};
-
-const Sidebar: React.FC<{teams: Team[]}> = ({teams}) => {
+const Sidebar: React.FC<{teams: TeamImage[]}> = ({teams}) => {
   return (
-    <section>
-      <div className="px-20 py-8 text-lg font-bold text-left">Teams</div>
+    <section className="sticky top-4 h-1/2">
+      <div className="px-20 mb-8 text-lg font-bold text-left">Teams</div>
       <ul className="flex flex-col">
         {teams.map((team, index) => (
           <li
             key={index}
-            className="flex flex-row items-center mb-4 ml-4 text-xs">
+            className="flex flex-row items-center mb-4 ml-8 text-xs">
             <img src={team.src} alt={team.alt} className="w-7 h-7" />
-            <div>{team.name}</div>
+            <button className="px-1">{team.name}</button>
           </li>
         ))}
       </ul>
