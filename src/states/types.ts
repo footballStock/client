@@ -6,14 +6,17 @@ export type TeamImage = {
 
 export type PriceData = {
   price: string;
-  currency: string;
+  price_unit: string;
 };
 
-export type TeamStock = {
-  Name: string;
-  Number: string;
+export type StockOverview = {
+  number: string;
+  team_name: string;
+  team_image: TeamImage;
   Price: PriceData;
-  '24h': string;
-  'Market Cap': string;
-  Volume: string;
+  currency: string;
+  change: string;
+  change_percentage: string;
+  market_cap: string;
+  volume: number;
 };

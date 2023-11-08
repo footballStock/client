@@ -1,6 +1,6 @@
 import React from 'react';
 import Trade2Goal from '../static/Trade2Goal.png';
-import NavButton from './NavButton';
+import NavButton from '../components/NavButton';
 import Login from './Login';
 import SignUp from './SignUp';
 

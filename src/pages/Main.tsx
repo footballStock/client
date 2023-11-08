@@ -1,11 +1,10 @@
-import React, {useMemo} from 'react';
-import {Column} from 'react-table';
+import React from 'react';
 
-import Sidebar from '../components/Sidebar';
-import MainOverview from '../components/MainOverview';
-import Chat from '../components/Chat';
+import Sidebar from '../commons/Sidebar';
+import MainOverview from '../MainOverview/MainOverview';
+import Chat from '../commons/Chat';
 
-import {PriceData, TeamImage, TeamStock} from '../states/types';
+import {StockOverview, TeamImage} from '../states/types';
 
 import AJAX from '../static/AJAX.png';
 import BOLA from '../static/BOLA.png';
@@ -21,14 +20,14 @@ import SLBEN from '../static/SLBEN.png';
 import SSLMI from '../static/SSL.MI.png';
 
 const Main = () => {
-  const teams: TeamImage[] = [
+  const teamsImage: TeamImage[] = [
     {src: AJAX, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
     {src: BOLA, alt: 'Bali United FC', name: 'Bali United FC'},
     {src: BVB, alt: 'Borussia Dortmund', name: 'Borussia Dortmund'},
     {src: CCP, alt: 'Celtic', name: 'Celtic'},
     {src: FCP, alt: 'FC Porto', name: 'FC Porto'},
     {src: JUVE, alt: 'Juventus', name: 'Juventus'},
-    {src: MANU, alt: 'Manchaster United', name: 'Manchaster United'},
+    {src: MANU, alt: 'Man. United', name: 'Man. United'},
     {src: OLG, alt: 'Olympique Lyonnais', name: 'Olympique Lyonnais'},
     {src: SCB, alt: 'Sporting Clube de Brage', name: 'Sporting Clube de Brage'},
     {
@@ -40,163 +39,28 @@ const Main = () => {
     {src: SSLMI, alt: 'SS Lazio', name: 'SS Lazio'},
   ];
 
-  const teamStockData: TeamStock[] = [
+  const teamsStockOverview: StockOverview[] = [
     {
-      Number: '1',
-      Name: 'AFC Ajax NV',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '-1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
-    },
-    {
-      Number: '1',
-      Name: 'Manchaster United',
-      Price: {price: '19.41', currency: 'USD'},
-      '24h': '1.41%',
-      'Market Cap': '3.16B',
-      Volume: '955.722',
+      number: '1',
+      team_name: 'Man. United',
+      team_image: {src: '', alt: '', name: ''},
+      Price: {price: '0.11', price_unit: 'USD'},
+      currency: '100',
+      change: '1.92',
+      change_percentage: '3.51',
+      market_cap: '0.10',
+      volume: 10,
     },
   ];
-
-  const columns: Column<{
-    Number: string;
-    Name: TeamImage;
-    Price: PriceData;
-    '24h': string;
-    'Market Cap': string;
-    Volume: string;
-  }>[] = useMemo(
-    () => [
-      {
-        accessor: 'Number',
-        Header: '#',
-      },
-      {
-        accessor: 'Name',
-        Header: 'Name',
-        Cell: ({value}) => (
-          <div className="flex items-center">
-            <img src={value.src} alt={value.alt} className="w-7 h-7" />
-            <button className="px-1">{value.name}</button>
-          </div>
-        ),
-      },
-      {
-        accessor: 'Price',
-        Header: 'Price',
-        Cell: ({value}) => (
-          <div>
-            <span>{value.price} </span>
-            <span className="text-gray-400">{value.currency}</span>
-          </div>
-        ),
-      },
-      {
-        accessor: '24h',
-        Header: '24h(%)',
-        Cell: ({value}) => {
-          const isNegative = value.startsWith('-');
-          return (
-            <span className={isNegative ? 'text-red-500' : 'text-blue-500'}>
-              {value}
-            </span>
-          );
-        },
-      },
-      {
-        accessor: 'Market Cap',
-        Header: 'Market Cap',
-      },
-      {
-        accessor: 'Volume',
-        Header: 'Volume',
-      },
-    ],
-    [],
-  );
-
-  const mergeTeamData = (teams: TeamImage[], stockData: TeamStock[]) => {
-    return stockData.map(stock => {
-      const teamImage = teams.find(team => team.name === stock.Name);
-      return {
-        ...stock,
-        Name: teamImage ? {...teamImage} : {src: '', alt: '', name: stock.Name},
-      };
-    });
-  };
-  const mergedData = mergeTeamData(teams, teamStockData);
-  const data = useMemo(() => mergedData, [mergedData]);
 
   return (
     <React.Fragment>
       <main className="flex justify-between px-12 py-6">
-        <Sidebar teams={teams} />
-        <MainOverview columns={columns} data={data} />
+        <Sidebar teams={teamsImage} />
+        <MainOverview
+          teamsImage={teamsImage}
+          teamsStockOverview={teamsStockOverview}
+        />
         <Chat />
       </main>
     </React.Fragment>
