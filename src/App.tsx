@@ -1,10 +1,14 @@
 import React from 'react';
+import Header from './commons/Header';
+import Sidebar from './commons/Sidebar';
+import Main from './pages/Main';
 
 const App = (): JSX.Element => {
   return (
-    <div>
-      <h2>Hello.</h2>
-    </div>
+    <React.Fragment>
+      <Header />
+      <Main />
+    </React.Fragment>
   );
 };
 
