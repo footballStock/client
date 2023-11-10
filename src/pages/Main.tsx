@@ -3,6 +3,7 @@ import React from 'react';
 import Sidebar from '../commons/Sidebar';
 import MainOverview from '../MainOverview/MainOverview';
 import Chat from '../commons/Chat';
+import PostMain from '../PostPage/PostMain';
 
 import {StockOverview, TeamImage} from '../states/types';
 
@@ -57,10 +58,7 @@ const Main = () => {
     <React.Fragment>
       <main className="flex justify-between px-12 py-6">
         <Sidebar teams={teamsImage} />
-        <MainOverview
-          teamsImage={teamsImage}
-          teamsStockOverview={teamsStockOverview}
-        />
+        <PostMain/>
         <Chat />
       </main>
     </React.Fragment>

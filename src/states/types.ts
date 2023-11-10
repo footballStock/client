@@ -20,3 +20,13 @@ export type StockOverview = {
   market_cap: string;
   volume: number;
 };
+
+export type Postdata = {
+  src: string;
+  alt: string;
+  name: string;
+  account_img: string;
+  account_name: string;
+  time: string;
+  title: string;
+}
