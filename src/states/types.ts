@@ -30,3 +30,8 @@ export type Postdata = {
   time: string;
   title: string;
 }
+
+export type Accountdata = {
+  src: string;
+  account_name: string;
+}
