@@ -47,12 +47,12 @@ const SignUp = (props: React.PropsWithChildren) => {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           ariaHideApp={false}
-          contentLabel="loginModal"
+          contentLabel="SignUpModal"
           className=" w-96 h-96 p-2.5 border border-solid border-gray-950 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white flex flex-col">
           <div className="flex justify-center py-4 text-xl font-bold leading-normal text-black font-inter">
             <div className="px-8 text-custom-white-gray">Log in</div>
             <div className="px-8 underline underline-offset-8">Sign Up</div>
-            <button onClick={closeModal}>
+            <button onClick={closeModal} data-testid="Close">
               <CloseIcon className="float-right " />
             </button>
           </div>
@@ -85,7 +85,7 @@ const SignUp = (props: React.PropsWithChildren) => {
               type="submit"
               value="Sign Up"
               className="w-full p-2 font-bold leading-normal text-white bg-red-500 rounded font-inter"
-              data-testid="login-btn"
+              data-testid="signup-btn"
             />
           </form>
         </ReactModal>

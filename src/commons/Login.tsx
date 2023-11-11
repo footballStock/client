@@ -83,7 +83,7 @@ const Login = (props: React.PropsWithChildren) => {
           <div className="flex justify-center py-4 text-xl font-bold leading-normal text-black font-inter">
             <div className="px-8 underline underline-offset-8">Log in</div>
             <div className="px-8 text-custom-white-gray">Sign Up</div>
-            <button onClick={closeModal}>
+            <button onClick={closeModal} data-testid="Close">
               <CloseIcon className="float-right " />
             </button>
           </div>
