@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Sidebar from '../commons/Sidebar';
-import MainOverview from '../MainOverview/MainOverview';
 import Chat from '../commons/Chat';
+import PostMain from '../PostPage/PostMain';
 
-import {StockOverview, TeamImage} from '../states/types';
+import {StockOverview, TeamImage, Accountdata} from '../states/types';
 
 import AJAX from '../static/AJAX.png';
 import BOLA from '../static/BOLA.png';
@@ -18,6 +18,7 @@ import SCB from '../static/SCB.png';
 import SCP from '../static/SCP.png';
 import SLBEN from '../static/SLBEN.png';
 import SSLMI from '../static/SSL.MI.png';
+import MyAccount from '../static/myaccount.png';
 
 const Main = () => {
   const teamsImage: TeamImage[] = [
@@ -53,14 +54,18 @@ const Main = () => {
     },
   ];
 
+  const myAccount: Accountdata[] = [
+    {
+      src: MyAccount,
+      account_name: 'upa1414',
+    },
+  ];
+
   return (
     <React.Fragment>
       <main className="flex justify-between px-12 py-6">
         <Sidebar teams={teamsImage} />
-        <MainOverview
-          teamsImage={teamsImage}
-          teamsStockOverview={teamsStockOverview}
-        />
+        <PostMain myaccounts={myAccount}/>
         <Chat />
       </main>
     </React.Fragment>

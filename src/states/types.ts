@@ -35,3 +35,8 @@ export type Accountdata = {
   src: string;
   account_name: string;
 }
+
+export type ButtonProps = {
+  emoji: string;
+  count: number | string; 
+}

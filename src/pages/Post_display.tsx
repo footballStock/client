@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Sidebar from '../commons/Sidebar';
-import MainOverview from '../MainOverview/MainOverview';
 import Chat from '../commons/Chat';
+import PostPAGE from '../PostPage/POST_PAGE';
 
-import {StockOverview, TeamImage} from '../states/types';
+import {TeamImage, Postdata} from '../states/types';
 
 import AJAX from '../static/AJAX.png';
 import BOLA from '../static/BOLA.png';
@@ -18,6 +18,8 @@ import SCB from '../static/SCB.png';
 import SCP from '../static/SCP.png';
 import SLBEN from '../static/SLBEN.png';
 import SSLMI from '../static/SSL.MI.png';
+import Post_image_test3 from '../static/Post_image_test3.png';
+import Account_img3 from '../static/account_img3.png'
 
 const Main = () => {
   const teamsImage: TeamImage[] = [
@@ -39,28 +41,19 @@ const Main = () => {
     {src: SSLMI, alt: 'SS Lazio', name: 'SS Lazio'},
   ];
 
-  const teamsStockOverview: StockOverview[] = [
+  const postdata: Postdata[] = [
     {
-      number: '1',
-      team_name: 'Man. United',
-      team_image: {src: '', alt: '', name: ''},
-      Price: {price: '0.11', price_unit: 'USD'},
-      currency: '100',
-      change: '1.92',
-      change_percentage: '3.51',
-      market_cap: '0.10',
-      volume: 10,
-    },
-  ];
+      src: Post_image_test3, alt: 'Post image test', name: 'Post image test',
+      account_img : Account_img3, account_name : "GodGodGod", time : "5 hours. ago ",
+      title : "[Premier League] Erling Haaland is named Premier League Player of the Season for 2022/23."
+    }
+  ]
 
   return (
     <React.Fragment>
       <main className="flex justify-between px-12 py-6">
         <Sidebar teams={teamsImage} />
-        <MainOverview
-          teamsImage={teamsImage}
-          teamsStockOverview={teamsStockOverview}
-        />
+        <PostPAGE postdatas={postdata}/>
         <Chat />
       </main>
     </React.Fragment>
