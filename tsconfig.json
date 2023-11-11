@@ -14,9 +14,11 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"]
+      // "@components/*": ["components/*"],
+      // "@pages/*": ["pages/*"],
+      // "@static/*": ["static/*"]
     },
+    "typeRoots": ["src/types"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
