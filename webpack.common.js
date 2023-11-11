@@ -1,7 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const path = require('path');
+const dotenv = require('dotenv');
 const {EnvironmentPlugin} = require('webpack');
+dotenv.config();
 
 module.exports = {
   entry: './src/index.tsx',
@@ -36,13 +38,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    // new CleanWebpackPlugin(),
-    // new EnvironmentPlugin(['REACT_APP_API_KEY']),
-    // new EnvironmentPlugin(['REACT_APP_AUTH_DOMAIN']),
-    // new EnvironmentPlugin(['REACT_APP_PROJECT_ID']),
-    // new EnvironmentPlugin(['REACT_APP_STORAGE_BUCKET']),
-    // new EnvironmentPlugin(['REACT_APP_MESSAGING_SENDER_ID']),
-    // new EnvironmentPlugin(['REACT_APP_APP_ID']),
-    // new EnvironmentPlugin(['REACT_APP_MEASUREMENT_ID']),
+    new CleanWebpackPlugin(),
+    new EnvironmentPlugin(['REACT_APP_API_KEY']),
+    new EnvironmentPlugin(['REACT_APP_AUTH_DOMAIN']),
+    new EnvironmentPlugin(['REACT_APP_PROJECT_ID']),
+    new EnvironmentPlugin(['REACT_APP_STORAGE_BUCKET']),
+    new EnvironmentPlugin(['REACT_APP_MESSAGING_SENDER_ID']),
+    new EnvironmentPlugin(['REACT_APP_APP_ID']),
+    new EnvironmentPlugin(['REACT_APP_MEASUREMENT_ID']),
   ],
 };
