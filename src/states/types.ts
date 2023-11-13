@@ -27,6 +27,7 @@ export type Postdata = {
   name: string;
   account_img: string;
   account_name: string;
+  created_at: number;
   time: string;
   title: string;
 }

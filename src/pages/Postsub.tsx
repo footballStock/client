@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Sidebar from '../commons/Sidebar';
 import Chat from '../commons/Chat';
-import PostPAGE from '../PostPage/POST_PAGE';
+import PostPAGE from '../PostPage/PostPage';
 
 import {TeamImage, Postdata} from '../states/types';
 
@@ -22,6 +22,7 @@ import Post_image_test3 from '../static/Post_image_test3.png';
 import Account_img3 from '../static/account_img3.png'
 
 const Main = () => {
+
   const teamsImage: TeamImage[] = [
     {src: AJAX, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
     {src: BOLA, alt: 'Bali United FC', name: 'Bali United FC'},
@@ -41,13 +42,55 @@ const Main = () => {
     {src: SSLMI, alt: 'SS Lazio', name: 'SS Lazio'},
   ];
 
-  const postdata: Postdata[] = [
+  const initialPostdata = [
     {
-      src: Post_image_test3, alt: 'Post image test', name: 'Post image test',
-      account_img : Account_img3, account_name : "GodGodGod", time : "5 hours. ago ",
-      title : "[Premier League] Erling Haaland is named Premier League Player of the Season for 2022/23."
+      src: Post_image_test3,
+      alt: 'Post image test',
+      name: 'Post image test',
+      account_img: Account_img3,
+      account_name: "GodGodGod",
+      created_at: 1699850927000,
+      title: "[Premier League] Erling Haaland is named Premier League Player of the Season for 2022/23.",
+      time: "" 
     }
-  ]
+  ];
+
+  const [postdata, setPostdata] = useState(initialPostdata);
+
+  useEffect(() => {
+    setPostdata(updatePostTimes(initialPostdata));
+  }, []);
+
+  const updatePostTimes = (posts: Postdata[]) : Postdata[] => {
+    return posts.map(post => ({
+      ...post,
+      time: getTimeAgo(post.created_at)
+    }));
+  };
+
+  const getTimeAgo = (timestamp: number) => {
+    const now = new Date();
+    const postDate = new Date(timestamp); 
+    const diffInSeconds = Math.floor((now.getTime() - postDate.getTime()) / 1000);
+
+    let timeAgo = '';
+
+    if (diffInSeconds < 60) {
+      timeAgo = `${diffInSeconds} sec ago`;
+    } else if (diffInSeconds < 3600) {
+      timeAgo = `${Math.floor(diffInSeconds / 60)} min ago`;
+    } else if (diffInSeconds < 86400) {
+      timeAgo = `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    } else if (diffInSeconds < 2592000) {
+      timeAgo = `${Math.floor(diffInSeconds / 86400)} days ago`;
+    } else if (diffInSeconds < 31536000) {
+      timeAgo = `${Math.floor(diffInSeconds / 2592000)} months ago`;
+    } else {
+      timeAgo = `${Math.floor(diffInSeconds / 31536000)} years ago`;
+    }
+
+    return timeAgo;
+  };
 
   return (
     <React.Fragment>

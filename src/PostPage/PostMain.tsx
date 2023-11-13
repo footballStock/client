@@ -1,7 +1,7 @@
 import React from 'react';
-import Top3_Posts from './Top3_Posts';
-import Most_Recent_Posts from './Most_Recent_Posts'
-import POSTING from './POSTING'
+import Top3_Posts from './Top3Posts';
+import Most_Recent_Posts from './MostRecentPosts'
+import POSTING from './Posting'
 import {Accountdata} from 'src/states/types';
 
 const PostMain: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
