@@ -20,3 +20,24 @@ export type StockOverview = {
   market_cap: string;
   volume: number;
 };
+
+export type Postdata = {
+  src: string;
+  alt: string;
+  name: string;
+  account_img: string;
+  account_name: string;
+  created_at: number;
+  time: string;
+  title: string;
+}
+
+export type Accountdata = {
+  src: string;
+  account_name: string;
+}
+
+export type ButtonProps = {
+  emoji: string;
+  count: number | string; 
+}

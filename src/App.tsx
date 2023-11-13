@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './commons/Header';
 import Sidebar from './commons/Sidebar';
-import Main from './pages/Main';
+import Main from './pages/Postsub';
 
 const App = (): JSX.Element => {
   return (
