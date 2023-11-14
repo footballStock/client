@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
 import {Accountdata} from 'src/states/types';
 
-const POSTING: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
+const Posting: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
@@ -71,4 +71,4 @@ const POSTING: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
   );
 };
 
-export default POSTING;
+export default Posting;

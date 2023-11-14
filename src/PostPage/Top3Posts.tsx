@@ -10,7 +10,7 @@ import Account_img2 from '../static/account_img2.png'
 import Account_img3 from '../static/account_img3.png'
 
 
-const Top3_Posts: React.FC<{
+const Top3Posts: React.FC<{
 }> = ({}) => {
 
   const postdata: Postdata[] = [
@@ -40,4 +40,4 @@ const Top3_Posts: React.FC<{
   );
 };
 
-export default Top3_Posts;
+export default Top3Posts;

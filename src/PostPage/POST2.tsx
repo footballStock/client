@@ -1,7 +1,7 @@
 import React from 'react';
 import {Postdata} from 'src/states/types';
 
-const POST2: React.FC<{ postdatas: Postdata[] }> = ({postdatas}) => {
+const Post2: React.FC<{ postdatas: Postdata[] }> = ({postdatas}) => {
   return (
     <section>
         <div className="flex items-center">
@@ -25,4 +25,4 @@ const POST2: React.FC<{ postdatas: Postdata[] }> = ({postdatas}) => {
   );
 };
 
-export default POST2;
+export default Post2;

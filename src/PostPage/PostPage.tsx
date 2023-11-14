@@ -13,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({ emoji, count }) => {
     );
 };
 
-const PostPAGE: React.FC<{postdatas: Postdata[];}> = ({postdatas}) => {
+const PostPage: React.FC<{postdatas: Postdata[];}> = ({postdatas}) => {
     return (
     <section className="w-1/2">
         <div className=" flex justify-start"> 
@@ -53,4 +53,4 @@ const PostPAGE: React.FC<{postdatas: Postdata[];}> = ({postdatas}) => {
   );
 };
 
-export default PostPAGE;
+export default PostPage;
