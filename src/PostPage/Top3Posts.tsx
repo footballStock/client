@@ -1,5 +1,5 @@
 import React from 'react';
-import POST1 from './Post1';
+import Post1 from './Post1';
 import {Postdata} from 'src/states/types';
 
 import Post_image_test1 from '../static/Post_image_test1.png';
@@ -34,7 +34,7 @@ const Top3Posts: React.FC<{
   return (
     <section>
       <div>
-        <POST1 postdatas = {postdata} />
+        <Post1 postdatas = {postdata} />
       </div>
     </section>
   );

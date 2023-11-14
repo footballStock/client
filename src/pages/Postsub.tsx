@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Sidebar from '../commons/Sidebar';
 import Chat from '../commons/Chat';
-import PostPAGE from '../PostPage/PostPage';
+import PostPage from '../PostPage/PostPage';
 
 import {TeamImage, Postdata} from '../states/types';
 
@@ -96,7 +96,7 @@ const Main = () => {
     <React.Fragment>
       <main className="flex justify-between px-12 py-6">
         <Sidebar teams={teamsImage} />
-        <PostPAGE postdatas={postdata}/>
+        <PostPage postdatas={postdata}/>
         <Chat />
       </main>
     </React.Fragment>

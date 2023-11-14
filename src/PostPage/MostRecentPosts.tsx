@@ -1,5 +1,5 @@
 import React from 'react';
-import POST2 from './Post2';
+import Post2 from './Post2';
 import {Postdata} from 'src/states/types';
 
 import Post_image_test1 from '../static/Post_image_test1.png';
@@ -30,19 +30,19 @@ const MostRecentPosts: React.FC<{
     <section>
       <div>
         <div className='my-3'>
-        <POST2 postdatas = {postdata} />
+        <Post2 postdatas = {postdata} />
         </div>
         <div className='my-3'>
-        <POST2 postdatas = {postdata} />
+        <Post2 postdatas = {postdata} />
         </div>
         <div className='my-3'>
-        <POST2 postdatas = {postdata} />
+        <Post2 postdatas = {postdata} />
         </div>
         <div className='my-3'>
-        <POST2 postdatas = {postdata} />
+        <Post2 postdatas = {postdata} />
         </div>
         <div className='my-3'>
-        <POST2 postdatas = {postdata} />
+        <Post2 postdatas = {postdata} />
         </div>
       </div>
     </section>

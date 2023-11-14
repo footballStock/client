@@ -1,7 +1,7 @@
 import React from 'react';
-import Top3_Posts from './Top3Posts';
-import Most_Recent_Posts from './MostRecentPosts'
-import POSTING from './Posting'
+import Top3Posts from './Top3Posts';
+import MostRecentPosts from './MostRecentPosts'
+import Posting from './Posting'
 import {Accountdata} from 'src/states/types';
 
 const PostMain: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
@@ -9,11 +9,11 @@ const PostMain: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
     <section>
         <div className="flex justify-between items-center mb-4">
             <h1 className="text-xl font-bold">Top3 Posts</h1>
-            <POSTING myaccounts={myaccounts} ></POSTING>
+            <Posting myaccounts={myaccounts} ></Posting>
         </div>
-        <Top3_Posts></Top3_Posts>
+        <Top3Posts></Top3Posts>
         <h1 className="text-sm font-bold my-5">Recent</h1>
-        <Most_Recent_Posts></Most_Recent_Posts>
+        <MostRecentPosts></MostRecentPosts>
     </section>
   );
 };
