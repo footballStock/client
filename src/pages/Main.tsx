@@ -55,14 +55,10 @@ const Main = () => {
 
   return (
     <React.Fragment>
-      <main className="flex justify-between px-12 py-6">
-        <Sidebar teams={teamsImage} />
-        <MainOverview
-          teamsImage={teamsImage}
-          teamsStockOverview={teamsStockOverview}
-        />
-        <Chat />
-      </main>
+      <MainOverview
+        teamsImage={teamsImage}
+        teamsStockOverview={teamsStockOverview}
+      />
     </React.Fragment>
   );
 };

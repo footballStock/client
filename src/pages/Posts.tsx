@@ -49,11 +49,7 @@ const Posts = () => {
 
   return (
     <React.Fragment>
-      <main className="flex justify-between px-12 py-6">
-        <Sidebar teams={teamsImage} />
-        <PostList myaccounts={myAccount} />
-        <Chat />
-      </main>
+      <PostList myaccounts={myAccount} />
     </React.Fragment>
   );
 };
