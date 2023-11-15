@@ -13,6 +13,7 @@ import GoogleLogin from '../static/GoogleLogin.png';
 
 import CloseIcon from '@mui/icons-material/Close';
 import {FirebaseError} from 'firebase/app';
+import axios from 'axios';
 
 const LoginModal: React.FC<{
   modalIsOpen: boolean;
@@ -49,7 +50,19 @@ const LoginModal: React.FC<{
   ) => {
     event.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      //TODO
+      // // UID 서버에 요청 보내기
+      // // 서버에서 결과로 받은 Token 전역 state로 저장
+      // const response = await axios({
+      //   method: 'post',
+      //   url: 'baseurl' + 'endpoint',
+      //   data: {
+      //     uid: result.user.uid,
+      //   }
+      // })
+      // // setToken(response.data.uid)
+
       setModalIsOpen(false);
     } catch (error) {
       if ((error as FirebaseError).code === 'auth/invalid-login-credentials') {
