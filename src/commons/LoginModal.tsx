@@ -53,9 +53,7 @@ const LoginModal: React.FC<{
       setModalIsOpen(false);
     } catch (error) {
       if ((error as FirebaseError).code === 'auth/invalid-login-credentials') {
-        alert(
-          'This is an email address where you have not registered as a member.',
-        );
+        alert('Unregistered Email');
       }
     }
 
