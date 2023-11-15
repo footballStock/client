@@ -65,7 +65,7 @@ const Main = () => {
     <React.Fragment>
       <main className="flex justify-between px-12 py-6">
         <Sidebar teams={teamsImage} />
-        <PostMain myaccounts={myAccount}/>
+        <PostMain myaccounts={myAccount} />
         <Chat />
       </main>
     </React.Fragment>

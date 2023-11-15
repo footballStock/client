@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Sidebar from '../commons/Sidebar';
 import MainOverview from '../MainOverview/MainOverview';
 import Chat from '../commons/Chat';
 
 import {StockOverview, TeamImage} from '../states/types';
+
+import axios from 'axios';
 
 import AJAX from '../static/AJAX.png';
 import BOLA from '../static/BOLA.png';
@@ -20,6 +22,7 @@ import SLBEN from '../static/SLBEN.png';
 import SSLMI from '../static/SSL.MI.png';
 
 const Main = () => {
+  const [teamsData, setTeamsData] = useState('');
   const teamsImage: TeamImage[] = [
     {src: AJAX, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
     {src: BOLA, alt: 'Bali United FC', name: 'Bali United FC'},
@@ -52,6 +55,20 @@ const Main = () => {
       volume: 10,
     },
   ];
+
+  const getTeamData = async () => {
+    const response = await axios({
+      method: 'get',
+      url: 'http://127.0.0.1:8000/api/stock_overview/',
+    });
+    return response.data;
+  };
+
+  useEffect(() => {
+    getTeamData().then(data => {
+      setTeamsData(data);
+    });
+  }, [setTeamsData]);
 
   return (
     <React.Fragment>

@@ -13,6 +13,8 @@ import {auth} from './fire-base';
 
 import GoogleLogin from '../static/GoogleLogin.png';
 
+import axios from 'axios';
+
 const Login = (props: React.PropsWithChildren) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [email, setEmail] = useState('');
@@ -32,7 +34,18 @@ const Login = (props: React.PropsWithChildren) => {
   ) => {
     event.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log(result);
+      // UID를 서버에 요청 보내기
+      // 서버에서 결과로 받은 Token 전역 State로 저장
+      const response = await axios({
+        method: 'post',
+        url: 'baseurl' + 'endpoint',
+        data: {
+          uid: result.user.uid,
+        },
+      });
+      // setToken(response.data.uid);
       setModalIsOpen(false);
     } catch (error) {
       if ((error as FirebaseError).code === 'auth/invalid-login-credentials') {
@@ -57,7 +70,8 @@ const Login = (props: React.PropsWithChildren) => {
       }
 
       if (provider) {
-        await signInWithPopup(auth, provider);
+        const result = await signInWithPopup(auth, provider);
+        console.log(result);
         //TODO: CORS 이슈
         setModalIsOpen(false);
       }
