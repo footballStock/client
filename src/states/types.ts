@@ -52,3 +52,10 @@ export type ButtonProps = {
   emoji: string;
   count: number | string;
 };
+
+//TODO : uid 부분 서버 작업 후 수정 필요!
+export type User = {
+  profile: {src: string; alt: string};
+  nickname: string;
+  uid: number; // token?
+};

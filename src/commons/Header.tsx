@@ -1,11 +1,17 @@
 import React from 'react';
-import Trade2Goal from '../static/Trade2Goal.png';
-import NavButton from '../components/NavButton';
-import Login from './Login';
-import SignUp from './SignUp';
+import {useRecoilValue} from 'recoil';
 import {Link} from 'react-router-dom';
 
+import Login from './Login';
+import SignUp from './SignUp';
+
+import Trade2Goal from '../static/Trade2Goal.png';
+import NavButton from '../components/NavButton';
+import {userState} from '../states/recoil';
+
 const Header = () => {
+  const user = useRecoilValue(userState);
+
   return (
     <header
       id="header"
@@ -33,8 +39,14 @@ const Header = () => {
           </div>
         </div>
         <div id="header-buttons" className="flex items-center mr-4 space-x-4">
-          <Login />
-          <SignUp />
+          {user.nickname ? (
+            user.nickname
+          ) : (
+            <>
+              <Login />
+              <SignUp />
+            </>
+          )}
         </div>
       </nav>
     </header>

@@ -15,8 +15,10 @@ const MainOverview = () => {
     [],
   );
 
-  const getTeamData = (): Promise<FootballTeamStockInfo[]> => {
-    return getData('/stock_overview').then(response => response.data);
+  const getTeamData = async (): Promise<FootballTeamStockInfo[]> => {
+    return getData('/stock_overview/').then(response => {
+      return response;
+    });
   };
 
   //TODO : useEffect [] 지양 -> update 필요
@@ -48,9 +50,9 @@ const MainOverview = () => {
     };
 
     //TODO : 서버 측 stack_overviwe db 완성 후 test
-    // getTeamData().then(data => {
-    //   handleDataProcessing(data);
-    // });
+    getTeamData().then(data => {
+      handleDataProcessing(data);
+    });
   }, []);
 
   const columns: Column<StockOverview>[] = useMemo(
