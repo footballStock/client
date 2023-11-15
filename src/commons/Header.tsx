@@ -28,7 +28,7 @@ const Header = () => {
             id="menu"
             className="flex items-center justify-between ml-4 text-lg">
             <NavButton>
-              <Link to="/stocks">Stocks</Link>
+              <Link to="/">Stocks</Link>
             </NavButton>
             <NavButton>
               <Link to="/posts">Posts</Link>
