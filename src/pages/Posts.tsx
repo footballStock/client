@@ -2,9 +2,9 @@ import React from 'react';
 
 import Sidebar from '../commons/Sidebar';
 import Chat from '../commons/Chat';
-import PostMain from '../PostPage/PostMain';
+import PostList from '../Posts/PostList';
 
-import {StockOverview, TeamImage, Accountdata} from '../states/types';
+import {TeamImage, Accountdata} from '../states/types';
 
 import AJAX from '../static/AJAX.png';
 import BOLA from '../static/BOLA.png';
@@ -20,7 +20,7 @@ import SLBEN from '../static/SLBEN.png';
 import SSLMI from '../static/SSL.MI.png';
 import MyAccount from '../static/myaccount.png';
 
-const Main = () => {
+const Posts = () => {
   const teamsImage: TeamImage[] = [
     {src: AJAX, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
     {src: BOLA, alt: 'Bali United FC', name: 'Bali United FC'},
@@ -40,20 +40,6 @@ const Main = () => {
     {src: SSLMI, alt: 'SS Lazio', name: 'SS Lazio'},
   ];
 
-  const teamsStockOverview: StockOverview[] = [
-    {
-      number: '1',
-      team_name: 'Man. United',
-      team_image: {src: '', alt: '', name: ''},
-      Price: {price: '0.11', price_unit: 'USD'},
-      currency: '100',
-      change: '1.92',
-      change_percentage: '3.51',
-      market_cap: '0.10',
-      volume: 10,
-    },
-  ];
-
   const myAccount: Accountdata[] = [
     {
       src: MyAccount,
@@ -65,11 +51,11 @@ const Main = () => {
     <React.Fragment>
       <main className="flex justify-between px-12 py-6">
         <Sidebar teams={teamsImage} />
-        <PostMain myaccounts={myAccount}/>
+        <PostList myaccounts={myAccount} />
         <Chat />
       </main>
     </React.Fragment>
   );
 };
 
-export default Main;
+export default Posts;
