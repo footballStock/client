@@ -46,5 +46,6 @@ module.exports = {
     new EnvironmentPlugin(['REACT_APP_MESSAGING_SENDER_ID']),
     new EnvironmentPlugin(['REACT_APP_APP_ID']),
     new EnvironmentPlugin(['REACT_APP_MEASUREMENT_ID']),
+    new EnvironmentPlugin(['REACT_APP_BASEURL']),
   ],
 };
