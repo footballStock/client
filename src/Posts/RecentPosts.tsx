@@ -11,22 +11,26 @@ const RecentPosts: React.FC<{}> = ({}) => {
     {
       id : 1,
       author : 'bigfanofyou123',
-      author_image : Account_img1,
+      authorImage : Account_img1,
       title: '[Manchester City] are Premier League champions for the third st..',
       content : 'adjfladfjdalfjkladfjlka;dfjl;adfjkdlf;laf;kadfj;lajflkajlfkajfdieiafieafjiaefjiaefiaefaeffeaefaefaefeaf',
       image : Post_image_test1,
-      created_at: 1668338400000,
-      time: ''
+      created: 1668338400000,
+      time: '',
+      good : 45,
+      bad : 123,
     },
     {
       id : 2,
       author : 'Hellokidding',
-      author_image : Account_img2,
+      authorImage : Account_img2,
       title: 'Premier League table after Matchweek 20',
       content : 'eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG',
       image : Post_image_test2,
-      created_at: 1668342500000,
-      time: ''
+      created: 1668342500000,
+      time: '',
+      good : 234,
+      bad : 12,
     },
   ];
 
@@ -39,7 +43,7 @@ const RecentPosts: React.FC<{}> = ({}) => {
   const updatePostTimes = (posts: Postdata[]): Postdata[] => {
     return posts.map(post => ({
       ...post,
-      time: getTimeAgo(post.created_at),
+      time: getTimeAgo(post.created),
     }));
   };
 
@@ -52,18 +56,24 @@ const RecentPosts: React.FC<{}> = ({}) => {
 
     let timeAgo = '';
 
-    if (diffInSeconds < 60) {
+    const OneMinute = 60;
+    const OneHour = 3600;
+    const OneDay = 86400;
+    const OneMonth = 2592000;
+    const OneYear = 31536000;
+
+    if (diffInSeconds < OneMinute) {
       timeAgo = `${diffInSeconds} sec ago`;
-    } else if (diffInSeconds < 3600) {
-      timeAgo = `${Math.floor(diffInSeconds / 60)} min ago`;
-    } else if (diffInSeconds < 86400) {
-      timeAgo = `${Math.floor(diffInSeconds / 3600)} hours ago`;
-    } else if (diffInSeconds < 2592000) {
-      timeAgo = `${Math.floor(diffInSeconds / 86400)} days ago`;
-    } else if (diffInSeconds < 31536000) {
-      timeAgo = `${Math.floor(diffInSeconds / 2592000)} months ago`;
+    } else if (diffInSeconds < OneHour) {
+      timeAgo = `${Math.floor(diffInSeconds / OneMinute)} min ago`;
+    } else if (diffInSeconds < OneDay) {
+      timeAgo = `${Math.floor(diffInSeconds / OneHour)} hours ago`;
+    } else if (diffInSeconds < OneMonth) {
+      timeAgo = `${Math.floor(diffInSeconds / OneDay)} days ago`;
+    } else if (diffInSeconds < OneYear) {
+      timeAgo = `${Math.floor(diffInSeconds / OneMonth)} months ago`;
     } else {
-      timeAgo = `${Math.floor(diffInSeconds / 31536000)} years ago`;
+      timeAgo = `${Math.floor(diffInSeconds / OneYear)} years ago`;
     }
 
     return timeAgo;
@@ -80,7 +90,7 @@ const RecentPosts: React.FC<{}> = ({}) => {
                   <div>
                     <div className="flex items-center my-2">
                       <img
-                        src={postdata.author_image}
+                        src={postdata.authorImage}
                         alt="accountimage"
                         className="w-[2.5rem] h-[2.5rem]"
                       />
