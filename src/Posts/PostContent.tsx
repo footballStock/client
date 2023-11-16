@@ -18,15 +18,14 @@ const Button: React.FC<ButtonProps> = ({emoji, count}) => {
 const PostContent: React.FC = () => {
   const initialPostdata = [
     {
-      src: Post_image_test3,
-      alt: 'Post image test',
-      name: 'Post image test',
-      account_img: Account_img3,
-      account_name: 'GodGodGod',
-      created_at: 1699850927000,
-      title:
-        '[Premier League] Erling Haaland is named Premier League Player of the Season for 2022/23.',
-      time: '',
+      id : 1,
+      author : 'bigfanofyou123',
+      author_image : Account_img3,
+      title: '[Manchester City] are Premier League champions for the third st..',
+      content : 'adjfladfjdalfjkladfjlka;dfjl;adfjkdlf;laf;kadfj;lajflkajlfkajfdieiafieafjiaefjiaefiaefaeffeaefaefaefeaf',
+      image : Post_image_test3,
+      created_at: 1668338400000,
+      time: ''
     },
   ];
 
@@ -76,12 +75,12 @@ const PostContent: React.FC = () => {
           <div key={index}>
             <div className="flex ml-5">
               <img
-                src={postdata.account_img}
+                src={postdata.author_image}
                 alt="accountimage"
                 className="w-[2.5rem] h-[2.5rem]"
               />
               <div className="ml-2">
-                <h5 className="text-sm">{postdata.account_name}</h5>
+                <h5 className="text-sm">{postdata.author}</h5>
                 <h5 className="text-sm">{postdata.time}</h5>
               </div>
             </div>
@@ -94,7 +93,7 @@ const PostContent: React.FC = () => {
 
             <div className="flex items-center justify-center my-10">
               <img
-                src={postdata.src}
+                src={postdata.image}
                 alt="accountimage"
                 className="w-[40rem] h-[40rem]"
               />
