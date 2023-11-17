@@ -9,7 +9,7 @@ import {
 
 import {auth} from './fire-base';
 
-import GoogleLogin from '../static/GoogleLogin.png';
+import GoogleLogin from '../static/others/GoogleLogin.png';
 
 import CloseIcon from '@mui/icons-material/Close';
 import {FirebaseError} from 'firebase/app';

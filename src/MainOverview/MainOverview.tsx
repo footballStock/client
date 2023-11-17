@@ -4,9 +4,9 @@ import {Column} from 'react-table';
 
 import TableSheet from './TableSheet';
 
-import {FootballTeamStockInfo, StockOverview, TeamImage} from '../states/types';
+import {FootballTeamStockInfo, StockOverview, Image} from '../states/types';
 import {teamsImageState} from '../states/recoil';
-import AD from '../static/AD.png';
+import AD from '../static/others/AD.png';
 import {getData} from '../commons/api';
 
 const MainOverview = () => {
@@ -105,7 +105,7 @@ const MainOverview = () => {
     [],
   );
 
-  const mergeTeamData = (teams: TeamImage[], stockData: StockOverview[]) => {
+  const mergeTeamData = (teams: Image[], stockData: StockOverview[]) => {
     return stockData.map(stock => {
       const teamImage = teams.find(team => team.name === stock.team_name);
       return {

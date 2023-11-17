@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import {Accountdata} from 'src/states/types';
+import {Accountdata} from '../states/types';
 
 const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);

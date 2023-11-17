@@ -1,5 +1,5 @@
 import React from 'react';
-import LiveChat from '../static/Livechat.png';
+import LiveChat from '../static/others/Livechat.png';
 
 const Chat = () => {
   return (
