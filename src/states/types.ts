@@ -59,3 +59,10 @@ export type User = {
   nickname: string;
   uid: number; // token?
 };
+
+export type ClubImage = {
+  src: string;
+  alt: string;
+  name: string;
+  color: string;
+};

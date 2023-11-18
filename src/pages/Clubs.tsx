@@ -24,6 +24,12 @@ import Serie_A from '../static/leagues/Serie_A.png';
 
 import {Image} from '../states/types';
 
+import ClubLists from '../Clubs/ClubLists';
+
+import arsenal from '../static/arsenal.png';
+import PremierLeague from '../static/PremierLeague.png';
+import {ClubImage} from '../states/types';
+
 const Clubs = () => {
   const clubsImage: Image[] = [
     {src: AFC_Ajax, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
