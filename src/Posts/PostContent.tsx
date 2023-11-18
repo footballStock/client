@@ -10,6 +10,7 @@ import Account_img2 from '../static/others/account_img2.png';
 import Account_img3 from '../static/others/account_img3.png';
 
 import {Postdata, ButtonProps} from '../states/types';
+import ReportPost from './ReportPost';
 
 const Button: React.FC<ButtonProps> = ({emoji, count}) => {
   return (
@@ -67,13 +68,16 @@ const PostContent: React.FC = () => {
 
   useEffect(() => {
     // URL에서 가져온 id와 일치하는 포스트 데이터를 찾습니다.
-    const postData = initialPostdata.find(post => post.id.toString() === id);
+    const postId = parseInt(id!); // id를 숫자로 변환합니다.
+    const postData = initialPostdata.find(post => post.id === postId);
 
     if (postData) {
       setPostdata({
         ...postData,
         time: getTimeAgo(postData.created)
       });
+    } else {
+      setPostdata(null); // 일치하는 포스트가 없는 경우
     }
   }, [id]);
 
@@ -110,7 +114,7 @@ const PostContent: React.FC = () => {
   };
 
   if (!postdata) {
-    return <div>Loading...</div>; // 데이터가 없을 경우
+    return <div>포스트를 찾을 수 없습니다.</div>; 
   }
 
   return (
@@ -136,11 +140,17 @@ const PostContent: React.FC = () => {
           <img src={postdata.image} alt="postimage" className="w-[40rem] h-[40rem]" />
         </div>
 
+        <div className="flex my-5 ml-5">
+          <h1 className="font-semibold text-lg md:text-xl lg:text-2xl leading-normal">
+            {postdata.content}
+          </h1>
+        </div>
+
         <div className="flex space-x-4">
           <Button emoji="👍" count={postdata.good} />
           <Button emoji="👎" count={postdata.bad} />
           <div className="flex justify-end w-full">
-            <Button emoji="🚩" count="" />
+            <ReportPost></ReportPost>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Postdata} from 'src/states/types';
 import { useNavigate } from 'react-router-dom';
 
 import Post_image_test1 from '../static/others/Post_image_test1.png';
@@ -7,8 +8,6 @@ import Post_image_test3 from '../static/others/Post_image_test3.png';
 import Account_img1 from '../static/others/account_img1.png';
 import Account_img2 from '../static/others/account_img2.png';
 import Account_img3 from '../static/others/account_img3.png';
-
-import {Postdata} from 'src/states/types';
 
 const TopPosts: React.FC<{}> = ({}) => {
   const initialPostdata = [
