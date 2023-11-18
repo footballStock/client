@@ -26,62 +26,101 @@ import {Image} from '../states/types';
 
 import ClubLists from '../Clubs/ClubLists';
 
-import arsenal from '../static/arsenal.png';
-import PremierLeague from '../static/PremierLeague.png';
 import {ClubImage} from '../states/types';
 
 const Clubs = () => {
-  const clubsImage: Image[] = [
-    {src: AFC_Ajax, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
-    {src: Bali_United, alt: 'Bali United FC', name: 'Bali United FC'},
+  const clubsImage: ClubImage[] = [
+    {
+      src: AFC_Ajax,
+      alt: 'AFC Ajax NV',
+      name: 'AFC Ajax NV',
+      league: 'Eredivisie',
+    },
+    {
+      src: Bali_United,
+      alt: 'Bali United FC',
+      name: 'Bali United FC',
+      league: 'Liga 1 Indonesia',
+    },
     {
       src: Borussia_Dortmund,
       alt: 'Borussia Dortmund',
       name: 'Borussia Dortmund',
+      league: 'Bundesliga',
     },
-    {src: Celtic_FC, alt: 'Celtic', name: 'Celtic'},
-    {src: FC_Porto, alt: 'FC Porto', name: 'FC Porto'},
-    {src: Juventus_FC, alt: 'Juventus', name: 'Juventus'},
-    {src: Manchester_United_FC, alt: 'Man. United', name: 'Man. United'},
+    {
+      src: Celtic_FC,
+      alt: 'Celtic',
+      name: 'Celtic',
+      league: 'Scottish Premiership',
+    },
+    {src: FC_Porto, alt: 'FC Porto', name: 'FC Porto', league: 'Serie A'},
+    {
+      src: Juventus_FC,
+      alt: 'Juventus',
+      name: 'Juventus',
+      league: 'Primeira Liga',
+    },
+    {
+      src: Manchester_United_FC,
+      alt: 'Man. United',
+      name: 'Man. United',
+      league: 'Premier League',
+    },
     {
       src: Olympique_Lyonnais,
       alt: 'Olympique Lyonnais',
       name: 'Olympique Lyonnais',
+      league: 'Ligue 1',
     },
     {
       src: SC_Braga,
       alt: 'Sporting Clube de Brage',
       name: 'Sporting Clube de Brage',
+      league: 'Primeira Liga',
     },
     {
       src: Sporting_Clube_de_Portugal,
       alt: 'Sporting Clube de Portugal',
       name: 'Sporting Clube de Portugal',
+      league: 'Primeira Liga',
     },
     {
       src: SL_Benfica,
       alt: 'Sport Lisboa a Benfica',
       name: 'Sport Lisboa a Benfica',
+      league: 'Primeira Liga',
     },
-    {src: SS_Lazio, alt: 'SS Lazio', name: 'SS Lazio'},
+    {src: SS_Lazio, alt: 'SS Lazio', name: 'SS Lazio', league: 'Serie A'},
   ];
 
   const leaguesImage: Image[] = [
+    {src: Premier_League, alt: 'Premier League', name: 'Premier League'},
+    {src: Serie_A, alt: 'Serie A', name: 'Serie A'},
+    {src: Eredivisie, alt: 'Eredivisie', name: 'Eredivisie'},
     {src: Bundesliga, alt: 'Bundesliga', name: 'Bundesliga'},
     {
       src: Cinch_premiership,
       alt: 'Scottish Premiership',
       name: 'Scottish Premiership',
     },
-    {src: Eredivisie, alt: 'Eredivisie', name: 'Eredivisie'},
     {src: Liga_1, alt: 'Liga 1 Indonesia', name: 'Liga 1 Indonesia'},
     {src: Liga_Portugal, alt: 'Primeira Liga', name: 'Primeira Liga'},
     {src: Ligue_1, alt: 'Ligue 1', name: 'Ligue 1'},
-    {src: Premier_League, alt: 'Premier League', name: 'Premier League'},
-    {src: Serie_A, alt: 'Serie A', name: 'Serie A'},
   ];
 
-  return <></>;
+  return (
+    <div className="flex flex-col flex-wrap">
+      {leaguesImage.map((league, idx) => (
+        <div key={idx} className="">
+          <ClubLists
+            league={league}
+            clubsImage={clubsImage.filter(club => club.league === league.name)}
+          />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Clubs;

@@ -64,5 +64,5 @@ export type ClubImage = {
   src: string;
   alt: string;
   name: string;
-  color: string;
+  league: string;
 };

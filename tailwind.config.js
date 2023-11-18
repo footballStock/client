@@ -18,6 +18,7 @@ module.exports = {
         blue: '2px 4px 0px 1px rgba(0,0,255,0.75)',
         indigo: '2px 4px 0px 1px rgba(75,0,130,0.75)',
         violet: '2px 4px 0px 1px rgba(238,130,238,0.75)',
+        black: '2px 4px 0px 1px rgba(0,0,0,0.75)',
       },
     },
   },
