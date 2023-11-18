@@ -1,6 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
+import Post_image_test1 from '../static/others/Post_image_test1.png';
+import Post_image_test2 from '../static/others/Post_image_test2.png';
 import Post_image_test3 from '../static/others/Post_image_test3.png';
+import Account_img1 from '../static/others/account_img1.png';
+import Account_img2 from '../static/others/account_img2.png';
 import Account_img3 from '../static/others/account_img3.png';
 
 import {Postdata, ButtonProps} from '../states/types';
@@ -16,33 +22,60 @@ const Button: React.FC<ButtonProps> = ({emoji, count}) => {
 
 // const PostContent: React.FC<{postdatas: Postdata[]}> = ({postdatas}) =>
 const PostContent: React.FC = () => {
+
+  const [postdata, setPostdata] = useState<Postdata | null>(null);
+  const { id } = useParams<string>(); // URL에서 id 추출
+
   const initialPostdata = [
     {
       id : 1,
       author : 'bigfanofyou123',
-      authorImage : Account_img3,
+      authorImage : Account_img1,
       title: '[Manchester City] are Premier League champions for the third st..',
       content : 'adjfladfjdalfjkladfjlka;dfjl;adfjkdlf;laf;kadfj;lajflkajlfkajfdieiafieafjiaefjiaefiaefaeffeaefaefaefeaf',
-      image : Post_image_test3,
+      image : Post_image_test1,
       created: 1668338400000,
+      time: '',
+      good : 45,
+      bad : 123,
+    },
+    {
+      id : 2,
+      author : 'Hellokidding',
+      authorImage : Account_img2,
+      title: 'Premier League table after Matchweek 20',
+      content : 'eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG',
+      image : Post_image_test2,
+      created: 1668342500000,
       time: '',
       good : 234,
       bad : 12,
     },
+    {
+      id : 3,
+      author : 'GodGodGod',
+      authorImage : Account_img3,
+      title: '[Premier League] Erling Haaland scores the most goals (35) ever',
+      content : 'afiefe efe feWQEROQ Qfeojfoejtotoe eoteotjwpe jepwq n WBG eochapu usengen WBG',
+      image : Post_image_test3,
+      created: 1458342500000,
+      time: '',
+      good : 634,
+      bad : 1,
+    },
   ];
 
-  const [postdatas, setPostdatas] = useState(initialPostdata);
-
   useEffect(() => {
-    setPostdatas(updatePostTimes(initialPostdata));
-  }, []);
+    // URL에서 가져온 id와 일치하는 포스트 데이터를 찾습니다.
+    const postData = initialPostdata.find(post => post.id.toString() === id);
 
-  const updatePostTimes = (posts: Postdata[]): Postdata[] => {
-    return posts.map(post => ({
-      ...post,
-      time: getTimeAgo(post.created),
-    }));
-  };
+    if (postData) {
+      setPostdata({
+        ...postData,
+        time: getTimeAgo(postData.created)
+      });
+    }
+  }, [id]);
 
   const getTimeAgo = (timestamp: number) => {
     const now = new Date();
@@ -76,48 +109,43 @@ const PostContent: React.FC = () => {
     return timeAgo;
   };
 
+  if (!postdata) {
+    return <div>Loading...</div>; // 데이터가 없을 경우
+  }
+
   return (
     <section className="w-1/2">
-      <div className="flex justify-start ">
-        {postdatas.map((postdata, index) => (
-          <div key={index}>
-            <div className="flex ml-5">
-              <img
-                src={postdata.authorImage}
-                alt="accountimage"
-                className="w-[2.5rem] h-[2.5rem]"
-              />
-              <div className="ml-2">
-                <h5 className="text-sm">{postdata.author}</h5>
-                <h5 className="text-sm">{postdata.time}</h5>
-              </div>
-            </div>
+    <div className="flex justify-start">
 
-            <div className="flex my-5 ml-5">
-              <h1 className="font-bold break-words text-1xl md:text-2xl lg:text-4xl">
-                {postdata.title}
-              </h1>
-            </div>
-
-            <div className="flex items-center justify-center my-10">
-              <img
-                src={postdata.image}
-                alt="accountimage"
-                className="w-[40rem] h-[40rem]"
-              />
-            </div>
-
-            <div className="flex space-x-4">
-              <Button emoji="👍" count={postdata.good} />
-              <Button emoji="👎" count={postdata.bad} />
-              <div className="flex justify-end w-full">
-                <Button emoji="🚩" count="" />
-              </div>
-            </div>
+      <div>
+        <div className="flex ml-5">
+          <img src={postdata.authorImage} alt="accountimage" className="w-[2.5rem] h-[2.5rem]" />
+          <div className="ml-2">
+            <h5 className="text-sm">{postdata.author}</h5>
+            <h5 className="text-sm">{postdata.time}</h5>
           </div>
-        ))}
+        </div>
+
+        <div className="flex my-5 ml-5">
+          <h1 className="font-bold break-words text-1xl md:text-2xl lg:text-4xl">
+            {postdata.title}
+          </h1>
+        </div>
+
+        <div className="flex items-center justify-center my-10">
+          <img src={postdata.image} alt="postimage" className="w-[40rem] h-[40rem]" />
+        </div>
+
+        <div className="flex space-x-4">
+          <Button emoji="👍" count={postdata.good} />
+          <Button emoji="👎" count={postdata.bad} />
+          <div className="flex justify-end w-full">
+            <Button emoji="🚩" count="" />
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 };
 

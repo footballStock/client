@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Postdata} from 'src/states/types';
+import { useNavigate } from 'react-router-dom';
 
 import Post_image_test1 from '../static/others/Post_image_test1.png';
 import Post_image_test2 from '../static/others/Post_image_test2.png';
@@ -79,6 +80,12 @@ const RecentPosts: React.FC<{}> = ({}) => {
     return timeAgo;
   };
 
+  const navigate = useNavigate(); // 네비게이션 함수
+
+  const handlePostClick = (id: number) => {
+    navigate(`/posts/${id}`); // 포스트 ID에 따라 URL 변경
+  }
+
   return (
     <section>
       <div>
@@ -86,7 +93,7 @@ const RecentPosts: React.FC<{}> = ({}) => {
           <section>
             <div className="flex items-center">
               {postdatas.map((postdata, index) => (
-                <div key={index} className="flex ml-5">
+                <div key={index} onClick={() => handlePostClick(postdata.id)} className="flex ml-5">
                   <div>
                     <div className="flex items-center my-2">
                       <img
