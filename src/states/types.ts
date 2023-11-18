@@ -9,7 +9,7 @@ export type FootballTeamStockInfo = {
   volume: number;
 };
 
-export type TeamImage = {
+export type Image = {
   src: string;
   alt: string;
   name: string;
@@ -23,7 +23,7 @@ export type PriceData = {
 export type StockOverview = {
   number: string;
   team_name: string;
-  team_image: TeamImage;
+  team_image: Image;
   Price: PriceData;
   currency: string;
   change: string;

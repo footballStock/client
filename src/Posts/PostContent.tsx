@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 
-import Post_image_test3 from '../static/Post_image_test3.png';
-import Account_img3 from '../static/account_img3.png';
+import Post_image_test3 from '../static/others/Post_image_test3.png';
+import Account_img3 from '../static/others/account_img3.png';
 
-import {Postdata, ButtonProps} from 'src/states/types';
+import {Postdata, ButtonProps} from '../states/types';
 
 const Button: React.FC<ButtonProps> = ({emoji, count}) => {
   return (
