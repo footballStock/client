@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import Login from './Login';
 import SignUp from './SignUp';
 
-import Trade2Goal from '../static/Trade2Goal.png';
+import Trade2Goal from '../static/others/Trade2Goal.png';
 import NavButton from '../components/NavButton';
 import {userState} from '../states/recoil';
 

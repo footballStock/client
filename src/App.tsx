@@ -4,26 +4,26 @@ import Sidebar from './commons/Sidebar';
 import Main from './pages/Posts';
 import AppRouter from './AppRouter';
 
-import AJAX from './static/AJAX.png';
-import BOLA from './static/BOLA.png';
-import BVB from './static/BVB.png';
-import CCP from './static/CCP.png';
-import FCP from './static/FCP.png';
-import JUVE from './static/JUVE.png';
-import MANU from './static/MANU.png';
-import OLG from './static/OLG.png';
-import SCB from './static/SCB.png';
-import SCP from './static/SCP.png';
-import SLBEN from './static/SLBEN.png';
-import SSLMI from './static/SSL.MI.png';
+import AJAX from './static/teams/AJAX.png';
+import BOLA from './static/teams/BOLA.png';
+import BVB from './static/teams/BVB.png';
+import CCP from './static/teams/CCP.png';
+import FCP from './static/teams/FCP.png';
+import JUVE from './static/teams/JUVE.png';
+import MANU from './static/teams/MANU.png';
+import OLG from './static/teams/OLG.png';
+import SCB from './static/teams/SCB.png';
+import SCP from './static/teams/SCP.png';
+import SLBEN from './static/teams/SLBEN.png';
+import SSLMI from './static/teams/SSL.MI.png';
 import Chat from './commons/Chat';
-import {TeamImage} from './states/types';
+import {Image} from './states/types';
 import {useSetRecoilState} from 'recoil';
 import {teamsImageState} from './states/recoil';
 
 const App = (): JSX.Element => {
   //TODO : 이후 서버 측 stack_overview db 완성 후 name 수정 필요
-  const teamsImage: TeamImage[] = [
+  const teamsImage: Image[] = [
     {src: AJAX, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
     {src: BOLA, alt: 'Bali United FC', name: 'Bali United FC'},
     {src: BVB, alt: 'Borussia Dortmund', name: 'Borussia Dortmund'},

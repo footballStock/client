@@ -1,7 +1,7 @@
 import {atom} from 'recoil';
-import {TeamImage, User} from './types';
+import {Image, User} from './types';
 
-export const teamsImageState = atom<TeamImage[]>({
+export const teamsImageState = atom<Image[]>({
   key: 'teamsImageState',
   default: [],
 });
