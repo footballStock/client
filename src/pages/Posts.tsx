@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import PostList from '../Posts/PostList';
-import PostContent from '../Posts/PostContent'; // PostContent 컴포넌트 임포트
+import PostContent from '../Posts/PostContent';
 import {Accountdata} from '../states/types';
 import MyAccount from '../static/others/myaccount.png';
 

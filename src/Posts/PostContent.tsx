@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({emoji, count}) => {
 const PostContent: React.FC = () => {
 
   const [postdata, setPostdata] = useState<Postdata | null>(null);
-  const { id } = useParams<string>(); // URL에서 id 추출
+  const { id } = useParams<string>();
 
   const initialPostdata = [
     {
@@ -67,8 +67,8 @@ const PostContent: React.FC = () => {
   ];
 
   useEffect(() => {
-    // URL에서 가져온 id와 일치하는 포스트 데이터를 찾습니다.
-    const postId = parseInt(id!); // id를 숫자로 변환합니다.
+    
+    const postId = parseInt(id!); 
     const postData = initialPostdata.find(post => post.id === postId);
 
     if (postData) {
@@ -77,7 +77,7 @@ const PostContent: React.FC = () => {
         time: getTimeAgo(postData.created)
       });
     } else {
-      setPostdata(null); // 일치하는 포스트가 없는 경우
+      setPostdata(null); 
     }
   }, [id]);
 
@@ -114,7 +114,7 @@ const PostContent: React.FC = () => {
   };
 
   if (!postdata) {
-    return <div>포스트를 찾을 수 없습니다.</div>; 
+    return <div>포스트를 찾을 수 없습니다.</div>; // 추후 변경
   }
 
   return (

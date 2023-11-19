@@ -8,7 +8,7 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [text, setText] = useState("");
-  const [imageName, setImageName] = useState(""); // 업로드된 이미지 이름을 저장합니다
+  const [imageName, setImageName] = useState("");
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -16,15 +16,15 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
 
   const closeModal = (event: React.MouseEvent<HTMLButtonElement>) => {
     setModalIsOpen(false);
-    setImage(null); // 모달을 닫을 때 이미지 상태도 초기화합니다.
-    setImageName(""); // 이미지 이름도 초기화합니다.
+    setImage(null); 
+    setImageName("");
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       setImage(file);
-      setImageName(file.name); // 업로드된 이미지의 이름을 설정합니다.
+      setImageName(file.name); 
     }
   };
 
@@ -47,7 +47,7 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
           contentLabel="Create Post"
           className="w-2/5 h-2/3 p-2.5 border border-solid border-gray-950 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white flex flex-col"
         >
-          {/* 모달 헤더 */}
+          {/* Modal Header */}
           <div className="flex justify-between items-center p-4 border-b">
             <h2 className="text-xl font-bold">Create Post</h2>
             <button onClick={closeModal}>
@@ -55,7 +55,7 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
             </button>
           </div>
 
-          {/* 이미지 업로드 섹션 */}
+          {/* Image upload */}
           <div className="p-4 flex justify-center">
             <label htmlFor="image-upload" className="cursor-pointer">
               <div className="w-1/3 h-36" style={{ minWidth: '200px' }}> {/* 최소 너비 설정 */}
@@ -82,10 +82,10 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
             />
           </div>
           {imageName && (
-            <p className="mt-2 text-sm text-gray-600 text-center">{imageName}</p> // 이미지 이름을 다음 줄에 표시
+            <p className="mt-2 text-sm text-gray-600 text-center">{imageName}</p> 
           )}
 
-          {/* 포스트 텍스트 입력 필드 */}
+          {/* Post text */}
           <textarea
             value={text}
             onChange={handleTextChange}
@@ -94,10 +94,10 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
             rows={16}
           ></textarea>
 
-          {/* 포스트 버튼 */}
+          {/* Post button */}
           <div className="flex justify-end p-4">
             <button
-              onClick={() => {/* POST the content */}}
+              onClick={() => {/* POST the content */}} // 추후 변경
               disabled={isPostButtonDisabled}
               className={`w-24 h-8 font-bold rounded-xl ${
                 isPostButtonDisabled

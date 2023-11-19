@@ -94,10 +94,10 @@ const TopPosts: React.FC<{}> = ({}) => {
     return timeAgo;
   };
 
-  const navigate = useNavigate(); // 네비게이션 함수
+  const navigate = useNavigate(); 
 
   const handlePostClick = (id: number) => {
-    navigate(`/posts/${id}`); // 포스트 ID에 따라 URL 변경
+    navigate(`/posts/${id}`); 
   }
 
   return (
