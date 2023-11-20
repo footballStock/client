@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import SocketInterface from './SocketInterface';
 
-import LiveChat from '../../static/Livechat.png';
+import LiveChat from '../../static/others/Livechat.png';
 import {useRecoilValue} from 'recoil';
 import {tokenState} from '../../states/recoil';
 

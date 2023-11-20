@@ -12,7 +12,7 @@ import {FirebaseError} from 'firebase/app';
 import {getData, postData} from './api';
 import {auth} from './fire-base';
 
-import GoogleLogin from '../static/GoogleLogin.png';
+import GoogleLogin from '../static/others/GoogleLogin.png';
 import {tokenState} from '../states/recoil';
 
 import CloseIcon from '@mui/icons-material/Close';
