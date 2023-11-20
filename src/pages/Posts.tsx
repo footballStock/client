@@ -1,6 +1,8 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import PostList from '../Posts/PostList';
+import PostContent from '../Posts/PostContent';
 import {Accountdata} from '../states/types';
 import MyAccount from '../static/others/myaccount.png';
 
@@ -13,9 +15,10 @@ const Posts = () => {
   ];
 
   return (
-    <React.Fragment>
-      <PostList myaccounts={myAccount} />
-    </React.Fragment>
+    <Routes>
+      <Route index element={<PostList myaccounts={myAccount} />} />
+      <Route path=":id" element={<PostContent />} />
+    </Routes>
   );
 };
 

@@ -33,14 +33,16 @@ export type StockOverview = {
 };
 
 export type Postdata = {
-  src: string;
-  alt: string;
-  name: string;
-  account_img: string;
-  account_name: string;
-  created_at: number;
-  time: string;
+  id : number;
+  author:string;
+  authorImage:string;
   title: string;
+  content : string;
+  image : string;
+  created: number;
+  time: string;  
+  good : number;
+  bad : number;
 };
 
 export type Accountdata = {
