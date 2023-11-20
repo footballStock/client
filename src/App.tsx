@@ -17,13 +17,13 @@ import SCP from './static/SCP.png';
 import SLBEN from './static/SLBEN.png';
 import SSLMI from './static/SSL.MI.png';
 import Chat from './commons/Chat/Chat';
-import {TeamImage} from './states/types';
+import {Image} from './states/types';
 import {useSetRecoilState} from 'recoil';
 import {teamsImageState} from './states/recoil';
 
 const App = (): JSX.Element => {
   //TODO : 이후 서버 측 stack_overview db 완성 후 name 수정 필요
-  const teamsImage: TeamImage[] = [
+  const teamsImage: Image[] = [
     {src: AJAX, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
     {src: BOLA, alt: 'Bali United FC', name: 'Bali United FC'},
     {src: BVB, alt: 'Borussia Dortmund', name: 'Borussia Dortmund'},

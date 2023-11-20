@@ -4,7 +4,7 @@ import TopPosts from './TopPosts';
 import MostRecentPosts from './RecentPosts';
 import CreatePost from './CreatePost';
 
-import {Accountdata} from 'src/states/types';
+import {Accountdata} from '../states/types';
 
 const PostList: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
   return (

@@ -9,7 +9,7 @@ export type FootballTeamStockInfo = {
   volume: number;
 };
 
-export type TeamImage = {
+export type Image = {
   src: string;
   alt: string;
   name: string;
@@ -23,7 +23,7 @@ export type PriceData = {
 export type StockOverview = {
   number: string;
   team_name: string;
-  team_image: TeamImage;
+  team_image: Image;
   Price: PriceData;
   currency: string;
   change: string;
@@ -33,14 +33,16 @@ export type StockOverview = {
 };
 
 export type Postdata = {
-  src: string;
-  alt: string;
-  name: string;
-  account_img: string;
-  account_name: string;
-  created_at: number;
-  time: string;
+  id : number;
+  author:string;
+  authorImage:string;
   title: string;
+  content : string;
+  image : string;
+  created: number;
+  time: string;  
+  good : number;
+  bad : number;
 };
 
 export type Accountdata = {
@@ -58,4 +60,11 @@ export type User = {
   profile: {src: string; alt: string};
   nickname: string;
   uid: number; // token?
+};
+
+export type ClubImage = {
+  src: string;
+  alt: string;
+  name: string;
+  league: string;
 };
