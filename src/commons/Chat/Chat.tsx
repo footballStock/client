@@ -3,8 +3,8 @@ import React, {useEffect, useState} from 'react';
 import SocketInterface from './SocketInterface';
 
 import LiveChat from '../../static/Livechat.png';
-
-const config = require('./WebInterface').default;
+import {useRecoilValue} from 'recoil';
+import {tokenState} from '../../states/recoil';
 
 interface ChatMessage {
   name: string;
@@ -13,12 +13,13 @@ interface ChatMessage {
 }
 
 const Chat = () => {
-  const [log] = useState(new SocketInterface(config));
+  const [log] = useState(new SocketInterface());
   const [data, setData] = useState<ChatMessage[]>([]);
   const [status, setStatus] = useState('DISCONNECTED');
+  const [comment, setComment] = useState('');
+  const token = useRecoilValue(tokenState);
 
   //TODO : 실제 값 넣어줘야 함!
-  const token = null;
   const key = 'common';
 
   //* save the data to local storage when receiving the data from web server.
@@ -43,9 +44,8 @@ const Chat = () => {
   //* get message usign websocket
   const onMessage = async (msg: any) => {
     const msgData: ChatMessage = JSON.parse(msg.data);
+    console.log(msgData);
     setData(prevData => [...prevData, msgData]);
-
-    const updatedData: ChatMessage[] = (await loadFromLocalStorage(key)) || [];
     await saveToLocalStorage(key, msgData);
   };
 
@@ -80,8 +80,8 @@ const Chat = () => {
     setData(prevData => [...prevData, dummyMsg]);
   };
 
+  // 컴포넌트 마운트 시 로컬 스토리지에서 메시지 불러오기
   useEffect(() => {
-    // 컴포넌트 마운트 시 로컬 스토리지에서 메시지 불러오기
     const loadMessages = async () => {
       const savedMessages = await loadFromLocalStorage(key);
       if (savedMessages) {
@@ -91,21 +91,45 @@ const Chat = () => {
     loadMessages();
   }, []);
 
+  const handlePostComment = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    //TODO : socket send 요청
+  };
+
+  const sendMsg = () => {
+    log.send(JSON.stringify({user: 'a', message: 'a'}));
+  };
+
   return (
     <section
       id="chat"
       className="sticky flex flex-col items-center space-x-4 top-4 h-1/2">
+      {status}
+
       <div className="px-20">
         <img src={LiveChat} className="w-7 h-7" />
       </div>
       <div className="overflow-y-scroll w-60 h-72 bg-custom-room">Room</div>
-      <div className="overflow-y-scroll h-96 w-60 bg-custom-chat">Chatting</div>
+      <div className="overflow-y-scroll h-96 w-60 bg-custom-chat">
+        <div>Chatting</div>
+        <div>
+          <form onSubmit={handlePostComment}>
+            <input
+              type="text"
+              name="text"
+              required
+              className=" bg-red-950"
+              value={comment}
+              onChange={e => setComment(e.target.value)}
+            />
+            <input type="submit" value={comment} />
+          </form>
+        </div>
+      </div>
+      <button onClick={sendMsg}>Send Message</button>
 
-      {/* 임시 메시지 생성 버튼 */}
       <button onClick={createAndSaveDummyMessage}>Create Dummy Message</button>
-
-      {/* 메시지 표시 영역 */}
-      <div /* ... */>
+      <div>
         {data.map((message, index) => (
           <div key={index}>
             <strong>{message.name}:</strong> {message.msg}

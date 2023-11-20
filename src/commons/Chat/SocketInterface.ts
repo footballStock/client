@@ -1,10 +1,3 @@
-interface Config {
-  url: string;
-  port: number;
-  view: any;
-  rate: any;
-}
-
 interface ServerConfig {
   defaultLogLength: number;
   serverUrl: string;
@@ -16,29 +9,23 @@ interface Options {
   serverConfig: ServerConfig;
   worker: boolean;
   maxConcurrency: number;
-  view: any;
-  rate: any;
 }
 
 export default class SocketInterface {
-  private config: Config;
   private options: Options;
   private binded_f: {[key: string]: EventListener};
   private socket: WebSocket | null;
 
-  constructor(config: Config) {
-    this.config = config;
+  constructor() {
     this.options = {
       logGuid: 'mock',
       bufferLength: 50,
       serverConfig: {
         defaultLogLength: 300,
-        serverUrl: `ws://${config.url}:${config.port}`,
+        serverUrl: `ws://3.34.252.170:8000/ws/chat/1/`,
       },
       worker: true,
       maxConcurrency: 4,
-      view: config.view,
-      rate: config.rate,
     };
     this.binded_f = {};
     this.socket = null;
