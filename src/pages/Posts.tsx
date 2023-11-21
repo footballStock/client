@@ -17,7 +17,7 @@ const Posts = () => {
   return (
     <Routes>
       <Route index element={<PostList myaccounts={myAccount} />} />
-      <Route path=":id" element={<PostContent />} />
+      <Route path=":id" element={ <PostContent /> } />
     </Routes>
   );
 };

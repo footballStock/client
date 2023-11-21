@@ -4,16 +4,19 @@ export const apiLists = ['/stock_overview', '/posts'];
 
 export const getData = async (endpoint: string, token?: any) => {
   if (token) {
-    const response = await axios.get(process.env.REACT_APP_BASEURL + endpoint, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await axios.get(
+      process.env.REACT_APP_BASEURL + '/api' + endpoint,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
     return response.data;
   } else {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_BASEURL + endpoint,
+        process.env.REACT_APP_BASEURL + '/api' + endpoint,
       );
       return response.data;
     } catch (error) {
@@ -25,7 +28,7 @@ export const getData = async (endpoint: string, token?: any) => {
 export const postData = async (endpoint: string, data: any, token?: any) => {
   try {
     const response = await axios.post(
-      process.env.REACT_APP_BASEURL + endpoint,
+      process.env.REACT_APP_BASEURL + '/api' + endpoint,
       data,
       {
         headers: {
