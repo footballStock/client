@@ -33,17 +33,18 @@ export type StockOverview = {
 };
 
 export type Postdata = {
-  id : number;
+  id: number;
   title: string;
-  content : string;
-  image : string;
-  author:string;
-  author_profile:string;
+  content: string;
+  image: string;
+  author: string;
+  author_profile: string;
   created_at: string;
-  likes_count : number;
-  dislikes_count : number;
-  like : boolean;
-  dislike : boolean;
+  time: string;
+  likes_count: number;
+  dislikes_count: number;
+  like: boolean;
+  dislike: boolean;
 };
 
 export type Accountdata = {

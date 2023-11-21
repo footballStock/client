@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useSetRecoilState} from 'recoil';
 import ReactModal from 'react-modal';
 import {
   GoogleAuthProvider,
@@ -6,14 +7,15 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth';
+import {FirebaseError} from 'firebase/app';
 
+import {getData, postData} from './api';
 import {auth} from './fire-base';
 
 import GoogleLogin from '../static/others/GoogleLogin.png';
+import {tokenState} from '../states/recoil';
 
 import CloseIcon from '@mui/icons-material/Close';
-import {FirebaseError} from 'firebase/app';
-import axios from 'axios';
 
 const LoginModal: React.FC<{
   modalIsOpen: boolean;
@@ -23,6 +25,8 @@ const LoginModal: React.FC<{
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [current, setCurrent] = useState(name);
+
+  const setToken = useSetRecoilState(tokenState);
 
   const closeModal = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -50,18 +54,14 @@ const LoginModal: React.FC<{
   ) => {
     event.preventDefault();
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      //TODO
-      // // UID 서버에 요청 보내기
-      // // 서버에서 결과로 받은 Token 전역 state로 저장
-      // const response = await axios({
-      //   method: 'post',
-      //   url: 'baseurl' + 'endpoint',
-      //   data: {
-      //     uid: result.user.uid,
-      //   }
-      // })
-      // // setToken(response.data.uid)
+      await signInWithEmailAndPassword(auth, email, password).then(response => {
+        setToken((response as any)._tokenResponse.idToken);
+        getData('/login/', (response as any)._tokenResponse.idToken).then(
+          data => {
+            console.log(data);
+          },
+        );
+      });
 
       setModalIsOpen(false);
     } catch (error) {
@@ -85,7 +85,14 @@ const LoginModal: React.FC<{
       }
 
       if (provider) {
-        await signInWithPopup(auth, provider);
+        await signInWithPopup(auth, provider).then(response => {
+          setToken((response as any)._tokenResponse.idToken);
+          getData('/login/', (response as any)._tokenResponse.idToken).then(
+            data => {
+              console.log(data);
+            },
+          );
+        });
         //TODO: CORS 이슈
         setModalIsOpen(false);
       }

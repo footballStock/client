@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Postdata} from 'src/states/types';
 import {useNavigate} from 'react-router-dom';
-import {getData} from 'src/commons/api';
+import {getData} from '../commons/api';
 
 import Post_image_test1 from '../static/others/Post_image_test1.png';
 import Post_image_test2 from '../static/others/Post_image_test2.png';
@@ -9,6 +9,7 @@ import Post_image_test3 from '../static/others/Post_image_test3.png';
 import Account_img1 from '../static/others/account_img1.png';
 import Account_img2 from '../static/others/account_img2.png';
 import Account_img3 from '../static/others/account_img3.png';
+import {getTimeAgo} from '../commons/util';
 
 const TopPosts: React.FC<{}> = ({}) => {
   // const initialPostdata = [
@@ -53,7 +54,7 @@ const TopPosts: React.FC<{}> = ({}) => {
   const [postdatas, setPostdatas] = useState<Postdata[] | null>();
 
   const getPostList = async () => {
-    return getData('/posts/').then(result => result);
+    return getData('/posts/top3/').then(result => result);
   };
 
   useEffect(() => {
@@ -68,38 +69,6 @@ const TopPosts: React.FC<{}> = ({}) => {
       ...post,
       time: getTimeAgo(post.created_at),
     }));
-  };
-
-  const getTimeAgo = (timestamp: string) => {
-    const now = new Date();
-    const postDate = new Date(timestamp);
-    const diffInSeconds = Math.floor(
-      (now.getTime() - postDate.getTime()) / 1000,
-    );
-
-    let timeAgo = '';
-
-    const OneMinute = 60;
-    const OneHour = 3600;
-    const OneDay = 86400;
-    const OneMonth = 2592000;
-    const OneYear = 31536000;
-
-    if (diffInSeconds < OneMinute) {
-      timeAgo = `${diffInSeconds} sec ago`;
-    } else if (diffInSeconds < OneHour) {
-      timeAgo = `${Math.floor(diffInSeconds / OneMinute)} min ago`;
-    } else if (diffInSeconds < OneDay) {
-      timeAgo = `${Math.floor(diffInSeconds / OneHour)} hours ago`;
-    } else if (diffInSeconds < OneMonth) {
-      timeAgo = `${Math.floor(diffInSeconds / OneDay)} days ago`;
-    } else if (diffInSeconds < OneYear) {
-      timeAgo = `${Math.floor(diffInSeconds / OneMonth)} months ago`;
-    } else {
-      timeAgo = `${Math.floor(diffInSeconds / OneYear)} years ago`;
-    }
-
-    return timeAgo;
   };
 
   const navigate = useNavigate();
@@ -124,13 +93,13 @@ const TopPosts: React.FC<{}> = ({}) => {
                 }}>
                 <div className="ml-3">
                   <img
-                    src={postdata.image}
+                    src={'http://3.34.252.170/' + postdata.image}
                     alt="postimage"
                     className="w-[14rem] h-[12rem]"
                   />
                   <div className="flex items-center my-2">
                     <img
-                      src={postdata.author_profile}
+                      src={'http://3.34.252.170/' + postdata.author_profile}
                       alt="accountimage"
                       className="w-[2.5rem] h-[2.5rem]"
                     />
