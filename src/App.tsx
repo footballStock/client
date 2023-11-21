@@ -16,7 +16,7 @@ import SCB from './static/teams/SCB.png';
 import SCP from './static/teams/SCP.png';
 import SLBEN from './static/teams/SLBEN.png';
 import SSLMI from './static/teams/SSL.MI.png';
-import Chat from './commons/Chat';
+import Chat from './commons/Chat/Chat';
 import {Image} from './states/types';
 import {useSetRecoilState} from 'recoil';
 import {teamsImageState} from './states/recoil';
