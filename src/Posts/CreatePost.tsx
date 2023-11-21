@@ -8,6 +8,7 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
   const [imageName, setImageName] = useState("");
 
   const openModal = () => {
@@ -32,7 +33,11 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
     setText(event.target.value);
   };
 
-  const isPostButtonDisabled = !image || !text.trim();
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
+  };
+
+  const isPostButtonDisabled = !image || !text.trim() || !title.trim();
 
   return (
     <>
@@ -53,6 +58,17 @@ const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
             <button onClick={closeModal}>
               <CloseIcon />
             </button>
+          </div>
+
+          {/* Title input */}
+          <div className="p-4">
+            <input
+              type="text"
+              value={title}
+              onChange={handleTitleChange}
+              placeholder="Enter your title here"
+              className="w-full p-2 border-b"
+            />
           </div>
 
           {/* Image upload */}

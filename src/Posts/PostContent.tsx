@@ -11,6 +11,7 @@ import Account_img3 from '../static/others/account_img3.png';
 
 import {Postdata, ButtonProps} from '../states/types';
 import ReportPost from './ReportPost';
+import { getData } from '../commons/api';
 
 const Button: React.FC<ButtonProps> = ({emoji, count}) => {
   return (
@@ -27,58 +28,70 @@ const PostContent: React.FC = () => {
   const [postdata, setPostdata] = useState<Postdata | null>(null);
   const { id } = useParams<string>();
 
-  const initialPostdata = [
-    {
-      id : 1,
-      author : 'bigfanofyou123',
-      authorImage : Account_img1,
-      title: '[Manchester City] are Premier League champions for the third st..',
-      content : 'adjfladfjdalfjkladfjlka;dfjl;adfjkdlf;laf;kadfj;lajflkajlfkajfdieiafieafjiaefjiaefiaefaeffeaefaefaefeaf',
-      image : Post_image_test1,
-      created: 1668338400000,
-      time: '',
-      good : 45,
-      bad : 123,
-    },
-    {
-      id : 2,
-      author : 'Hellokidding',
-      authorImage : Account_img2,
-      title: 'Premier League table after Matchweek 20',
-      content : 'eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG',
-      image : Post_image_test2,
-      created: 1668342500000,
-      time: '',
-      good : 234,
-      bad : 12,
-    },
-    {
-      id : 3,
-      author : 'GodGodGod',
-      authorImage : Account_img3,
-      title: '[Premier League] Erling Haaland scores the most goals (35) ever',
-      content : 'afiefe efe feWQEROQ Qfeojfoejtotoe eoteotjwpe jepwq n WBG eochapu usengen WBG',
-      image : Post_image_test3,
-      created: 1458342500000,
-      time: '',
-      good : 634,
-      bad : 1,
-    },
-  ];
+  const getPostList = async () => {
+    
+    return getData('/posts/').then(result => {return result});
+
+  };
+
+  // const initialPostdata = [
+  //   {
+  //     id : 1,
+  //     author : 'bigfanofyou123',
+  //     authorImage : Account_img1,
+  //     title: '[Manchester City] are Premier League champions for the third st..',
+  //     content : 'adjfladfjdalfjkladfjlka;dfjl;adfjkdlf;laf;kadfj;lajflkajlfkajfdieiafieafjiaefjiaefiaefaeffeaefaefaefeaf',
+  //     image : Post_image_test1,
+  //     created: 1668338400000,
+  //     time: '',
+  //     good : 45,
+  //     bad : 123,
+  //   },
+  //   {
+  //     id : 2,
+  //     author : 'Hellokidding',
+  //     authorImage : Account_img2,
+  //     title: 'Premier League table after Matchweek 20',
+  //     content : 'eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG',
+  //     image : Post_image_test2,
+  //     created: 1668342500000,
+  //     time: '',
+  //     good : 234,
+  //     bad : 12,
+  //   },
+  //   {
+  //     id : 3,
+  //     author : 'GodGodGod',
+  //     authorImage : Account_img3,
+  //     title: '[Premier League] Erling Haaland scores the most goals (35) ever',
+  //     content : 'afiefe efe feWQEROQ Qfeojfoejtotoe eoteotjwpe jepwq n WBG eochapu usengen WBG',
+  //     image : Post_image_test3,
+  //     created: 1458342500000,
+  //     time: '',
+  //     good : 634,
+  //     bad : 1,
+  //   },
+  // ];
 
   useEffect(() => {
     
-    const postId = parseInt(id!); 
-    const postData = initialPostdata.find(post => post.id === postId);
+    getPostList().then(data => {
 
-    if (postData) {
-      setPostdata({
-        ...postData,
-        time: getTimeAgo(postData.created)
-      });
-    } else {
-      setPostdata(null); 
-    }
+      const postId = parseInt(id!); 
+      const postData = data.find( (post: Postdata) => post.id === postId);
+
+      if (postData) {
+        setPostdata({
+          ...postData,
+          time: getTimeAgo(postData.created)
+        });
+      } else {
+        setPostdata(null); 
+      }
+
+    })
+
+    
   }, [id]);
 
   const getTimeAgo = (timestamp: number) => {
