@@ -77,3 +77,7 @@ export type AWSConfig = {
   bucket: string;
   region: string;
 };
+
+export type League = {
+  [key: string]: string[];
+};
