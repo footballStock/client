@@ -1,50 +1,29 @@
 import React, {useEffect} from 'react';
-import Header from './commons/Header';
-import Sidebar from './commons/Sidebar';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {Outlet} from 'react-router-dom';
 
-import AJAX from './static/teams/AJAX.png';
-import BOLA from './static/teams/BOLA.png';
-import BVB from './static/teams/BVB.png';
-import CCP from './static/teams/CCP.png';
-import FCP from './static/teams/FCP.png';
-import JUVE from './static/teams/JUVE.png';
-import MANU from './static/teams/MANU.png';
-import OLG from './static/teams/OLG.png';
-import SCB from './static/teams/SCB.png';
-import SCP from './static/teams/SCP.png';
-import SLBEN from './static/teams/SLBEN.png';
-import SSLMI from './static/teams/SSL.MI.png';
+import Header from './commons/Header';
+import Sidebar from './commons/Sidebar';
 import Chat from './commons/Chat/Chat';
 import {Image} from './states/types';
-import {useSetRecoilState} from 'recoil';
-import {teamsImageState} from './states/recoil';
+import {awsState, bucketState, teamsImageState} from './states/recoil';
 
 const Layout = (): JSX.Element => {
-  //TODO : 이후 서버 측 stack_overview db 완성 후 name 수정 필요
-  const teamsImage: Image[] = [
-    {src: AJAX, alt: 'AFC Ajax NV', name: 'AFC Ajax NV'},
-    {src: BOLA, alt: 'Bali United FC', name: 'Bali United FC'},
-    {src: BVB, alt: 'Borussia Dortmund', name: 'Borussia Dortmund'},
-    {src: CCP, alt: 'Celtic', name: 'Celtic'},
-    {src: FCP, alt: 'FC Porto', name: 'FC Porto'},
-    {src: JUVE, alt: 'Juventus', name: 'Juventus'},
-    {src: MANU, alt: 'Man. United', name: 'Man. United'},
-    {src: OLG, alt: 'Olympique Lyonnais', name: 'Olympique Lyonnais'},
-    {src: SCB, alt: 'Sporting Clube de Brage', name: 'Sporting Clube de Brage'},
-    {
-      src: SCP,
-      alt: 'Sporting Clube de Portugal',
-      name: 'Sporting Clube de Portugal',
-    },
-    {src: SLBEN, alt: 'Sport Lisboa a Benfica', name: 'Sport Lisboa a Benfica'},
-    {src: SSLMI, alt: 'SS Lazio', name: 'SS Lazio'},
-  ];
-
+  const aws = useRecoilValue(awsState);
+  const bucket = useRecoilValue(bucketState);
   const setTeamsImage = useSetRecoilState(teamsImageState);
 
   useEffect(() => {
-    setTeamsImage(teamsImage);
+    const folderName = 'teams/';
+    aws.downloadFiles(bucket, folderName).then(images => {
+      const teamsImage: Image[] = images.map((image, i) => {
+        //* change the file name to team name(ex., teams/AJAX.png -> AJAX)
+        const name = image.Key.replace('.png', '').replace(folderName, '');
+        return {src: image.Image, alt: name, name: name};
+      });
+
+      setTeamsImage(teamsImage);
+    });
   }, []);
 
   return (
