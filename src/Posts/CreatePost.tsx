@@ -8,7 +8,7 @@ import {useRecoilValue} from 'recoil';
 import {tokenState} from '../states/recoil';
 import axios from 'axios';
 
-const CreatePost: React.FC<{myaccounts: Accountdata[]}> = ({myaccounts}) => {
+const CreatePost: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [text, setText] = useState('');

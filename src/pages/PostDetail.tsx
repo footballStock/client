@@ -10,7 +10,7 @@ import Account_img2 from '../static/others/account_img2.png';
 import Account_img3 from '../static/others/account_img3.png';
 
 import {Postdata, ButtonProps} from '../states/types';
-import ReportPost from './ReportPost';
+import ReportPost from '../Posts/ReportPost';
 import {getData} from '../commons/api';
 import {getTimeAgo} from '../commons/util';
 
@@ -23,55 +23,15 @@ const Button: React.FC<ButtonProps> = ({emoji, count}) => {
   );
 };
 
-// const PostContent: React.FC<{postdatas: Postdata[]}> = ({postdatas}) =>
-const PostContent: React.FC = () => {
+// const PostDetail: React.FC<{postdatas: Postdata[]}> = ({postdatas}) =>
+const PostDetail: React.FC = () => {
   const [postdata, setPostdata] = useState<Postdata | null>(null);
   const {id} = useParams<string>();
-
   const getPostList = async () => {
     return getData('/posts/').then(result => {
       return result;
     });
   };
-
-  // const initialPostdata = [
-  //   {
-  //     id : 1,
-  //     author : 'bigfanofyou123',
-  //     authorImage : Account_img1,
-  //     title: '[Manchester City] are Premier League champions for the third st..',
-  //     content : 'adjfladfjdalfjkladfjlka;dfjl;adfjkdlf;laf;kadfj;lajflkajlfkajfdieiafieafjiaefjiaefiaefaeffeaefaefaefeaf',
-  //     image : Post_image_test1,
-  //     created: 1668338400000,
-  //     time: '',
-  //     good : 45,
-  //     bad : 123,
-  //   },
-  //   {
-  //     id : 2,
-  //     author : 'Hellokidding',
-  //     authorImage : Account_img2,
-  //     title: 'Premier League table after Matchweek 20',
-  //     content : 'eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG eochapu usengen WBG',
-  //     image : Post_image_test2,
-  //     created: 1668342500000,
-  //     time: '',
-  //     good : 234,
-  //     bad : 12,
-  //   },
-  //   {
-  //     id : 3,
-  //     author : 'GodGodGod',
-  //     authorImage : Account_img3,
-  //     title: '[Premier League] Erling Haaland scores the most goals (35) ever',
-  //     content : 'afiefe efe feWQEROQ Qfeojfoejtotoe eoteotjwpe jepwq n WBG eochapu usengen WBG',
-  //     image : Post_image_test3,
-  //     created: 1458342500000,
-  //     time: '',
-  //     good : 634,
-  //     bad : 1,
-  //   },
-  // ];
 
   useEffect(() => {
     getPostList().then(data => {
@@ -99,7 +59,7 @@ const PostContent: React.FC = () => {
         <div>
           <div className="flex ml-5">
             <img
-              src={'http://3.34.252.170/' + postdata.author_profile}
+              src={process.env.REACT_APP_BASEURL + postdata.author_profile}
               alt="accountimage"
               className="w-[2.5rem] h-[2.5rem]"
             />
@@ -117,7 +77,7 @@ const PostContent: React.FC = () => {
 
           <div className="flex items-center justify-center my-10">
             <img
-              src={'http://3.34.252.170/' + postdata.image}
+              src={process.env.REACT_APP_BASEURL + postdata.image}
               alt="postimage"
               className="w-[40rem] h-[40rem]"
             />
@@ -142,4 +102,4 @@ const PostContent: React.FC = () => {
   );
 };
 
-export default PostContent;
+export default PostDetail;
