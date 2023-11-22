@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import AFC_Ajax from '../static/clubs/AFC_Ajax.png';
 import Bali_United from '../static/clubs/Bali_United.png';
@@ -27,8 +27,46 @@ import {Image} from '../states/types';
 import ClubLists from '../Clubs/ClubLists';
 
 import {ClubImage} from '../states/types';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {
+  awsState,
+  bucketState,
+  clubsImageState,
+  leaguesImageState,
+} from '../states/recoil';
 
 const Clubs = () => {
+  const setClubsImage = useSetRecoilState(clubsImageState);
+  const setLeaguesImage = useSetRecoilState(leaguesImageState);
+
+  const aws = useRecoilValue(awsState);
+  const bucket = useRecoilValue(bucketState);
+
+  useEffect(() => {
+    const folderName = 'leagues/';
+    aws.downloadFiles(bucket, folderName).then(images => {
+      const leaguesImage: Image[] = images.map((image, i) => {
+        const name = image.Key.replace('.png', '').replace(folderName, '');
+        return {src: image.Image, alt: name, name: name};
+      });
+
+      setLeaguesImage(leaguesImage);
+    });
+  }, []);
+
+  useEffect(() => {
+    const folderName = 'clubs/';
+    aws.downloadFiles(bucket, folderName).then(images => {
+      const leaguesImage: ClubImage[] = images.map((image, i) => {
+        const name = image.Key.replace('.png', '').replace(folderName, '');
+        //TODO League
+        return {src: image.Image, alt: name, name: name, league: ''};
+      });
+
+      setClubsImage(leaguesImage);
+    });
+  });
+
   const clubsImage: ClubImage[] = [
     {
       src: AFC_Ajax,
@@ -108,6 +146,8 @@ const Clubs = () => {
     {src: Liga_Portugal, alt: 'Primeira Liga', name: 'Primeira Liga'},
     {src: Ligue_1, alt: 'Ligue 1', name: 'Ligue 1'},
   ];
+
+  useEffect(() => {}, []);
 
   return (
     <div className="flex flex-col flex-wrap">

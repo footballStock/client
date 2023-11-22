@@ -21,6 +21,7 @@
     "@mui/icons-material": "^5.14.16",
     "@mui/material": "^5.14.17",
     "@types/react-modal": "^3.16.2",
+    "aws-sdk": "^2.1501.0",
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",
     "gh-pages": "^6.0.0",

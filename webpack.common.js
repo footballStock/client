@@ -47,5 +47,11 @@ module.exports = {
     new EnvironmentPlugin(['REACT_APP_APP_ID']),
     new EnvironmentPlugin(['REACT_APP_MEASUREMENT_ID']),
     new EnvironmentPlugin(['REACT_APP_BASEURL']),
+    new EnvironmentPlugin([
+      'REACT_APP_ACCESS_KEY_ID',
+      'REACT_APP_SECRET_ACCESS_KEY',
+      'REACT_APP_BUCKET',
+      'REACT_APP_REGION',
+    ]),
   ],
 };
