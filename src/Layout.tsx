@@ -29,10 +29,16 @@ const Layout = (): JSX.Element => {
   return (
     <React.Fragment>
       <Header />
-      <main className="flex justify-between px-12 py-6">
-        <Sidebar />
-        <Outlet />
-        <Chat />
+      <main className="flex py-4">
+        <div className="flex-none">
+          <Sidebar />
+        </div>
+        <div className="grow">
+          <Outlet />
+        </div>
+        <div className="flex-none">
+          <Chat />
+        </div>
       </main>
     </React.Fragment>
   );

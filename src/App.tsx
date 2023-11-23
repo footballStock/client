@@ -15,7 +15,9 @@ const App = (): JSX.Element => {
           <Route index element={<Main />} />
           <Route path="/posts/*" element={<PostList />} />
           <Route path="/posts/:id" element={<PostDetail />} />
-          <Route path="/clubs" element={<Clubs />} />
+          <Route path="/clubs/*" element={<Clubs />} />
+          <Route path="/clubs/:clubId" element={<DetailPage />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </React.Fragment>
