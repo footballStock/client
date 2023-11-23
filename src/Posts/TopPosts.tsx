@@ -10,6 +10,7 @@ import Account_img1 from '../static/others/account_img1.png';
 import Account_img2 from '../static/others/account_img2.png';
 import Account_img3 from '../static/others/account_img3.png';
 import {getTimeAgo} from '../commons/util';
+import CreatePost from './CreatePost';
 
 const TopPosts: React.FC<{}> = ({}) => {
   const [postdatas, setPostdatas] = useState<Postdata[] | null>();
@@ -40,8 +41,9 @@ const TopPosts: React.FC<{}> = ({}) => {
 
   return (
     <div className="justify-center">
-      <div className="flex items-center justify-start mb-4">
+      <div className="flex items-center justify-between mb-4">
         <h1 className="text-xl font-bold">Top3 Posts</h1>
+        <CreatePost />
       </div>
       <div className="flex items-center justify-center">
         {postdatas?.map((postdata, index) => (
