@@ -1,16 +1,22 @@
 import React, {useEffect} from 'react';
-import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
 import {Outlet} from 'react-router-dom';
 
 import Header from './commons/Header';
 import Sidebar from './commons/Sidebar';
 import Chat from './commons/Chat/Chat';
 import {Image} from './states/types';
-import {awsState, bucketState, teamsImageState} from './states/recoil';
+import {
+  awsState,
+  bucketState,
+  teamsImageState,
+  tokenState,
+} from './states/recoil';
 
 const Layout = (): JSX.Element => {
   const aws = useRecoilValue(awsState);
   const bucket = useRecoilValue(bucketState);
+  const setToken = useSetRecoilState(tokenState);
   const setTeamsImage = useSetRecoilState(teamsImageState);
 
   useEffect(() => {
@@ -24,6 +30,12 @@ const Layout = (): JSX.Element => {
 
       setTeamsImage(teamsImage);
     });
+  }, []);
+
+  useEffect(() => {
+    //* if page is refreshed, set the token using localStorage token that is stored at login
+    const storageToken = localStorage.getItem('token');
+    setToken(storageToken);
   }, []);
 
   return (

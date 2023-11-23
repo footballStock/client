@@ -15,20 +15,26 @@ export default class SocketInterface {
   private options: Options;
   private binded_f: {[key: string]: EventListener};
   private socket: WebSocket | null;
+  private room_: string;
 
-  constructor() {
+  constructor(room: string) {
     this.options = {
       logGuid: 'mock',
       bufferLength: 50,
       serverConfig: {
         defaultLogLength: 300,
-        serverUrl: `ws://3.34.252.170:8000/ws/chat/1/`,
+        serverUrl: `ws://${process.env.REACT_APP_BASE_DOMAIN}/ws/chat/${room}/`,
       },
       worker: true,
-      maxConcurrency: 4,
+      maxConcurrency: 10,
     };
     this.binded_f = {};
     this.socket = null;
+    this.room_ = room;
+  }
+
+  get room(): string {
+    return this.room_;
   }
 
   connect(): void {

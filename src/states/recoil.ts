@@ -37,12 +37,12 @@ export const bucketState = selector<AWS.S3>({
   },
 });
 
-export const userState = atom<User>({
+export const userState = atom<User | null>({
   key: 'userState',
-  default: {profile: {src: '', alt: ''}, nickname: '', uid: 0},
+  default: null,
 });
 
 export const tokenState = atom<string | null>({
   key: 'tokenState',
-  default: null,
+  default: localStorage.getItem('token'),
 });

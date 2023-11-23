@@ -9,7 +9,6 @@ import {
 } from 'firebase/auth';
 import {FirebaseError} from 'firebase/app';
 
-import {getData, postData} from './api';
 import {auth} from './fire-base';
 
 import GoogleLogin from '../static/others/GoogleLogin.png';
@@ -55,12 +54,9 @@ const LoginModal: React.FC<{
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password).then(response => {
-        setToken((response as any)._tokenResponse.idToken);
-        getData('/login/', (response as any)._tokenResponse.idToken).then(
-          data => {
-            console.log(data);
-          },
-        );
+        const token = (response as any)._tokenResponse.idToken;
+        localStorage.setItem('token', token);
+        setToken(token);
       });
 
       setModalIsOpen(false);
@@ -86,12 +82,9 @@ const LoginModal: React.FC<{
 
       if (provider) {
         await signInWithPopup(auth, provider).then(response => {
-          setToken((response as any)._tokenResponse.idToken);
-          getData('/login/', (response as any)._tokenResponse.idToken).then(
-            data => {
-              console.log(data);
-            },
-          );
+          const token = (response as any)._tokenResponse.idToken;
+          localStorage.setItem('token', token);
+          setToken(token);
         });
         //TODO: CORS 이슈
         setModalIsOpen(false);
