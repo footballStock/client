@@ -9,8 +9,6 @@ const ClubLists: React.FC<{
   league: Image;
   clubsImage: ClubImage[];
 }> = ({league, clubsImage}) => {
-  console.log(clubsImage);
-
   const colors = [
     'shadow-red',
     'shadow-orange',
