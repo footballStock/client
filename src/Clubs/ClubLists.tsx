@@ -3,21 +3,13 @@ import React from 'react';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 import {ClubImage, Image} from '../states/types';
+import {leagues} from '../states/constants';
 
 const ClubLists: React.FC<{
   league: Image;
   clubsImage: ClubImage[];
 }> = ({league, clubsImage}) => {
-  const leagues = [
-    'Bundesliga',
-    'Scottish Premiership',
-    'Eredivisie',
-    'Liga 1 Indonesia',
-    'Primeira Liga',
-    'Ligue 1',
-    'Premier League',
-    'Serie A',
-  ];
+  console.log(clubsImage);
 
   const colors = [
     'shadow-red',

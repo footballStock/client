@@ -70,3 +70,14 @@ export type ClubImage = {
   name: string;
   league: string;
 };
+
+export type AWSConfig = {
+  accessKeyId: string;
+  secretAccessKey: string;
+  bucket: string;
+  region: string;
+};
+
+export type League = {
+  [key: string]: string[];
+};
