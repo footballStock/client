@@ -9,7 +9,7 @@ const TableSheet: React.FC<{
     useTable({columns, data});
 
   return (
-    <table {...getTableProps()} className="min-w-full leading-normal">
+    <table {...getTableProps()} id="mainoverview-table" >
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()} className="text-left">

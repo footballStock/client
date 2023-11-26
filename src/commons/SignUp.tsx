@@ -11,9 +11,10 @@ const SignUp = (props: React.PropsWithChildren) => {
 
   return (
     <button
-      className="w-24 h-8 ml-10 border bg-custom-green rounded-xl border-custom-green"
+      id = "button-signup"
+      className="button-basic"
       onClick={openModal}>
-      <div className="text-base font-bold text-center text-white">Sign up</div>
+      <div id = "button-singup-text" className="button-basic-text">Sign up</div>
       {modalIsOpen && (
         <LoginModal
           modalIsOpen={modalIsOpen}

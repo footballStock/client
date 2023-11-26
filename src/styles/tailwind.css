@@ -2,3 +2,352 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+@layer components {
+    body{
+        -ms-overflow-style: none;
+        }
+       
+       body::-webkit-scrollbar {
+         display: none;
+       }
+    
+/* header */
+    #header {
+        @apply
+        border 
+        border-solid 
+        border-custom-gray
+        w-full 
+        h-24 
+    }
+
+    #navbar {
+        @apply
+        flex 
+        justify-between 
+        px-12 
+        py-6
+    }
+
+    #menu {
+        @apply
+        flex 
+        items-center 
+        justify-between 
+        ml-6 
+    }
+    
+    .nav-main {
+        @apply 
+        font-serif 
+        text-black 
+        text-xl 
+        ml-10
+        mt-1;
+    }
+  
+    .nav-main:hover { 
+        color: #474747;
+        text-shadow: 0 0 2px rgba(107, 107, 107, 0.5);
+    }
+
+    #header-buttons{
+        @apply
+        flex 
+        items-center 
+        mr-4 
+        space-x-4
+    }
+
+    .button-basic {
+        @apply
+        border
+        rounded-xl;
+    }
+
+    #button-login {
+        @apply
+        border-custom-green
+        bg-white 
+        w-24 
+        h-8 
+        ml-10;
+    }
+
+    .button-basic-text{
+        @apply
+        font-bold 
+        text-center;
+    }
+
+    #button-login-text{
+        @apply
+        text-base 
+        text-custom-green
+        mb-1;
+    }
+
+    #button-login:hover {
+        @apply 
+        border-custom-green-gray;
+        transition: all 0.2s ease;
+    }
+    
+    #button-login:hover #button-login-text {
+        @apply 
+        text-custom-green-gray;
+        transition: all 0.2s ease;
+    }
+
+    #button-signup {
+        @apply
+        border-custom-green
+        bg-custom-green 
+        w-24 
+        h-8 
+        ml-10;
+    }
+
+    #button-singup-text{
+        @apply
+        text-base 
+        text-white
+        mb-1;
+    }
+
+    #button-signup:hover {
+        @apply 
+        border-custom-green-gray
+        bg-custom-green-gray;
+        transition: all 0.2s ease;
+    }
+    
+
+
+/* sidebar */
+
+    #sidebar{
+        @apply
+        sticky 
+        top-4 
+        w-80
+        h-1/2;
+    }
+
+    #sidebar-name{
+        @apply
+        mt-3
+        mb-6
+        text-xl 
+        font-sidebar-name
+        text-center;
+    }
+
+    .sidebar-menu{
+        @apply
+        flex 
+        flex-row 
+        items-center 
+        mb-4 
+        ml-8 
+        text-sm
+        font-sidebar-menu;
+    }
+
+    .sidebar-menu:hover{
+        cursor:pointer;
+    }
+    
+    .sidebar-menu:hover img {
+        transform: scale(1.2); 
+        transition: all 0.2s ease;
+    }
+    
+    .sidebar-menu button {
+        text-decoration: none; 
+        text-decoration-color: transparent; 
+    }
+
+    .sidebar-menu:hover button {
+        margin-left: 10px;
+        transform: scale(1.2); 
+        color: #393a3a; 
+        transition: all 0.2s ease;
+        text-decoration: underline; 
+        text-decoration-color: #393a3a; 
+    }
+
+/* chat */    
+    #chat{
+        @apply
+        w-80;
+    }
+
+
+
+/* main overview */
+    #ad {
+        @apply
+        mx-auto
+        w-[60rem] 
+        h-[24rem]
+        mt-4;
+        cursor:pointer;
+    }
+
+    #mainoverview-table {
+        @apply
+        w-full
+        max-w-[60rem]
+        mx-auto;
+    }
+
+
+/* posts */
+    #post {
+        @apply
+        w-[60rem]
+        mx-auto
+        content-center 
+        justify-center;
+    }
+
+    #top3{
+        @apply
+        flex 
+        items-center 
+        justify-between 
+        mb-6
+        mt-3
+        ml-2;
+    }
+
+    #top3-name{
+        @apply
+        text-2xl 
+        font-bold;
+    }
+
+    #button-post {
+        @apply
+        bg-white 
+        border-2 
+        border-green-500
+        w-24 
+        h-8
+        mr-12;
+    }
+
+    #button-post-text{
+        @apply
+        text-base 
+        text-green-500
+        font-bold;
+    }
+
+    #button-post:hover {
+        @apply 
+        border-custom-white-green;
+        transition: all 0.2s ease;
+    }
+    
+    #button-post:hover #button-post-text {
+        @apply 
+        text-custom-white-green;
+        transition: all 0.2s ease;
+    }
+
+    #create-post{
+        
+    }
+
+    #top3-posts{
+        @apply
+        flex 
+        items-center 
+        justify-between 
+        mt-2
+        mb-8;
+    }
+
+    #top3-contents{
+        @apply
+        flex 
+        flex-wrap
+        items-center 
+        justify-center
+        border-solid 
+        gap-12;
+    }
+
+    .top3-button{
+        @apply
+        flex
+        rounded-lg
+        border-2;
+        cursor:pointer
+    }
+
+    .top3-button:hover{
+        @apply
+        border-custom-gray2;
+        transition: all 0.2s ease;
+    }
+
+    .top3-button:hover .top3-image{
+        @apply
+        opacity-100
+        border-b-custom-gray2;
+    }
+
+    .top3-image{
+        @apply
+        border-b-2
+        opacity-90
+        w-[16rem] 
+        h-[10rem];
+    }
+
+    .top3-account{
+        @apply
+        flex 
+        items-center 
+        my-2;
+    }
+
+    .top3-profile-image {
+        @apply
+        w-[2.5rem] 
+        h-[2.5rem]
+        rounded-full
+        ml-2;
+    }
+
+    .top3-author{
+        @apply
+        text-base
+        text-black
+        font-sidebar-name;
+    }
+
+    .top3-time{
+        @apply
+        text-xs
+        text-custom-gray3
+        font-sidebar-name;
+    }
+
+    .top3-content{
+        @apply
+        text-[13px]
+        font-bold
+        ml-3
+        overflow-hidden 
+        whitespace-nowrap 
+        overflow-ellipsis 
+        max-w-[12rem]
+        mb-2;
+    }
+
+}

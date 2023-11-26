@@ -80,8 +80,11 @@ const CreatePost: React.FC = () => {
     <>
       <button
         onClick={openModal}
-        className="w-24 h-8 font-bold text-green-500 bg-white border-2 border-green-500 ml-100 rounded-xl">
-        POST
+        id = "button-post"
+        className="button-basic">
+        <div id= "button-post-text" className="button-basic-text">
+          POST
+        </div>
       </button>
       {modalIsOpen && (
         <ReactModal

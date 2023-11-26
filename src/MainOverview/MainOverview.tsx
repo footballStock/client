@@ -50,9 +50,9 @@ const MainOverview = () => {
     };
 
     //TODO : 서버 측 stack_overviwe db 완성 후 test
-    // getTeamData().then(data => {
-    //   handleDataProcessing(data);
-    // });
+    getTeamData().then(data => {
+      handleDataProcessing(data);
+    });
   }, []);
 
   const columns: Column<StockOverview>[] = useMemo(
@@ -122,7 +122,7 @@ const MainOverview = () => {
   return (
     <section>
       <div>
-        <img src={AD} alt="advertise" className=" w-[60rem] h-[24rem]"></img>
+        <img src={AD} alt="advertise" id='ad' className=""></img>
         <TableSheet columns={columns} data={data} />
       </div>
     </section>

@@ -9,6 +9,12 @@ module.exports = {
         'custom-room': '#F3F2F2',
         'custom-chat': '#FDF7F7',
         'custom-white-gray': '#6D6D6D',
+        'custom-green-gray' : '#b8d4d4',
+        'custom-white-gray2' : '#dbdbdb',
+        'custom-white-green' : '#a5d6b7',
+        'custom-gray2' : '#c2c2c2',
+        'custom-gray3' : '#adacac',
+
       },
       boxShadow: {
         red: '2px 4px 0px 1px rgba(255,0,0,0.75)',
@@ -20,7 +26,12 @@ module.exports = {
         violet: '2px 4px 0px 1px rgba(238,130,238,0.75)',
         black: '2px 4px 0px 1px rgba(0,0,0,0.75)',
       },
+      fontFamily: {
+        'sidebar-name': ['Georgia','Cambria',"Times New Roman"],
+        'sidebar-menu': ['Times']
+      }
     },
   },
   plugins: [],
 };
+

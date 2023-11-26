@@ -41,44 +41,48 @@ const TopPosts: React.FC<{}> = ({}) => {
 
   return (
     <div className="justify-center">
-      <div className="flex items-center justify-between mb-4">
+      
+      <div id="top3-posts">
         <h1 className="text-xl font-bold">Top3 Posts</h1>
         <CreatePost />
       </div>
-      <div className="flex items-center justify-center">
+      
+      <div id="top3-contents">
+        
         {postdatas?.map((postdata, index) => (
           <div
             key={index}
             onClick={() => handlePostClick(postdata.id)}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              gap: '16px',
-            }}>
-            <div className="ml-3">
+            className='top3-button'>
+            <div className="">
               <img
                 src={process.env.REACT_APP_BASEURL + postdata.image}
                 alt="postimage"
-                className="w-[14rem] h-[12rem]"
+                className="top3-image"
               />
-              <div className="flex items-center my-2">
+
+              <div className="top3-account">
                 <img
                   src={process.env.REACT_APP_BASEURL + postdata.author_profile}
                   alt="accountimage"
-                  className="w-[2.5rem] h-[2.5rem]"
+                  className="top3-profile-image"
                 />
+
                 <div className="ml-2">
-                  <h5 className="text-sm">{postdata.author}</h5>
-                  <h5 className="text-sm">{postdata.time}</h5>
+                  <h5 className="top3-author">{postdata.author}</h5>
+                  <h5 className="top3-time">{postdata.time}</h5>
                 </div>
               </div>
-              <h5 className="text-sm overflow-hidden whitespace-nowrap overflow-ellipsis max-w-[10rem]">
+
+              <h5 className="top3-content">
                 {postdata.title}
               </h5>
+
             </div>
           </div>
         ))}
       </div>
+
     </div>
   );
 };
