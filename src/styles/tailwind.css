@@ -15,8 +15,6 @@
 /* header */
     #header {
         @apply
-        fixed
-        top-0
         border 
         border-solid 
         border-custom-gray
@@ -140,6 +138,8 @@
 
     #sidebar{
         @apply
+        sticky
+        top-4
         w-80
         h-1/2;
     }
@@ -202,7 +202,7 @@
         mx-auto
         w-[60rem] 
         h-[24rem]
-        mt-4;
+        mt-2;
         cursor:pointer;
     }
 
@@ -542,10 +542,13 @@
 
     .detail-text{
         @apply
+        text-justify
         font-detail-content 
-        text-2xl
+        text-xl
+        max-w-[46rem]
         ml-4
         mr-5
         mb-4
+        break-words
     }
 }

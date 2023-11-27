@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {getData} from '../commons/api';
 import {getTimeAgo} from '../commons/util';
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 10;
 
 const RecentPosts: React.FC<{}> = ({}) => {
   const [postdatas, setPostdatas] = useState<Postdata[] | null>();

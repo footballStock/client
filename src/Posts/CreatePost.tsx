@@ -21,12 +21,16 @@ const CreatePost: React.FC = () => {
 
   const openModal = () => {
     setModalIsOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
-  const closeModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const closeModal = () => {
     setModalIsOpen(false);
+    document.body.style.overflow = 'unset';
     setImage(null);
     setImageName('');
+    setText('');
+    setTitle('');
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,6 +83,7 @@ const CreatePost: React.FC = () => {
           },
         },
       );
+      closeModal()
       return response.data; // 서버로부터 응답 데이터 반환
     } catch (error) {
       return null;
@@ -103,7 +108,9 @@ const CreatePost: React.FC = () => {
           <ReactModal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
+            shouldCloseOnOverlayClick={false} 
             ariaHideApp={false}
+            onAfterOpen={() => document.body.style.overflow = 'hidden'}
             contentLabel="Create Post"
             className="w-2/5 h-2/3 p-2.5 border border-solid border-gray-950 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white flex flex-col">
             {/* Modal Header */}

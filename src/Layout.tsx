@@ -41,14 +41,14 @@ const Layout = (): JSX.Element => {
   return (
     <React.Fragment>
       <Header />
-      <main className="relative py-4 pt-24">
-        <div className="fixed top-24 left-0 mt-2">
+      <main className="flex py-4">
+        <div className="flex-none">
           <Sidebar />
         </div>
-        <div className="grow overflow-auto">
+        <div className="grow">
           <Outlet />
         </div>
-        <div className="fixed top-24 right-0">
+        <div className="flex-none">
           <Chat />
         </div>
       </main>
