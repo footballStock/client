@@ -29,7 +29,8 @@ module.exports = {
       fontFamily: {
         'sidebar-name': ['Georgia','Cambria',"Times New Roman"],
         'sidebar-menu': ['Times'],
-        'detail-title' : ["Cambria"]
+        'detail-title' : ["Cambria"],
+        'detail-content' : ["Cambria"]
         ///, Roboto, "Cambria", , "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
       }
     },

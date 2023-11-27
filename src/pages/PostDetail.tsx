@@ -62,13 +62,13 @@ const PostDetail: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex my-2 ml-5 border-b border-b-gray-150">
+          <div className="flex my-4 ml-5 border-b border-b-gray-150">
             <h1 className="detail-title">
               {postdata.title}
             </h1>
           </div>
 
-          <div className="flex items-center justify-center my-4">
+          <div className="flex items-center justify-center my-3">
             <img
               src={process.env.REACT_APP_BASEURL + postdata.image}
               alt="postimage"
@@ -76,8 +76,8 @@ const PostDetail: React.FC = () => {
             />
           </div>
 
-          <div className="flex my-5 ml-5">
-            <h1 className="font-semibold text-lg md:text-xl lg:text-2xl leading-normal">
+          <div className="flex my-5 ml-5 border-b border-b-gray-150">
+            <h1 className="detail-text">
               {postdata.content}
             </h1>
           </div>

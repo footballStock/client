@@ -29,6 +29,16 @@ const LoginModal: React.FC<{
 
   const closeModal = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
+    document.body.style.overflow = 'unset';
+    setModalIsOpen(false)
+  };
+
+  const afterOpenModal = () => {
+    document.body.style.overflow = 'hidden';
+  };
+
+  const onRequestCloseModal = () => {
+    document.body.style.overflow = 'unset';
     setModalIsOpen(false);
   };
 
@@ -102,7 +112,9 @@ const LoginModal: React.FC<{
   return (
     <ReactModal
       isOpen={modalIsOpen}
-      onRequestClose={closeModal}
+      onAfterOpen={afterOpenModal}
+      onRequestClose={onRequestCloseModal}
+      shouldCloseOnOverlayClick={false}
       ariaHideApp={false}
       contentLabel="loginModal"
       className="w-96 h-96 p-2.5 border border-solid border-gray-950 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white flex flex-col">
@@ -111,7 +123,7 @@ const LoginModal: React.FC<{
           className={`px-8 ${
             current === 'Login'
               ? 'underline underline-offset-8'
-              : 'text-custom-white-gray'
+              : 'text-custom-white-gray hover:text-gray-500'
           }`}
           name={'Login'}
           onClick={handleChangeCurrent}>
@@ -121,7 +133,7 @@ const LoginModal: React.FC<{
           className={`px-8 ${
             current === 'Sign Up'
               ? 'underline underline-offset-8'
-              : 'text-custom-white-gray'
+              : 'text-custom-white-gray hover:text-gray-500'
           }`}
           name={'Sign Up'}
           onClick={handleChangeCurrent}>
@@ -163,7 +175,8 @@ const LoginModal: React.FC<{
         <input
           type="submit"
           value={current}
-          className="w-full p-2 font-bold leading-normal text-white bg-red-500 rounded font-inter"
+          className="w-full p-2 font-bold leading-normal text-white bg-red-500 rounded font-inter
+          hover:bg-red-600 active:ring-2 active:ring-red-700 cursor-pointer"
           data-testid="login-btn"
         />
       </form>
@@ -172,7 +185,7 @@ const LoginModal: React.FC<{
           name="google"
           data-testid="google-btn"
           onClick={handleSocialLogin}
-          className="flex flex-col items-center justify-center px-4 py-2 w-88">
+          className="flex flex-col items-center justify-center px-4 py-2 w-88 hover:brightness-90">
           <img
             src={GoogleLogin}
             alt="google log in"

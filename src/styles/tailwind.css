@@ -213,6 +213,48 @@
         mx-auto;
     }
 
+    .table-header{
+        @apply
+        px-5 
+        py-3 
+        text-sm 
+        font-detail-content
+        font-semibold 
+        tracking-wider 
+        text-left 
+        bg-gray-100 
+        border-b-2 
+        text-gray-950
+    }
+
+    .table-body{
+        @apply
+        text-gray-950
+        text-sm 
+        bg-white;
+        cursor: pointer;
+    }
+
+    .table-body-button{
+        @apply
+        border-b 
+        border-gray-200 
+    }
+
+    .table-body-button:hover{
+        @apply
+        bg-gray-100;
+        transition: all 0.1s ease;
+    }
+
+    .table-body-text{
+        @apply
+        px-5 
+        py-3 
+        text-sm
+        font-detail-content
+    }
+
 
 /* posts */
     #post {
@@ -293,7 +335,7 @@
         flex 
         items-center 
         justify-between 
-        mt-2
+        mt-6
         mb-8
     }
 
@@ -492,9 +534,18 @@
 
     .detail-img{
         @apply
-        ml-5
-        mt-2
-        w-[50rem] 
+        ml-20
+        mr-16
+        w-[40rem] 
         max-h-[80rem]
+    }
+
+    .detail-text{
+        @apply
+        font-detail-content 
+        text-2xl
+        ml-4
+        mr-5
+        mb-4
     }
 }

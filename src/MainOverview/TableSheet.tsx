@@ -16,20 +16,20 @@ const TableSheet: React.FC<{
             {headerGroup.headers.map(column => (
               <th
                 {...column.getHeaderProps()}
-                className="px-5 py-3 text-sm font-semibold tracking-wider text-left bg-gray-100 border-b-2 text-gray-950">
+                className="table-header">
                 {column.render('Header')}
               </th>
             ))}
           </tr>
         ))}
       </thead>
-      <tbody {...getTableBodyProps()} className="text-gray-950">
+      <tbody {...getTableBodyProps()} className="table-body" >
         {rows.map(row => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()} className="border-b border-gray-200">
+            <tr {...row.getRowProps()} className="table-body-button">
               {row.cells.map(cell => (
-                <td {...cell.getCellProps()} className="px-5 py-3 text-sm">
+                <td {...cell.getCellProps()} className="table-body-text">
                   {cell.render('Cell')}
                 </td>
               ))}

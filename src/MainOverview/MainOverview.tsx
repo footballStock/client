@@ -77,7 +77,7 @@ const MainOverview = () => {
         Cell: ({value}) => (
           <div>
             <span>{value.price} </span>
-            <span className="text-gray-400">{value.price_unit}</span>
+            <span className="text-gray-400 text-[10px]">{value.price_unit}</span>
           </div>
         ),
       },

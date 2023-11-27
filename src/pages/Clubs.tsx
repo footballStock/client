@@ -57,7 +57,7 @@ const Clubs = () => {
   }, []);
 
   return (
-    <div className="flex flex-col flex-wrap">
+    <div className="flex flex-col flex-wrap justify-center">
       {leaguesImage.map((league, idx) => (
         <div key={idx} className="">
           <ClubLists
