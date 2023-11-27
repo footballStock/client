@@ -23,7 +23,7 @@ export default class SocketInterface {
       bufferLength: 50,
       serverConfig: {
         defaultLogLength: 300,
-        serverUrl: `ws://${process.env.REACT_APP_BASE_DOMAIN}/ws/chat/${room}/`,
+        serverUrl: `ws://${process.env.REACT_APP_BASE_DOMAIN}:8000/ws/chat/${room}/`,
       },
       worker: true,
       maxConcurrency: 10,

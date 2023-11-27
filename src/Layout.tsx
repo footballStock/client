@@ -34,7 +34,7 @@ const Layout = (): JSX.Element => {
 
   useEffect(() => {
     //* if page is refreshed, set the token using localStorage token that is stored at login
-    const storageToken = localStorage.getItem('token');
+    const storageToken = localStorage.getItem('token') || '';
     setToken(storageToken);
   }, []);
 

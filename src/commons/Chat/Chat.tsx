@@ -1,58 +1,63 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useRecoilValue} from 'recoil';
 
+import ChatIcon from '@mui/icons-material/Chat';
+
 import SocketInterface from './SocketInterface';
-import ChatRoom from './ChatRoom';
+
+import {ChatMessage} from '../../states/types';
+import {userState} from '../../states/recoil';
 import ChatLog from './ChatLog';
 
-import LiveChat from '../../static/others/Livechat.png';
-import {ChatMessage} from '../../states/types';
+//TODO
+const rooms = [{name: '1'}, {name: '2'}, {name: '3'}, {name: '4'}, {name: '5'}];
 
 const Chat = () => {
-  const [socket, setSocket] = useState<SocketInterface | null>(null);
-  const [status, setStatus] = useState('DISCONNECTED');
-  const [log, setLog] = useState<ChatMessage[]>([]);
-  //TODO : ROOM 이름으로!
-
-  //* save the data to local storage when receiving the data from web server.
-  const saveToLocalStorage = (key: string, data: ChatMessage) => {
-    return new Promise((resolve: any) => {
-      const existingData = localStorage.getItem(key);
-      const dataArr = existingData ? JSON.parse(existingData) : [];
-      dataArr.push(data);
-      localStorage.setItem(key, JSON.stringify(dataArr));
-      resolve();
-    });
-  };
-
-  //* load the data from local storage when room is selected.
-  const loadFromLocalStorage = (key: string): Promise<ChatMessage[]> => {
-    return new Promise((resolve: any) => {
-      const data = localStorage.getItem(key);
-      resolve(data ? JSON.parse(data) : []);
-    });
-  };
+  const [socket, setSocket] = useState<SocketInterface>();
+  const [status, setStatus] = useState<string>('DISCONNECTED');
+  const [message, setMessage] = useState<string>('');
+  // const [log, setLog] = useState<ChatMessage[]>([]);
+  const user = useRecoilValue(userState);
+  const [room, setRoom] = useState<string | null>(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isRoomOpen, setIsRoomOpen] = useState(false);
 
   //* get message using websocket
   const onMessage = async (msg: any) => {
     if (socket) {
-      const msgData: ChatMessage = JSON.parse(msg.data);
-      setLog(prevData => [...prevData, msgData]);
-      await saveToLocalStorage(socket?.room, msgData);
+      const data: ChatMessage = JSON.parse(msg.data);
+      console.log(data);
     }
   };
 
-  //* if disconntected,
+  //* if disconnected
   const onConnectionClosed = () => {
     setStatus('DISCONNECTED');
   };
 
-  //* if conneted,
+  //* if connect
   const onConnectionOpened = () => {
     setStatus('CONNECTED');
   };
 
-  //* if there is a user which is logined, connect using websocket
+  const handleChangeRoom = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const {name} = event.currentTarget;
+    setSocket(new SocketInterface(name));
+    setRoom(name);
+  };
+
+  const handlePostMessage = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    socket?.send(JSON.stringify({user: user, message: message}));
+    setMessage('');
+
+    // //* 내가 채팅을 보냈을 때, 가장 마지막으로 이동해야 한다.
+    // requestAnimationFrame(() => {
+    //   scrollToBottom();
+    // });
+  };
+
+  //* connect using websocket
   useEffect(() => {
     if (socket) {
       socket.connect();
@@ -62,30 +67,66 @@ const Chat = () => {
     }
   }, [socket]);
 
-  // 컴포넌트 마운트 시 로컬 스토리지에서 메시지 불러오기
-  useEffect(() => {
-    if (socket) {
-      const loadMessages = async () => {
-        const savedMessages = await loadFromLocalStorage(socket?.room);
-        if (savedMessages) {
-          setLog(savedMessages);
-        }
-      };
-      loadMessages();
+  const handleChatIconClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!user) {
+      return;
     }
-  }, []);
+
+    setIsChatOpen(prev => !prev);
+  };
+
+  useEffect(() => {
+    if (room) {
+      setIsRoomOpen(true);
+    }
+  }, [room]);
 
   return (
-    <section
-      id="chat"
-      className="sticky flex flex-col items-center space-x-4 top-4 h-1/2">
-      <div className="px-20">
-        <img src={LiveChat} className="w-7 h-7" />
-        {status}
-      </div>
-      <ChatRoom setSocket={setSocket} />
-      <ChatLog socket={socket} log={log} />
-    </section>
+    <div className="flex flex-col items-center space-x-4 top-4 h-1/2">
+      {status}
+      <button onClick={handleChatIconClick} className="cursor-pointer">
+        <ChatIcon />
+      </button>
+      {isChatOpen ? (
+        <>
+          {/* ChatRoom */}
+          <div>
+            {rooms.map((r, i) => (
+              <div key={i}>
+                <button onClick={handleChangeRoom} name={r.name}>
+                  {r.name}
+                </button>
+              </div>
+            ))}
+          </div>
+          {isRoomOpen ? (
+            <>
+              {/* ChatLog */}
+              <ChatLog room={room} />
+              {/* Send Form */}
+              <div>
+                <form onSubmit={handlePostMessage}>
+                  <input
+                    type="text"
+                    name="text"
+                    required
+                    value={message}
+                    onChange={e => setMessage(e.target.value)}
+                  />
+                  <button type="submit" value={message}>
+                    submit
+                  </button>
+                </form>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+        </>
+      ) : (
+        <></>
+      )}
+    </div>
   );
 };
 

@@ -82,6 +82,6 @@ export type League = {
 
 export type ChatMessage = {
   name: string;
-  msg: string;
+  message: string;
   timeStamp: number;
 };
