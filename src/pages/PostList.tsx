@@ -5,7 +5,7 @@ import MostRecentPosts from '../Posts/RecentPosts';
 
 const PostList = () => {
   return (
-    <div className="content-center justify-center">
+    <div id='post'>
       <TopPosts />
       <MostRecentPosts />
     </div>
