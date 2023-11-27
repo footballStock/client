@@ -238,6 +238,23 @@
         mr-12;
     }
 
+    #button-post-disabled {
+        @apply
+        bg-white 
+        border-2 
+        border-custom-white-gray
+        w-24 
+        h-8
+        mr-12;
+    }
+
+    #button-post-disabled{
+        @apply
+        text-base 
+        text-custom-white-gray
+        font-bold;
+    }
+
     #button-post-text{
         @apply
         text-base 

@@ -8,7 +8,7 @@ module.exports = {
         'custom-green': '#70B8BC',
         'custom-room': '#F3F2F2',
         'custom-chat': '#FDF7F7',
-        'custom-white-gray': '#6D6D6D',
+        'custom-white-gray': '#d4d4d4',
         'custom-green-gray' : '#b8d4d4',
         'custom-white-gray2' : '#dbdbdb',
         'custom-white-green' : '#a5d6b7',
