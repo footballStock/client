@@ -2,13 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 
-import Post_image_test1 from '../static/others/Post_image_test1.png';
-import Post_image_test2 from '../static/others/Post_image_test2.png';
-import Post_image_test3 from '../static/others/Post_image_test3.png';
-import Account_img1 from '../static/others/account_img1.png';
-import Account_img2 from '../static/others/account_img2.png';
-import Account_img3 from '../static/others/account_img3.png';
-
 import {Postdata, ButtonProps} from '../states/types';
 import ReportPost from '../Posts/ReportPost';
 import {getData} from '../commons/api';
@@ -54,32 +47,32 @@ const PostDetail: React.FC = () => {
   }
 
   return (
-    <section className="w-1/2">
-      <div className="flex justify-start">
+    <section className="flex justify-center">
+      <div className="flex justify-center">
         <div>
-          <div className="flex ml-5">
+          <div className="flex ml-2 mt-3">
             <img
               src={process.env.REACT_APP_BASEURL + postdata.author_profile}
               alt="accountimage"
-              className="w-[2.5rem] h-[2.5rem]"
+              className="detail-profile-image"
             />
-            <div className="ml-2">
-              <h5 className="text-sm">{postdata.author}</h5>
-              <h5 className="text-sm">{postdata.time}</h5>
+            <div className="ml-3">
+              <h5 className="detail-author">{postdata.author}</h5>
+              <h5 className="detail-time">{postdata.time}</h5>
             </div>
           </div>
 
-          <div className="flex my-5 ml-5">
-            <h1 className="font-bold break-words text-1xl md:text-2xl lg:text-4xl">
+          <div className="flex my-2 ml-5 border-b border-b-gray-150">
+            <h1 className="detail-title">
               {postdata.title}
             </h1>
           </div>
 
-          <div className="flex items-center justify-center my-10">
+          <div className="flex items-center justify-center my-4">
             <img
               src={process.env.REACT_APP_BASEURL + postdata.image}
               alt="postimage"
-              className="w-[40rem] h-[40rem]"
+              className="detail-img"
             />
           </div>
 

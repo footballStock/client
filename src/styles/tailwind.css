@@ -15,11 +15,15 @@
 /* header */
     #header {
         @apply
+        fixed
+        top-0
         border 
         border-solid 
         border-custom-gray
+        bg-white
         w-full 
-        h-24 
+        h-24
+        z-50         
     }
 
     #navbar {
@@ -122,15 +126,20 @@
         bg-custom-green-gray;
         transition: all 0.2s ease;
     }
-    
+
+    .profile{
+        @apply
+        px-2 
+        mt-2 
+        font-sidebar-name
+        text-sm
+    }
 
 
 /* sidebar */
 
     #sidebar{
         @apply
-        sticky 
-        top-4 
         w-80
         h-1/2;
     }
@@ -181,7 +190,8 @@
 /* chat */    
     #chat{
         @apply
-        w-80;
+        w-80
+        h-1/2
     }
 
 
@@ -445,5 +455,46 @@
         @apply
         opacity-100
         border-b-custom-gray2;
+    }
+
+/*PostDetail*/
+    .detail-profile-image {
+        @apply
+        w-[2.5rem] 
+        h-[2.5rem]
+        rounded-full
+        ml-2;
+    }
+
+    .detail-author{
+        @apply
+        text-base
+        text-black
+        font-sidebar-name;
+    }
+
+    .detail-time{
+        @apply
+        text-xs
+        text-custom-gray3
+        font-sidebar-name;
+    }
+
+    .detail-title{
+        @apply
+        font-bold 
+        break-words 
+        text-4xl 
+        font-detail-title
+        mt-2
+        mb-4
+    }
+
+    .detail-img{
+        @apply
+        ml-5
+        mt-2
+        w-[50rem] 
+        max-h-[80rem]
     }
 }

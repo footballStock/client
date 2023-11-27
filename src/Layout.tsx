@@ -41,7 +41,7 @@ const Layout = (): JSX.Element => {
   return (
     <React.Fragment>
       <Header />
-      <main className="flex py-4">
+      <main className="flex py-4 pt-24">
         <div className="flex-none">
           <Sidebar />
         </div>

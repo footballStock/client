@@ -7,8 +7,8 @@ const Profile: React.FC<{src: string; alt: string; nickname: string}> = ({
 }): JSX.Element => {
   return (
     <div className="flex flex-row items-center">
-      <img src={src} alt={alt} className="w-8" />
-      <span className="px-2">{nickname}</span>
+      <img src={src} alt={alt} className="w-8 rounded-full" />
+      <span className="profile">{nickname}</span>
     </div>
   );
 };
