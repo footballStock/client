@@ -23,7 +23,7 @@ const ChatLog: React.FC<{room: string | null}> = ({room}) => {
     requestAnimationFrame(() => {
       scrollToBottom();
     });
-  }, []);
+  }, [chats]);
 
   //* 채팅 데이터가 추가 되어도 스크롤 위치 고정
   useEffect(() => {
@@ -59,14 +59,14 @@ const ChatLog: React.FC<{room: string | null}> = ({room}) => {
 
   useEffect(() => {
     console.log(chats);
-    console.log(chats?.pages);
-    chats?.pages.map((page, i) => {
-      console.log(page.posts);
+    // console.log(chats?.pages);
+    // chats?.pages.map((page, i) => {
+    //   console.log(page.posts);
 
-      page.posts.map((data, i) => {
-        console.log(data.content);
-      });
-    });
+    //   page.posts.map((data, i) => {
+    //     console.log(data.content);
+    //   });
+    // });
   }, [chats]);
 
   return (
@@ -74,7 +74,9 @@ const ChatLog: React.FC<{room: string | null}> = ({room}) => {
       <div ref={chatStartRef}></div>
 
       {chats?.pages.map((page, i) =>
-        page.posts.map((msg, j) => <div key={j}>{msg.content}</div>),
+        page.messages
+          .reverse()
+          .map((msg, j) => <div key={j}>{msg.content}</div>),
       )}
 
       <div ref={chatEndRef}></div>

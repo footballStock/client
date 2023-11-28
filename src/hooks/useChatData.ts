@@ -3,7 +3,7 @@ import {useInfiniteQuery, UseInfiniteQueryResult} from 'react-query';
 import {ChatMessage} from '../states/types';
 
 type ChatPage = {
-  posts: ChatMsg[];
+  messages: ChatMsg[];
   isLastPage: boolean;
 };
 
@@ -41,7 +41,7 @@ export const useChatData = (
         if (lastPage.isLastPage) {
           return undefined; // 더 이상 불러올 페이지가 없음
         }
-        return lastPage.posts.length; // 다음 페이지 번호
+        return lastPage.messages.length; // 다음 페이지 번호
       },
     },
   );

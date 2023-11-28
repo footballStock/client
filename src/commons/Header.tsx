@@ -25,7 +25,7 @@ const Header = () => {
         setUser(data);
       });
     }
-  }, []);
+  }, [token]);
 
   return (
     <header
