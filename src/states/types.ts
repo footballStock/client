@@ -85,3 +85,46 @@ export type ChatMessage = {
   message: string;
   timeStamp: number;
 };
+
+// Club 관련 데이터들
+export type SeasonData = {
+  team: string;
+  season_year: number;
+  matches_played: number;
+  wins: number;
+  draws: number;
+  loses: number;
+  goals_for: number;
+  goals_against: number;
+  goal_difference: number;
+  points: number;
+};
+
+export type PlayerData = {
+  id: number;
+  photo: string;
+  name: string;
+  number: number;
+  nationality: string;
+  position: string;
+  detailed_position: string;
+  api_id: number;
+  team: number;
+};
+
+export type PlayerDict = {
+  Attacker: PlayerData[];
+  Defender: PlayerData[];
+  Goalkeeper: PlayerData[];
+  Midfielder: PlayerData[];
+};
+
+export type NewsData = {
+  id: number;
+  title: string;
+  url: string;
+  published_date: string;
+  thumbnail: string;
+  author: string;
+  team: number;
+};
