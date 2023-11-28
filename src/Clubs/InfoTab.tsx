@@ -3,7 +3,7 @@ import News from './News';
 import Overview from './Overview';
 import Squad from './Squad';
 
-const tablist = ['overview', 'squad', 'news'];
+const tablist = ['Overview', 'Squad', 'News'];
 const TabBtn = ({
   tabName,
   isSelected,
@@ -16,7 +16,11 @@ const TabBtn = ({
   return (
     <div
       onClick={() => setTab(tabName)}
-      style={{color: isSelected ? 'black' : 'gray'}}>
+      className={
+        isSelected
+          ? 'text-black m-4 text-lg font-semibold border-b-2 border-b-black'
+          : 'text-gray-400 m-4 text-lg font-semibold'
+      }>
       {tabName}
     </div>
   );
@@ -24,22 +28,22 @@ const TabBtn = ({
 
 const TabContents = ({curTab, fullData}: {curTab: string; fullData: any}) => {
   switch (curTab) {
-    case 'overview':
+    case 'Overview':
       return <Overview seasonData={fullData.season} />;
-    case 'squad':
+    case 'Squad':
       return <Squad playerDict={fullData.player} />;
     default:
-    case 'news':
+    case 'News':
       return <News newsList={fullData.news} />;
   }
 };
 
 const InfoTab = ({fullData}: {fullData: any}) => {
-  const [tab, setTab] = useState<string>('overview');
+  const [tab, setTab] = useState<string>('News');
 
   return (
-    <div className="flex flex-col bg-green-100">
-      <div className="flex flex-row  gap-x-10">
+    <div className="flex flex-col">
+      <div className="flex flex-row  gap-x-4">
         {tablist.map(item => (
           <TabBtn
             key={item}

@@ -4,20 +4,22 @@ import {NewsData} from '../states/types';
 
 const Item = ({newsData}: {newsData: NewsData}) => {
   return (
-    <div className="flex-auto">
-      <a href={newsData.url}>
-        <img src={newsData.thumbnail} alt={newsData.title} className="w-44" />
+    <a href={newsData.url} className="flex flex-col justify-center w-56 h-48">
+      <img src={newsData.thumbnail} alt={newsData.title} className="w-52" />
+      <div className="font-semibold whitespace-normal overflow-hidden text-ellipsis">
         {newsData.title}
-        {newsData.author}
-        {getTimeAgo(newsData.published_date)}
-      </a>
-    </div>
+      </div>
+      <div>
+        <div>{newsData.author}</div>
+        <div>{getTimeAgo(newsData.published_date)}</div>
+      </div>
+    </a>
   );
 };
 
 const News = ({newsList}: {newsList: NewsData[]}) => {
   return (
-    <div>
+    <div className="flex flex-wrap">
       {newsList.map((item, index) => (
         <Item newsData={item} key={index} />
       ))}

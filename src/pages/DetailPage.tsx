@@ -59,7 +59,7 @@ const DetailPage = () => {
         <div className="flex-auto">
           {clubData ? <InfoTab fullData={clubData} /> : null}
         </div>
-        <div className="flex-none bg-blue-100">
+        <div className="flex-none">
           {clubData ? <SideView fullData={clubData} /> : null}
         </div>
       </div>
