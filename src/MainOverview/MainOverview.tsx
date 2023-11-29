@@ -143,6 +143,7 @@ const MainOverview = () => {
 
   return (
     <section>
+      <div>
         <img
           src="https://github.com/footballStock/client/assets/99087502/971fe851-5d49-4b77-a13a-547f64f6cf04"
           alt="advertise"
