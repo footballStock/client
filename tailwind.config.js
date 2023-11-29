@@ -7,13 +7,16 @@ module.exports = {
         'custom-gray': '#DBDBDB',
         'custom-green': '#70B8BC',
         'custom-room': '#F3F2F2',
-        'custom-chat': '#FDF7F7',
+        'custom-chat': '#f9f9f9',
         'custom-white-gray': '#d4d4d4',
         'custom-green-gray': '#b8d4d4',
         'custom-white-gray2': '#dbdbdb',
         'custom-white-green': '#a5d6b7',
         'custom-gray2': '#c2c2c2',
         'custom-gray3': '#adacac',
+        'custom-gray4': '#d1cdcd',
+        'custom-dark' : '#474747',
+        'custom-gray5': '#e0dede'
       },
       boxShadow: {
         red: '2px 4px 0px 1px rgba(255,0,0,0.75)',

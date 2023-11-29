@@ -191,9 +191,127 @@
     #chat{
         @apply
         w-80
-        h-1/2
+        mr-1
     }
 
+    #chat-ui{
+        @apply
+        relative 
+        flex 
+        items-center 
+        justify-end 
+        bg-custom-gray4
+        p-1
+        mt-1
+        transition-all 
+        duration-300 
+        cursor-pointer;
+      }      
+
+    #chat-name{
+        @apply
+        absolute 
+        whitespace-nowrap 
+        text-custom-dark
+        font-semibold
+        text-[16px];
+        right : 0;
+        transform: translateX(-100%);
+    }
+
+    #chat-room {
+        @apply
+        w-60;
+        background-color: #f9f9f9;
+        border: 3px solid #d1cdcd;
+        padding: 10px;
+    }  
+  
+    #chat-room p {
+        font-weight: bold;
+        color: #333;
+    }
+  
+    #chat-room button {
+        @apply
+        ml-2
+        w-52
+        h-8;
+        display: flex; 
+        margin: 5px 0;
+        align-items: center; 
+        padding: 10px; 
+    }
+
+    .chat-room-name{
+        @apply
+        text-sm
+        mb-1
+    }
+
+    .room-status-indicator {
+        flex-shrink: 0; 
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #fff; 
+        margin-right: 10px; 
+    }
+
+    #chat-room button div {
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
+  
+    .current-room .room-status-indicator {
+        background-color: #00ff00; 
+    }
+  
+    #chat-room button:hover {
+        background-color: #e8e8e8;
+    }
+
+    #chat-message{
+        @apply
+        flex
+        flex-col
+        items-center
+        w-60
+        bg-custom-chat;
+        border: 3px solid #d1cdcd;
+    }
+
+    #chat-message-room{
+        @apply
+        h-96
+        w-full
+        overflow-y-auto; 
+    }
+  
+    #chat-message-room .chat-content {
+        @apply
+        break-words
+        overflow-hidden;
+    }
+    
+    #chat-input {
+        @apply
+        w-60
+        flex
+        justify-center;
+    }
+    
+    #chat-input input[type="text"] {
+        @apply
+        border
+        border-solid
+        border-gray-300
+        p-2
+        mt-2
+        mb-2
+        w-full; 
+    }
 
 
 /* main overview */
