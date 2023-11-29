@@ -8,7 +8,6 @@ import SignUp from './SignUp';
 import {getData} from './api';
 import Profile from './Profile';
 
-import Trade2Goal from '../static/others/Trade2Goal.png';
 import NavButton from '../components/NavButton';
 import {tokenState, userState} from '../states/recoil';
 
@@ -43,17 +42,19 @@ const Header = () => {
     <header id="header">
       <nav id="navbar">
         <div className="flex items-center">
-          
           <Link to="/">
             <div id="logo">
-              <img src={Trade2Goal} alt="Trade2Goal" className="h-10" />
+              <img
+                src="https://github.com/footballStock/client/assets/99087502/e29747ec-88f4-4f93-853d-e9b693219c08"
+                alt="Trade2Goal"
+                className="h-10"
+              />
             </div>
           </Link>
 
-          <div
-            id="menu">
+          <div id="menu">
             <NavButton>
-              <Link to="/" >Stocks</Link>
+              <Link to="/">Stocks</Link>
             </NavButton>
             <NavButton>
               <Link to="/posts">Posts</Link>
@@ -62,7 +63,6 @@ const Header = () => {
               <Link to="/clubs">Clubs</Link>
             </NavButton>
           </div>
-
         </div>
 
         <div id="header-buttons">

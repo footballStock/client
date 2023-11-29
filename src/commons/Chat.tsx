@@ -11,6 +11,8 @@ import {User} from '../states/types';
 
 import Swal from 'sweetalert2';
 
+import account from '../myaccount.png';
+
 //TODO
 interface ChatType {
   content: string;
@@ -144,6 +146,7 @@ const Chat = () => {
     setRoom(name);
     setSocket(new SocketInterface(name));
     setIsFirstChatLoaded(false);
+    setChats([]);
   };
 
   useEffect(() => {
@@ -240,25 +243,37 @@ const Chat = () => {
   }, [isFetching]);
 
   return (
-    <div className="flex flex-col items-center space-x-4 top-4">
+    <div className="flex flex-col mr-4">
       <ChatIcon className="cursor-pointer" />
-
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col bg-custom-room">
+        <p className="border border-b-black">Room</p>
         {rooms.map((room, i) => (
           <button onClick={handleChangeRoom} name={room.name} key={i}>
-            <div>{room.name}</div>
+            <div className="border">{room.name}</div>
           </button>
         ))}
       </div>
 
-      <div>
-        <div className="overflow-y-scroll h-72 w-60" ref={chatsRef}>
+      <div className="flex flex-col bg-custom-chat">
+        <p>Chatting</p>
+        <p className="border border-b-black">Room: {room}</p>
+        <div
+          className="overflow-x-hidden overflow-y-auto scrollbar-hide h-96 w-60"
+          ref={chatsRef}>
           <div ref={chatStartRef}></div>
           {chats.length > 0 ? (
             <>
               {chats.map((chat, i) => (
-                <div key={i}>
-                  {chat.user.nickname} : {chat.id} :{chat.content}
+                <div key={i} className="p-2 ">
+                  <div className="flex flex-row">
+                    <img
+                      // src={chat.user.profile.src}
+                      src={account}
+                      alt={chat.user.profile.alt}
+                    />
+                    <p className="ml-2">{chat.user.nickname}</p>
+                  </div>
+                  <p className="break-words">{chat.content}</p>
                 </div>
               ))}
             </>
@@ -276,9 +291,6 @@ const Chat = () => {
             onChange={e => setMessage(e.target.value)}
             disabled={status !== 'CONNECTED'}
           />
-          <button type="submit" value={message}>
-            submit
-          </button>
         </form>
       </div>
     </div>

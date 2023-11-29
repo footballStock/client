@@ -9,12 +9,11 @@ module.exports = {
         'custom-room': '#F3F2F2',
         'custom-chat': '#FDF7F7',
         'custom-white-gray': '#d4d4d4',
-        'custom-green-gray' : '#b8d4d4',
-        'custom-white-gray2' : '#dbdbdb',
-        'custom-white-green' : '#a5d6b7',
-        'custom-gray2' : '#c2c2c2',
-        'custom-gray3' : '#adacac',
-
+        'custom-green-gray': '#b8d4d4',
+        'custom-white-gray2': '#dbdbdb',
+        'custom-white-green': '#a5d6b7',
+        'custom-gray2': '#c2c2c2',
+        'custom-gray3': '#adacac',
       },
       boxShadow: {
         red: '2px 4px 0px 1px rgba(255,0,0,0.75)',
@@ -27,12 +26,12 @@ module.exports = {
         black: '2px 4px 0px 1px rgba(0,0,0,0.75)',
       },
       fontFamily: {
-        'sidebar-name': ['Georgia','Cambria',"Times New Roman"],
+        'sidebar-name': ['Georgia', 'Cambria', 'Times New Roman'],
         'sidebar-menu': ['Times'],
-        'detail-title' : ["Cambria"],
-        'detail-content' : ["Cambria"]
+        'detail-title': ['Cambria'],
+        'detail-content': ['Cambria'],
         ///, Roboto, "Cambria", , "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
-      }
+      },
     },
     plugins: [
       // ...
@@ -55,4 +54,3 @@ module.exports = {
   },
   plugins: [],
 };
-
