@@ -85,7 +85,7 @@ const MainOverview = () => {
             <img
               src={value.src}
               alt={value.alt}
-              className="w-7 h-7 object-contain mr-2"
+              className="object-contain mr-2 w-7 h-7"
             />
             <button className="px-1">{value.name}</button>
           </div>
@@ -143,8 +143,11 @@ const MainOverview = () => {
 
   return (
     <section>
-      <div>
-        <img src={AD} alt="advertise" id="ad" className=""></img>
+        <img
+          src="https://github.com/footballStock/client/assets/99087502/971fe851-5d49-4b77-a13a-547f64f6cf04"
+          alt="advertise"
+          id="ad"
+          className=""></img>
         <TableSheet columns={columns} data={data} />
       </div>
     </section>

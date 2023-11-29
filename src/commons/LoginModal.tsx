@@ -30,7 +30,7 @@ const LoginModal: React.FC<{
   const closeModal = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     document.body.style.overflow = 'unset';
-    setModalIsOpen(false)
+    setModalIsOpen(false);
   };
 
   const afterOpenModal = () => {
@@ -175,8 +175,7 @@ const LoginModal: React.FC<{
         <input
           type="submit"
           value={current}
-          className="w-full p-2 font-bold leading-normal text-white bg-red-500 rounded font-inter
-          hover:bg-red-600 active:ring-2 active:ring-red-700 cursor-pointer"
+          className="w-full p-2 font-bold leading-normal text-white bg-red-500 rounded cursor-pointer font-inter hover:bg-red-600 active:ring-2 active:ring-red-700"
           data-testid="login-btn"
         />
       </form>
@@ -187,7 +186,7 @@ const LoginModal: React.FC<{
           onClick={handleSocialLogin}
           className="flex flex-col items-center justify-center px-4 py-2 w-88 hover:brightness-90">
           <img
-            src={GoogleLogin}
+            src="https://github.com/footballStock/client/assets/99087502/070ce079-5b56-4447-a75b-7bd6cb7e6910"
             alt="google log in"
             className="object-cover w-full"
           />
