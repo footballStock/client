@@ -4,6 +4,8 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 import {ClubImage, Image} from '../states/types';
 import {leagues} from '../states/constants';
+import {useNavigate} from 'react-router-dom';
+import {findCode} from '../commons/util';
 
 const ClubLists: React.FC<{
   league: Image;
@@ -28,6 +30,11 @@ const ClubLists: React.FC<{
 
   // Get the color for the current league
   const color = getColorForLeague(league.name);
+  const navigate = useNavigate();
+
+  const handlePostClick = (code: string) => {
+    navigate(`/clubs/${code}`);
+  };
 
   return (
     <div>
@@ -38,6 +45,7 @@ const ClubLists: React.FC<{
         {clubsImage.map((club, index) => (
           <button
             key={index}
+            onClick={() => handlePostClick(findCode(club.name))}
             className={` flex flex-col items-start justify-center h-32 p-4 bg-white border-2 border-gray-300 rounded-lg w-44 ${color}`}>
             <img
               src={club.src}

@@ -4,10 +4,18 @@ import {Column} from 'react-table';
 
 import TableSheet from './TableSheet';
 
-import {FootballTeamStockInfo, StockOverview, Image} from '../states/types';
+import {
+  FootballTeamStockInfo,
+  StockOverview,
+  Image,
+  Team,
+} from '../states/types';
 import {teamsImageState} from '../states/recoil';
 import AD from '../static/others/AD.png';
 import {getData} from '../commons/api';
+import {useNavigate} from 'react-router-dom';
+import {clubs} from '../states/constants';
+import {findCode} from '../commons/util';
 
 const MainOverview = () => {
   const teamsImage = useRecoilValue(teamsImageState);
@@ -55,6 +63,12 @@ const MainOverview = () => {
     });
   }, []);
 
+  const navigate = useNavigate();
+
+  const handlePostClick = (code: string) => {
+    navigate(`/clubs/${code}`);
+  };
+
   const columns: Column<StockOverview>[] = useMemo(
     () => [
       {
@@ -65,7 +79,9 @@ const MainOverview = () => {
         accessor: 'team_image',
         Header: 'Name',
         Cell: ({value}) => (
-          <div className="flex items-center">
+          <div
+            className="flex items-center"
+            onClick={() => handlePostClick(findCode(value.name))}>
             <img
               src={value.src}
               alt={value.alt}
@@ -81,7 +97,9 @@ const MainOverview = () => {
         Cell: ({value}) => (
           <div>
             <span>{value.price} </span>
-            <span className="text-gray-400 text-[10px]">{value.price_unit}</span>
+            <span className="text-gray-400 text-[10px]">
+              {value.price_unit}
+            </span>
           </div>
         ),
       },
@@ -126,7 +144,7 @@ const MainOverview = () => {
   return (
     <section>
       <div>
-        <img src={AD} alt="advertise" id='ad' className=""></img>
+        <img src={AD} alt="advertise" id="ad" className=""></img>
         <TableSheet columns={columns} data={data} />
       </div>
     </section>

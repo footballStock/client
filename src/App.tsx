@@ -20,7 +20,7 @@ const App = (): JSX.Element => {
           <Route path="/posts/*" element={<PostList />} />
           <Route path="/posts/:id" element={<PostDetail />} />
           <Route path="/clubs/*" element={<Clubs />} />
-          <Route path="/clubs/:clubId" element={<DetailPage />} />
+          <Route path="/clubs/:clubCode" element={<DetailPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
