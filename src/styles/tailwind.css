@@ -15,6 +15,7 @@
 /* header */
     #header {
         @apply
+        fixed
         border 
         border-solid 
         border-custom-gray
@@ -139,9 +140,8 @@
     #sidebar{
         @apply
         sticky
-        top-4
-        w-80
-        h-1/2;
+        top-28
+        w-80;
     }
 
     #sidebar-name{
@@ -190,8 +190,9 @@
 /* chat */    
     #chat{
         @apply
+        sticky
         w-80
-        mr-1
+        top-28
     }
 
     #chat-ui{
@@ -319,8 +320,7 @@
         @apply
         mx-auto
         w-[60rem] 
-        h-[24rem]
-        mt-2;
+        h-[24rem];
         cursor:pointer;
     }
 
@@ -377,6 +377,7 @@
 /* posts */
     #post {
         @apply
+        mt-24
         w-[60rem]
         mx-auto
         content-center 
