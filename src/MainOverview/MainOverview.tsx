@@ -50,9 +50,9 @@ const MainOverview = () => {
     };
 
     //TODO : 서버 측 stack_overviwe db 완성 후 test
-    // getTeamData().then(data => {
-    //   handleDataProcessing(data);
-    // });
+    getTeamData().then(data => {
+      handleDataProcessing(data);
+    });
   }, []);
 
   const columns: Column<StockOverview>[] = useMemo(
@@ -66,7 +66,11 @@ const MainOverview = () => {
         Header: 'Name',
         Cell: ({value}) => (
           <div className="flex items-center">
-            <img src={value.src} alt={value.alt} className="w-7 h-7" />
+            <img
+              src={value.src}
+              alt={value.alt}
+              className="w-7 h-7 object-contain mr-2"
+            />
             <button className="px-1">{value.name}</button>
           </div>
         ),
@@ -77,7 +81,7 @@ const MainOverview = () => {
         Cell: ({value}) => (
           <div>
             <span>{value.price} </span>
-            <span className="text-gray-400">{value.price_unit}</span>
+            <span className="text-gray-400 text-[10px]">{value.price_unit}</span>
           </div>
         ),
       },
@@ -122,7 +126,7 @@ const MainOverview = () => {
   return (
     <section>
       <div>
-        <img src={AD} alt="advertise" className=" w-[60rem] h-[24rem]"></img>
+        <img src={AD} alt="advertise" id='ad' className=""></img>
         <TableSheet columns={columns} data={data} />
       </div>
     </section>
