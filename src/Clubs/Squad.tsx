@@ -43,8 +43,6 @@ const ProfileGrid = ({
   );
 };
 
-const positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Attacker'];
-
 const Squad = ({playerDict}: {playerDict: PlayerDict}) => {
   return (
     <div className="flex flex-col m-1 gap-y-10">

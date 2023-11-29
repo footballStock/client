@@ -39,7 +39,7 @@ const TabContents = ({curTab, fullData}: {curTab: string; fullData: any}) => {
 };
 
 const InfoTab = ({fullData}: {fullData: any}) => {
-  const [tab, setTab] = useState<string>('News');
+  const [tab, setTab] = useState<string>('Overview');
 
   return (
     <div className="flex flex-col">
