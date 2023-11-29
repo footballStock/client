@@ -76,8 +76,14 @@ export type AWSConfig = {
   region: string;
 };
 
+export type Team = {
+  team: string;
+  ticker: string;
+  code: string;
+};
+
 export type League = {
-  [key: string]: string[];
+  [key: string]: Team[];
 };
 
 export type ChatMessage = {

@@ -39,7 +39,11 @@ const ClubLists: React.FC<{
           <button
             key={index}
             className={` flex flex-col items-start justify-center h-32 p-4 bg-white border-2 border-gray-300 rounded-lg w-44 ${color}`}>
-            <img src={club.src} alt={club.alt} className="w-8 mb-2" />
+            <img
+              src={club.src}
+              alt={club.alt}
+              className="w-8 mb-2 object-contain"
+            />
             <div className="flex items-center justify-between w-full">
               <span className="font-semibold">{club.name}</span>
               <span>

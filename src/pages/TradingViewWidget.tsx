@@ -37,7 +37,7 @@ const TradingViewWidget: React.FC = () => {
         // Explicitly cast window to any to access TradingView
         new (window as any).TradingView.widget({
           autosize: true,
-          symbol: 'NYSE:MANU',
+          symbol: 'MIL:JUVE',
           interval: 'D',
           timezone: 'Asia/Seoul',
           theme: 'light',
