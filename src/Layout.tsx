@@ -39,13 +39,13 @@ const Layout = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="w-screen ">
+    <div className="w-screen h-24">
       <Header />
       <main className="flex py-4">
         <div className="flex-none">
           <Sidebar />
         </div>
-        <div className="grow">
+        <div className="mt-24 grow">
           <Outlet />
         </div>
         <div className="flex-none">
