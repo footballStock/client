@@ -1,14 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useRecoilValue} from 'recoil';
+import axios from 'axios';
 
-import SocketInterface from './Chat/SocketInterface';
+import SocketInterface from '../interface/SocketInterface';
 
 import {userState} from '../states/recoil';
 
 import ChatIcon from '@mui/icons-material/Chat';
 import {User} from '../states/types';
-import axios from 'axios';
-import {postData} from './api';
+
+import Swal from 'sweetalert2';
 
 //TODO
 interface ChatType {
@@ -19,14 +20,19 @@ interface ChatType {
   timestamp: string;
 }
 
-const rooms = [{name: '1'}];
+const rooms = [
+  {name: '1'},
+  {name: '2'},
+  {name: '3'},
+  {name: '4'},
+  {name: '5'},
+  {name: '6'},
+];
 
 const Chat = () => {
-  const [isChatRoomOpen, setIsChatRoomOpen] = useState<boolean>(false);
-  const [isChatLogOpen, setIsChatLogOpen] = useState<boolean>(false);
   const [chats, setChats] = useState<ChatType[]>([]);
   const [message, setMessage] = useState<string>('');
-  const [id, setId] = useState<number>(0);
+  const [id, setId] = useState<number | null>(null);
 
   const [status, setStatus] = useState<string>('DISCONNECTED');
   const [socket, setSocket] = useState<SocketInterface | null>(null);
@@ -108,14 +114,6 @@ const Chat = () => {
 
       postDataToLog();
       setChats(prev => [...prev, postData]);
-
-      if (!isFirstChatLoaded) {
-        requestAnimationFrame(() => {
-          scrollToBottom();
-        });
-        setIsFirstChatLoaded(true);
-      }
-
       setMessage('');
     }
   };
@@ -129,13 +127,19 @@ const Chat = () => {
     }
   }, [socket]);
 
-  const handleChatIconClick = () => {
-    if (!user) return;
-
-    setIsChatRoomOpen(prev => !prev);
-  };
+  // id 포함 => id 이전 5개
+  // id x => 최근 5개
 
   const handleChangeRoom = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!user) {
+      Swal.fire({
+        title: 'Please log in first',
+        html: 'Chat function requires login',
+      });
+
+      return;
+    }
+
     const {name} = event.currentTarget;
     setRoom(name);
     setSocket(new SocketInterface(name));
@@ -143,13 +147,9 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    if (room) {
-      setIsChatLogOpen(true);
-    }
+    if (!room) return;
 
-    if (!chatStartRef.current) {
-      return;
-    }
+    if (!chatStartRef.current) return;
 
     const chatObserver = new IntersectionObserver(
       ([entries]) => {
@@ -159,26 +159,55 @@ const Chat = () => {
 
           //* mocking
           const fetchData = async () => {
-            try {
-              const res = await axios.get(`/log/${id}`);
+            if (id === 0) {
+              return;
+            }
 
-              if (res.status === 200) {
-                const newChats: ChatType[] = res.data;
+            if (id) {
+              try {
+                const res = await axios.get(`/log/room=${room}/${id}`);
 
-                // Filter out any chats that are already present
-                const uniqueNewChats = newChats.filter(
-                  newChat =>
-                    !chats.some(existingChat => existingChat.id === newChat.id),
-                );
+                if (res.status === 200) {
+                  const newChats: ChatType[] = res.data;
 
-                // Only update the chats state if there are new chats
-                if (uniqueNewChats.length > 0) {
-                  setChats(prev => [...uniqueNewChats.reverse(), ...prev]);
+                  // Filter out any chats that are already present
+                  const uniqueNewChats = newChats.filter(
+                    newChat =>
+                      !chats.some(
+                        existingChat => existingChat.id === newChat.id,
+                      ),
+                  );
+
+                  // Only update the chats state if there are new chats
+                  if (uniqueNewChats.length > 0) {
+                    setChats(prev => [...uniqueNewChats, ...prev]);
+                  }
+                  setIsFetching(true);
                 }
-                setIsFetching(true);
+              } catch (error) {
+                console.log(error);
               }
-            } catch (error) {
-              console.log(error);
+            } else {
+              try {
+                const res = await axios.get(`/log/room=${room}/`);
+
+                if (res.status === 200) {
+                  const newChats: ChatType[] = res.data;
+
+                  const initId =
+                    newChats.length > 0
+                      ? Math.min(...newChats.map(chat => chat.id))
+                      : null;
+
+                  // Only update the chats state if there are new chats
+                  if (newChats.length > 0) {
+                    setChats(newChats);
+                  }
+                  setIsFetching(true);
+                }
+              } catch (error) {
+                console.log(error);
+              }
             }
           };
 
@@ -202,28 +231,26 @@ const Chat = () => {
         chatsRef.current?.scrollTo(0, scrollHeight - prevScrollHeight);
       });
 
-      const maxId =
-        chats.length > 0 ? Math.max(...chats.map(chat => chat.id)) : 0;
-      setId(maxId);
+      const minId = Math.min(...chats.map(chat => chat.id));
+      if (id !== minId) {
+        setId(minId);
+      }
       setIsFetching(false);
     }
   }, [isFetching]);
 
   return (
     <div className="flex flex-col items-center space-x-4 top-4">
-      <ChatIcon onClick={handleChatIconClick} className="cursor-pointer" />
-      {status}
-      {isChatRoomOpen ? (
-        <div>
-          {rooms.map((room, i) => (
-            <button onClick={handleChangeRoom} name={room.name} key={i}>
-              <p>{room.name}</p>
-            </button>
-          ))}
-        </div>
-      ) : (
-        <>...loading</>
-      )}
+      <ChatIcon className="cursor-pointer" />
+
+      <div className="flex flex-col items-center justify-center">
+        {rooms.map((room, i) => (
+          <button onClick={handleChangeRoom} name={room.name} key={i}>
+            <div>{room.name}</div>
+          </button>
+        ))}
+      </div>
+
       <div>
         <div className="overflow-y-scroll h-72 w-60" ref={chatsRef}>
           <div ref={chatStartRef}></div>
@@ -247,6 +274,7 @@ const Chat = () => {
             required
             value={message}
             onChange={e => setMessage(e.target.value)}
+            disabled={status !== 'CONNECTED'}
           />
           <button type="submit" value={message}>
             submit
