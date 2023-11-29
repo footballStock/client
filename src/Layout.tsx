@@ -4,7 +4,7 @@ import {Outlet} from 'react-router-dom';
 
 import Header from './commons/Header';
 import Sidebar from './commons/Sidebar';
-import Chat from './commons/Chat/Chat';
+import Chat from './commons/Chat';
 import {Image} from './states/types';
 import {
   awsState,

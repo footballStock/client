@@ -21,6 +21,24 @@ module.exports = {
         black: '2px 4px 0px 1px rgba(0,0,0,0.75)',
       },
     },
+    plugins: [
+      // ...
+      function ({addUtilities}) {
+        const newUtilities = {
+          '.scrollbar-hide': {
+            /* 스크롤바 숨기기: Chrome, Safari 등 */
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
+            /* 스크롤바 숨기기: Firefox */
+            'scrollbar-width': 'none',
+            /* 스크롤바 숨기기: IE and Edge */
+            '-ms-overflow-style': 'none',
+          },
+        };
+        addUtilities(newUtilities, ['responsive', 'hover']);
+      },
+    ],
   },
   plugins: [],
 };

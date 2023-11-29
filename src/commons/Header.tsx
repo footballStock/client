@@ -21,9 +21,21 @@ const Header = () => {
     if (storedToken) {
       setToken(token);
 
-      getData('/login/', token).then(data => {
-        setUser(data);
-      });
+      // getData 함수 호출을 await 키워드와 함께 사용합니다.
+      // 이를 위해 내부 함수를 async로 선언합니다.
+      const fetchData = async () => {
+        try {
+          const data = await getData('/login/', token);
+          setUser(data);
+        } catch (error: any) {
+          // 에러 메시지가 'Request failed with status code 401'인 경우에만 1을 출력합니다.
+          if (error.response && error.response.status === 401) {
+            localStorage.removeItem('token');
+          }
+        }
+      };
+
+      fetchData();
     }
   }, [token]);
 

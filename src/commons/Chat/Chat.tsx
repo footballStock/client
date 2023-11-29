@@ -7,7 +7,6 @@ import SocketInterface from './SocketInterface';
 
 import {ChatMessage} from '../../states/types';
 import {userState} from '../../states/recoil';
-import ChatLog from './ChatLog';
 import {getData} from '../api';
 
 //TODO
@@ -35,6 +34,7 @@ const Chat = () => {
   const chatsRef = useRef<HTMLDivElement | null>(null);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const [prevScrollHeight, setPrevScrollHeight] = useState<number>(0);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView();
@@ -89,6 +89,8 @@ const Chat = () => {
           //* 추가 데이터 요청
           getData(`/chats/${room}/?page=1`).then(data => {
             const msgs = data?.messages.map((msg: any) => {
+              console.log(msg);
+              //TODO : 데이터 요청 방식
               const storedMsg: ChatMessage = {
                 user: {profile: {src: '', alt: ''}, nickname: ''},
                 message: msg.content,
@@ -98,12 +100,8 @@ const Chat = () => {
               return storedMsg;
             });
 
-            //TODO : 데이터 요청 방식
-            const newLog = [...msgs, ...log];
-            setlog(newLog);
-            requestAnimationFrame(() => {
-              scrollToBottom();
-            });
+            setlog(prev => [...msgs, ...prev]);
+            setIsFetching(true);
           });
         }
       },
@@ -112,15 +110,22 @@ const Chat = () => {
 
     // Observer 시작
     chatObserver.observe(chatStartRef.current);
-    requestAnimationFrame(() => {
-      scrollToBottom();
-    });
 
     // 컴포넌트가 언마운트되거나 room 값이 변경될 때 Observer 정리
     return () => {
       chatObserver.disconnect();
     };
   }, [room]); // 의존성 배열에 room 포함
+
+  useEffect(() => {
+    if (isFetching) {
+      requestAnimationFrame(() => {
+        const scrollHeight = chatsRef.current?.scrollHeight ?? 0;
+        chatsRef.current?.scrollTo(0, scrollHeight - prevScrollHeight);
+      });
+      setIsFetching(false);
+    }
+  }, [isFetching]);
 
   useEffect(() => {
     if (room) {
