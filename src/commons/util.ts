@@ -32,11 +32,9 @@ export const getTimeAgo = (timestamp: string) => {
 };
 
 export const findCode = (name: string) => {
-  for (const league of Object.keys(clubs)) {
-    const team = clubs[league].filter((item: Team) => item.team == name);
-    console.log(team);
-    if (team.length > 0) {
-      return team[0].code;
+  for (const club in clubs) {
+    if (club === name) {
+      return clubs[club].code;
     }
   }
 
