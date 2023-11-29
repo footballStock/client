@@ -173,12 +173,12 @@
         transition: all 0.2s ease;
     }
     
-    .sidebar-menu button {
+    .sidebar-menu .sidebar-team {
         text-decoration: none; 
         text-decoration-color: transparent; 
     }
 
-    .sidebar-menu:hover button {
+    .sidebar-menu:hover .sidebar-team {
         margin-left: 10px;
         transform: scale(1.2); 
         color: #393a3a; 
