@@ -42,7 +42,7 @@ export const userState = atom<User | null>({
   default: null,
 });
 
-export const tokenState = atom<string | null>({
+export const tokenState = atom<string>({
   key: 'tokenState',
-  default: localStorage.getItem('token'),
+  default: localStorage.getItem('token') || '',
 });

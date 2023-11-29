@@ -1,21 +1,22 @@
 import {League} from './types';
 
-export const clubs: League[] = [
-  {Eredivisie: ['AFC Ajax NV']},
-  {'Liga 1 Indonesia': ['Bali United FC']},
-  {Bundesliga: ['Borussia Dortmund']},
-  {'Scottish Premiership': ['Celtic FC']},
-  {
-    'Primeira Liga': [
-      'Juventus FC',
-      'Sporting Clube de Braga',
-      'Sporting Clube de Portugal',
-      'Sport Lisboa a Benfica',
-    ],
-  },
-  {'Premier League': ['Manchester United FC']},
-  {'Ligue 1': ['Olympique Lyonnais']},
-  {'Serie A': ['FC Porto', 'SS Lazio']},
-];
+export const clubs: any = {
+  Eredivisie: [{team: 'Ajax', ticker: '', code: 'AJA'}],
+  'Liga 1 Indonesia': [{team: 'Bali United', ticker: '', code: 'SAM'}],
+  Bundesliga: [{team: 'Borussia Dortmund', ticker: '', code: 'DOR'}],
+  'Scottish Premiership': [{team: 'Celtic', ticker: '', code: 'CEL'}],
+  'Primeira Liga': [
+    {team: 'FC Porto', ticker: '', code: 'POR'},
+    {team: 'SC Braga', ticker: '', code: 'BRA'},
+    {team: 'Sporting CP', ticker: '', code: 'SPO'},
+    {team: 'Benfica', ticker: '', code: 'BEN'},
+  ],
+  'Premier League': [{team: 'Manchester United', ticker: '', code: 'MUN'}],
+  'Ligue 1': [{team: 'Lyon', ticker: '', code: 'LYO'}],
+  'Serie A': [
+    {team: 'Lazio', ticker: '', code: 'LAZ'},
+    {team: 'Juventus', ticker: '', code: 'JUV'},
+  ],
+};
 
-export const leagues: string[] = clubs.map(club => Object.keys(club)[0]);
+export const leagues: string[] = Object.keys(clubs).map(name => name);

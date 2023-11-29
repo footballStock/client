@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
+import {useRecoilState} from 'recoil';
 import {Link} from 'react-router-dom';
 
 import Login from './Login';
@@ -13,27 +13,19 @@ import NavButton from '../components/NavButton';
 import {tokenState, userState} from '../states/recoil';
 
 const Header = () => {
-  const token = useRecoilValue(tokenState);
+  const [token, setToken] = useRecoilState(tokenState);
   const [user, setUser] = useRecoilState(userState);
 
   useEffect(() => {
-    if (token === null) {
-      return;
-    }
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(token);
 
-    const getUser = async () => {
-      //TODO : why errors?
-      await getData('/login/', token).then(data => {
-        console.log(data);
-        setUser({
-          profile: {src: data.profile.src, alt: data.profile.alt},
-          nickname: data.nickname,
-        });
+      getData('/login/', token).then(data => {
+        setUser(data);
       });
-    };
-
-    getUser();
-  }, [token]);
+    }
+  }, []);
 
   return (
     <header id="header">

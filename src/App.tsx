@@ -1,13 +1,15 @@
 import React from 'react';
-import Main from './pages/Main';
-
 import {Routes, Route} from 'react-router-dom';
+import {ReactQueryDevtools} from 'react-query/devtools';
+
+import Main from './pages/Main';
 import Clubs from './pages/Clubs';
-import Layout from './Layout';
 import PostList from './pages/PostList';
 import PostDetail from './pages/PostDetail';
 import DetailPage from './pages/DetailPage';
 import NotFound from './pages/NotFound';
+
+import Layout from './Layout';
 
 const App = (): JSX.Element => {
   return (
@@ -22,6 +24,7 @@ const App = (): JSX.Element => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </React.Fragment>
   );
 };

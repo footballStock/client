@@ -66,7 +66,11 @@ const MainOverview = () => {
         Header: 'Name',
         Cell: ({value}) => (
           <div className="flex items-center">
-            <img src={value.src} alt={value.alt} className="w-7 h-7" />
+            <img
+              src={value.src}
+              alt={value.alt}
+              className="w-7 h-7 object-contain mr-2"
+            />
             <button className="px-1">{value.name}</button>
           </div>
         ),

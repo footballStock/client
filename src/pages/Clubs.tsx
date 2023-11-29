@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useRecoilState, useRecoilValue} from 'recoil';
 
 import ClubLists from '../Clubs/ClubLists';
-import {ClubImage, Image} from '../states/types';
+import {ClubImage, Image, Team} from '../states/types';
 import {
   awsState,
   bucketState,
@@ -32,12 +32,11 @@ const Clubs = () => {
 
   useEffect(() => {
     const findLeagueByTeamName = (name: string) => {
-      for (const club of clubs) {
-        const leagueName = Object.keys(club)[0];
-        const teamNames = club[leagueName];
-
+      for (const league of Object.keys(clubs)) {
+        const teamNames = clubs[league].map((item:Team)=>item.team)
+      
         if (teamNames.includes(name)) {
-          return leagueName;
+          return league;
         }
       }
 

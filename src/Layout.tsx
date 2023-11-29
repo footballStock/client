@@ -20,7 +20,7 @@ const Layout = (): JSX.Element => {
   const setTeamsImage = useSetRecoilState(teamsImageState);
 
   useEffect(() => {
-    const folderName = 'teams/';
+    const folderName = 'clubs/';
     aws.downloadFiles(bucket, folderName).then(images => {
       const teamsImage: Image[] = images.map((image, i) => {
         //* change the file name to team name(ex., teams/AJAX.png -> AJAX)
@@ -34,7 +34,7 @@ const Layout = (): JSX.Element => {
 
   useEffect(() => {
     //* if page is refreshed, set the token using localStorage token that is stored at login
-    const storageToken = localStorage.getItem('token');
+    const storageToken = localStorage.getItem('token') || '';
     setToken(storageToken);
   }, []);
 
