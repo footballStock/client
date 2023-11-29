@@ -14,8 +14,8 @@ const Item = ({team}: {team: any}) => {
 const Sidebar = () => {
   const teamsImage = useRecoilValue(teamsImageState);
   return (
-    <section className="sticky top-4 h-1/2">
-      <div className="px-20 mb-8 text-lg font-bold text-left">Teams</div>
+    <section id="sidebar">
+      <div id="sidebar-name">Teams</div>
       <ul className="flex flex-col">
         {teamsImage.map((team, index) => (
           <Item key={index} team={team} />

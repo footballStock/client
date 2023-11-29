@@ -11,9 +11,10 @@ const Login = (props: React.PropsWithChildren) => {
 
   return (
     <button
-      className="w-24 h-8 ml-10 bg-white border rounded-xl border-custom-green"
+      id = 'button-login'
+      className = "button-basic"
       onClick={openModal}>
-      <div className="text-base font-bold text-center text-custom-green">
+      <div id= "button-login-text" className="button-basic-text">
         Log in
       </div>
       {modalIsOpen && (

@@ -2,14 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {Postdata} from 'src/states/types';
 import {useNavigate} from 'react-router-dom';
 import {getData} from '../commons/api';
-
-import Post_image_test1 from '../static/others/Post_image_test1.png';
-import Post_image_test2 from '../static/others/Post_image_test2.png';
-import Account_img1 from '../static/others/account_img1.png';
-import Account_img2 from '../static/others/account_img2.png';
 import {getTimeAgo} from '../commons/util';
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 10;
 
 const RecentPosts: React.FC<{}> = ({}) => {
   const [postdatas, setPostdatas] = useState<Postdata[] | null>();
@@ -60,8 +55,10 @@ const RecentPosts: React.FC<{}> = ({}) => {
           key={i + 1}
           onClick={() => handlePageChange(i + 1)}
           disabled={currentPage === i + 1}
-          className={`mx-1 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500 
-                      ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-white'}`}
+          className={`mx-1 px-3 py-1 border rounded-md focus:outline-none focus:border-custom-green mb-4 mt-2 transition duration-100
+                      ${currentPage === i + 1
+                        ? 'bg-custom-green text-white'
+                        : 'bg-white hover:bg-gray-300 hover:text-white'}`}
         >
           {i + 1}
         </button>
@@ -70,34 +67,41 @@ const RecentPosts: React.FC<{}> = ({}) => {
 
 
   return (
-    <div className="justify-center">
-      <h1 className="my-5 text-sm font-bold justify-start">Recent</h1>
-      <div className="my-3 items-center justify-center grid gap-4 grid-cols-2">
+    <div className="justify-center mt-10">
+      <h1 id='recent-name'>Recent</h1>
+      <div id="recent-grid">
         {currentPosts.map((postdata, index) => (
           <div
             key={index}
             onClick={() => handlePostClick(postdata.id)}
-            className="flex ml-5">
+            className="recent-button">
+            
             <div>
               <div className="flex items-center my-2">
                 <img
                   src={process.env.REACT_APP_BASEURL + postdata.author_profile}
                   alt="accountimage"
-                  className="w-[2.5rem] h-[2.5rem]"
+                  className="top3-profile-image"
                 />
                 <div className="ml-2">
-                  <h5 className="text-sm">{postdata.author}</h5>
-                  <h5 className="text-sm">{postdata.time}</h5>
+                  <h5 className="top3-author">{postdata.author}</h5>
+                  <h5 className="top3-time">{postdata.time}</h5>
                 </div>
               </div>
-              <h5 className="text-sm overflow-hidden overflow-ellipsis max-w-[13rem]">
-                {postdata.title}
-              </h5>
+              <div className="ml-2 w-[17rem]">
+                <h5 className="recent-title">
+                  {postdata.title}
+                </h5>
+                <p className="recent-content line-clamp-3">
+                  {postdata.content}
+                </p>
+              </div>
             </div>
+
             <img
               src={process.env.REACT_APP_BASEURL + postdata.image}
               alt="postimage"
-              className="w-[8rem] h-[9rem]"
+              className="recent-image"
             />
           </div>
         ))}
