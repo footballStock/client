@@ -134,3 +134,26 @@ export type NewsData = {
   author: string;
   team: number;
 };
+
+export type FinancialData = {
+  sales: number[];
+  netProfit: number[];
+  totalAsset: number[];
+  totalDebt: number[];
+  CFO: number[];
+  CFI: number[];
+  CFF: number[];
+};
+
+export type ClubFinancials = {
+  [Club: string]: FinancialData;
+};
+
+export type Club = {
+  [key: string]: {
+    league: string;
+    ticker: string;
+    code: string;
+    financial: FinancialData;
+  };
+};

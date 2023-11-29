@@ -32,11 +32,9 @@ const Clubs = () => {
 
   useEffect(() => {
     const findLeagueByTeamName = (name: string) => {
-      for (const league of Object.keys(clubs)) {
-        const teamNames = clubs[league].map((item: Team) => item.team);
-
-        if (teamNames.includes(name)) {
-          return league;
+      for (const club of Object.keys(clubs)) {
+        if (club === name) {
+          return clubs[club].league;
         }
       }
 

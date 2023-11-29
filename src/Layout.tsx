@@ -39,7 +39,7 @@ const Layout = (): JSX.Element => {
   }, []);
 
   return (
-    <React.Fragment>
+    <div className="w-screen ">
       <Header />
       <main className="flex py-4">
         <div className="flex-none">
@@ -52,7 +52,7 @@ const Layout = (): JSX.Element => {
           <Chat />
         </div>
       </main>
-    </React.Fragment>
+    </div>
   );
 };
 
