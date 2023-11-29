@@ -39,20 +39,20 @@ const Layout = (): JSX.Element => {
   }, []);
 
   return (
-    <React.Fragment>
+    <div className="w-screen h-24">
       <Header />
       <main className="flex py-4">
         <div className="flex-none">
           <Sidebar />
         </div>
-        <div className="grow">
+        <div className="grow mt-24">
           <Outlet />
         </div>
         <div className="flex-none">
           <Chat />
         </div>
       </main>
-    </React.Fragment>
+    </div>
   );
 };
 

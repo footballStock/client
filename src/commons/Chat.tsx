@@ -43,12 +43,44 @@ const Chat = () => {
   const [prevScrollHeight, setPrevScrollHeight] = useState<number>(0);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [isFirstChatLoaded, setIsFirstChatLoaded] = useState<boolean>(false);
+  const [showChat, setShowChat] = useState<boolean>(false);
 
   const chatsRef = useRef<HTMLDivElement | null>(null);
   const chatStartRef = useRef<HTMLDivElement | null>(null);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const [currentRoom, setCurrentRoom] = useState<string | null>(null);
+
+  const handleMouseEnter = () => {
+    if (!isClicked) {
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isClicked) {
+      setIsHovered(false);
+    }
+  };
 
   const user = useRecoilValue(userState);
+  
+  const toggleChat = () => {
+    if (!user) {
+      Swal.fire({
+        title: 'Please log in first',
+        html: 'Chat function requires login',
+      });
+      return;
+    }
+
+    setShowChat(prev => !prev);
+    setIsClicked(prev => !prev);
+    setIsHovered(false); 
+  };
+
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView();
@@ -133,17 +165,9 @@ const Chat = () => {
   // id x => 최근 5개
 
   const handleChangeRoom = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!user) {
-      Swal.fire({
-        title: 'Please log in first',
-        html: 'Chat function requires login',
-      });
-
-      return;
-    }
-
     const {name} = event.currentTarget;
     setRoom(name);
+    setCurrentRoom(name);
     setSocket(new SocketInterface(name));
     setIsFirstChatLoaded(false);
     setChats([]);
@@ -243,56 +267,86 @@ const Chat = () => {
   }, [isFetching]);
 
   return (
-    <div className="flex flex-col mr-4">
-      <ChatIcon className="cursor-pointer" />
-      <div className="flex flex-col bg-custom-room">
-        <p className="border border-b-black">Room</p>
-        {rooms.map((room, i) => (
-          <button onClick={handleChangeRoom} name={room.name} key={i}>
-            <div className="border">{room.name}</div>
-          </button>
-        ))}
-      </div>
+    <div id='chat'>
+    <div className="flex flex-col mr-4 items-end">
+    <div
+      id="chat-ui"
+      className={`${
+        isClicked ? 'w-60 h-10 rounded-none' : isHovered ? 'w-32 h-10 rounded-full' : 'w-10 h-10 rounded-full'
+      } relative flex items-center justify-end bg-custom-gray4 p-1 transition-all duration-300 cursor-pointer`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={toggleChat}
+    >
+      {(isClicked || isHovered) && (
+        <span id="chat-name" className={`${
+          isClicked ? 'mr-30' : 'mr-0'
+        } absolute whitespace-nowrap text-custom-dark font-semibold text-[16px]`}>CHAT</span>
+      )}
+      <ChatIcon className="text-custom-dark scale-105 mr-1" />
+    </div>
+      {showChat && (
+        <div>
+          <div id = 'chat-room'>
+            <p className="border-b-black border-b-2">Room</p>
+            {rooms.map((room, i) => (
+                <button
+                onClick={handleChangeRoom}
+                name={room.name}
+                key={i}
+                className={currentRoom === room.name ? "current-room" : ""}
+              >
+                <div className="room-status-indicator"></div>
+                <div className='chat-room-name'>{room.name}</div>
+              </button>
+            ))}
+          </div>
 
-      <div className="flex flex-col bg-custom-chat">
-        <p>Chatting</p>
-        <p className="border border-b-black">Room: {room}</p>
-        <div
-          className="overflow-x-hidden overflow-y-auto scrollbar-hide h-96 w-60"
-          ref={chatsRef}>
-          <div ref={chatStartRef}></div>
-          {chats.length > 0 ? (
-            <>
-              {chats.map((chat, i) => (
-                <div key={i} className="p-2 ">
-                  <div className="flex flex-row">
-                    <img
-                      // src={chat.user.profile.src}
-                      src={account}
-                      alt={chat.user.profile.alt}
-                    />
-                    <p className="ml-2">{chat.user.nickname}</p>
-                  </div>
-                  <p className="break-words">{chat.content}</p>
-                </div>
-              ))}
-            </>
-          ) : (
-            <></>
-          )}
-          <div ref={chatEndRef}></div>
+          <div id="chat-message">
+            <div
+              id="chat-message-room" className=" hide-scrollbar"
+              ref={chatsRef}>
+              <div ref={chatStartRef}></div>
+              {chats.length > 0 ? (
+                <>
+                  {chats.map((chat, i) => (
+                    <div key={i} className="p-2 ">
+                      <div className="flex flex-row">
+                        <img
+                          // src={chat.user.profile.src}
+                          src={account}
+                          alt={chat.user.profile.alt}
+                          className="w-10 h-10" // Adjust size as needed
+                        />
+                        <p className="ml-2 chat-content text-sm font-sidebar-name">{chat.user.nickname}</p>
+                      </div>
+                      <p className="chat-content text-sm font-detail-content mt-1">{chat.content}</p>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <></>
+              )}
+              <div ref={chatEndRef}></div>
+            </div>
+            <div id="chat-input">
+              <form onSubmit={onSendMessage}>
+                <input
+                  type="text"
+                  name="text"
+                  required
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                  disabled={status !== 'CONNECTED'}
+                />
+              </form>
+            </div>
+          </div>
+
+
         </div>
-        <form onSubmit={onSendMessage}>
-          <input
-            type="text"
-            name="text"
-            required
-            value={message}
-            onChange={e => setMessage(e.target.value)}
-            disabled={status !== 'CONNECTED'}
-          />
-        </form>
-      </div>
+        )}
+    </div>
     </div>
   );
 };
