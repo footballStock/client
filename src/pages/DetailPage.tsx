@@ -24,13 +24,13 @@ const clubImg = getClubImg('MANU'); // 삭제할것
 const financialOverview = getFinancialOverview('MANU'); //삭제할것
 
 const DetailPage = () => {
-  const {clubId} = useParams();
+  const {clubCode} = useParams();
   const [clubData, setClubData] = useState();
   // MEMO: can use the clubId to fetch data or perform other actions
   // For example)
   // const clubData = fetchClubData(clubId);
   const getPostList = async () => {
-    return getData('/teams/?code=MUN').then(result => {
+    return getData(`/teams/?code=${clubCode}`).then(result => {
       console.log(result);
       return result;
     });
@@ -51,6 +51,9 @@ const DetailPage = () => {
         <div className="flex-grow bg-red-100">
           financial overview (양쪽 제외한 넓이 차지)
         </div>
+        <div className="flex-none">
+          {clubData ? <SideView fullData={clubData} /> : null}
+        </div>
       </div>
       <div className="h-96">
         <TradingViewWidget />
@@ -58,9 +61,6 @@ const DetailPage = () => {
       <div className="flex flex-row">
         <div className="flex-auto">
           {clubData ? <InfoTab fullData={clubData} /> : null}
-        </div>
-        <div className="flex-none">
-          {clubData ? <SideView fullData={clubData} /> : null}
         </div>
       </div>
     </div>

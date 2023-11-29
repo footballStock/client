@@ -1,3 +1,6 @@
+import {clubs} from '../states/constants';
+import {Team} from '../states/types';
+
 export const getTimeAgo = (timestamp: string) => {
   const now = new Date();
   const postDate = new Date(timestamp);
@@ -26,4 +29,16 @@ export const getTimeAgo = (timestamp: string) => {
   }
 
   return timeAgo;
+};
+
+export const findCode = (name: string) => {
+  for (const league of Object.keys(clubs)) {
+    const team = clubs[league].filter((item: Team) => item.team == name);
+    console.log(team);
+    if (team.length > 0) {
+      return team[0].code;
+    }
+  }
+
+  return '';
 };

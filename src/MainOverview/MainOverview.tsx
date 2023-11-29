@@ -4,10 +4,18 @@ import {Column} from 'react-table';
 
 import TableSheet from './TableSheet';
 
-import {FootballTeamStockInfo, StockOverview, Image} from '../states/types';
+import {
+  FootballTeamStockInfo,
+  StockOverview,
+  Image,
+  Team,
+} from '../states/types';
 import {teamsImageState} from '../states/recoil';
 import AD from '../static/others/AD.png';
 import {getData} from '../commons/api';
+import {useNavigate} from 'react-router-dom';
+import {clubs} from '../states/constants';
+import {findCode} from '../commons/util';
 
 const MainOverview = () => {
   const teamsImage = useRecoilValue(teamsImageState);
@@ -55,6 +63,12 @@ const MainOverview = () => {
     });
   }, []);
 
+  const navigate = useNavigate();
+
+  const handlePostClick = (code: string) => {
+    navigate(`/clubs/${code}`);
+  };
+
   const columns: Column<StockOverview>[] = useMemo(
     () => [
       {
@@ -65,7 +79,9 @@ const MainOverview = () => {
         accessor: 'team_image',
         Header: 'Name',
         Cell: ({value}) => (
-          <div className="flex items-center">
+          <div
+            className="flex items-center"
+            onClick={() => handlePostClick(findCode(value.name))}>
             <img
               src={value.src}
               alt={value.alt}
@@ -127,7 +143,6 @@ const MainOverview = () => {
 
   return (
     <section>
-      <div>
         <img
           src="https://github.com/footballStock/client/assets/99087502/971fe851-5d49-4b77-a13a-547f64f6cf04"
           alt="advertise"
