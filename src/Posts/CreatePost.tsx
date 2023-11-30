@@ -3,10 +3,9 @@ import ReactModal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
 import ImageUpload from '../static/others/ImageUpload.png';
 import {useRecoilState, useRecoilValue} from 'recoil';
-import {getData} from '../commons/api';
 import {tokenState, userState} from '../states/recoil';
 import axios from 'axios';
-import Profile from '../commons/Profile';
+import Swal from 'sweetalert2';
 
 const CreatePost: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -46,6 +45,16 @@ const CreatePost: React.FC = () => {
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
+  };
+
+  const alertPost = () => {
+    if (!user) {
+      Swal.fire({
+        title: 'Please log in first',
+        html: 'You need login to create new post.',
+      });
+      return;
+    }
   };
 
   useEffect(() => {
@@ -191,7 +200,10 @@ const CreatePost: React.FC = () => {
       ) : (
         <>
           {/* 로그인 상태가 아닐 때 */}
-          <button id="button-post-disabled" className="button-basic" disabled>
+          <button
+            id="button-post-disabled"
+            className="button-basic"
+            onClick={() => alertPost()}>
             POST
           </button>
         </>

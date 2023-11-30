@@ -9,19 +9,18 @@ const POSTS_PER_PAGE = 10;
 const RecentPosts: React.FC<{}> = ({}) => {
   const [postdatas, setPostdatas] = useState<Postdata[] | null>();
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
-
-  const getPostList = async () => {
-    return getData('/posts/?page=1').then(result => {
-      console.log(result);
-      return result.posts;
-    });
-  };
+  const [totalPage, setTotalPage] = useState(1);
 
   useEffect(() => {
-    getPostList().then((data: Postdata[]) => {
-      setPostdatas(updatePostTimes(data));
-    });
-  }, []);
+    const getPostList = async () => {
+      return getData(`/posts/?page=${currentPage}`).then(result => {
+        console.log(result);
+        setPostdatas(updatePostTimes(result.posts));
+        setTotalPage(result.num_pages);
+      });
+    };
+    getPostList();
+  }, [currentPage]);
 
   const updatePostTimes = (posts: Postdata[]): Postdata[] => {
     return posts.map(post => ({
@@ -36,24 +35,12 @@ const RecentPosts: React.FC<{}> = ({}) => {
     navigate(`/posts/${id}`);
   };
 
-  const currentPosts = postdatas
-    ? postdatas.slice(
-        (currentPage - 1) * POSTS_PER_PAGE,
-        currentPage * POSTS_PER_PAGE,
-      )
-    : [];
-
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
-
   // 페이지 네비게이션 컨트롤을 렌더링하는 함수
   const renderPageNumbers = () => {
-    const totalPages = Math.ceil((postdatas?.length || 0) / POSTS_PER_PAGE);
-    return Array.from({length: totalPages}, (_, i) => (
+    return Array.from({length: totalPage}, (_, i) => (
       <button
         key={i + 1}
-        onClick={() => handlePageChange(i + 1)}
+        onClick={() => setCurrentPage(i + 1)}
         disabled={currentPage === i + 1}
         className={`mx-1 px-3 py-1 border rounded-md focus:outline-none focus:border-custom-green mb-4 mt-2 transition duration-100
                       ${
@@ -67,15 +54,15 @@ const RecentPosts: React.FC<{}> = ({}) => {
   };
 
   return (
-    <div className="justify-center mt-10 bg-blue-300">
+    <div className="justify-center mt-10">
       <h1 id="recent-name">Recent</h1>
       <div id="recent-grid">
-        {currentPosts.map((postdata, index) => (
+        {postdatas?.map((postdata, index) => (
           <div
             key={index}
             onClick={() => handlePostClick(postdata.id)}
             className="recent-button">
-            <div>
+            <div className="">
               <div className="flex items-center my-2">
                 <img
                   src={process.env.REACT_APP_BASEURL + postdata.author_profile}
@@ -87,7 +74,7 @@ const RecentPosts: React.FC<{}> = ({}) => {
                   <h5 className="top3-time">{postdata.time}</h5>
                 </div>
               </div>
-              <div className="ml-2 w-[17rem]">
+              <div className="ml-2 w-[15rem]">
                 <h5 className="recent-title">{postdata.title}</h5>
                 <p className="recent-content line-clamp-3">
                   {postdata.content}

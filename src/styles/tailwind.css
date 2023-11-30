@@ -4,200 +4,179 @@
 @tailwind variants;
 
 @layer components {
-    body{
-        -ms-overflow-style: none;
-        }
-       
-       body::-webkit-scrollbar {
-         display: none;
-       }
-    
-/* header */
-    #header {
-        @apply
-        fixed
+  body {
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* header */
+  #header {
+    @apply fixed
         border 
         border-solid 
         border-custom-gray
         bg-white
         w-full 
         h-24
-        z-50         
-    }
+        z-50;
+  }
 
-    #navbar {
-        @apply
-        flex 
+  #navbar {
+    @apply flex 
         justify-between 
         px-12 
-        py-6
-    }
+        py-6;
+  }
 
-    #menu {
-        @apply
-        flex 
+  #menu {
+    @apply flex 
         items-center 
         justify-between 
-        ml-6 
-    }
-    
-    .nav-main {
-        @apply 
-        font-serif 
+        ml-6;
+  }
+
+  .nav-main {
+    @apply font-serif 
         text-black 
         text-xl 
         ml-10
         mt-1;
-    }
-  
-    .nav-main:hover { 
-        color: #474747;
-        text-shadow: 0 0 2px rgba(107, 107, 107, 0.5);
-    }
+  }
 
-    #header-buttons{
-        @apply
-        flex 
+  .nav-main:hover {
+    color: #474747;
+    text-shadow: 0 0 2px rgba(107, 107, 107, 0.5);
+  }
+
+  #header-buttons {
+    @apply flex 
         items-center 
         mr-4 
-        space-x-4
-    }
+        space-x-4;
+  }
 
-    .button-basic {
-        @apply
-        border
+  .button-basic {
+    @apply border
         rounded-xl;
-    }
+  }
 
-    #button-login {
-        @apply
-        border-custom-green
+  #button-login {
+    @apply border-custom-green
         bg-white 
         w-24 
         h-8 
         ml-10;
-    }
+  }
 
-    .button-basic-text{
-        @apply
-        font-bold 
+  .button-basic-text {
+    @apply font-bold 
         text-center;
-    }
+  }
 
-    #button-login-text{
-        @apply
-        text-base 
+  #button-login-text {
+    @apply text-base 
         text-custom-green
         mb-1;
-    }
+  }
 
-    #button-login:hover {
-        @apply 
-        border-custom-green-gray;
-        transition: all 0.2s ease;
-    }
-    
-    #button-login:hover #button-login-text {
-        @apply 
-        text-custom-green-gray;
-        transition: all 0.2s ease;
-    }
+  #button-login:hover {
+    @apply border-custom-green-gray;
+    transition: all 0.2s ease;
+  }
 
-    #button-signup {
-        @apply
-        border-custom-green
+  #button-login:hover #button-login-text {
+    @apply text-custom-green-gray;
+    transition: all 0.2s ease;
+  }
+
+  #button-signup {
+    @apply border-custom-green
         bg-custom-green 
         w-24 
         h-8 
         ml-10;
-    }
+  }
 
-    #button-singup-text{
-        @apply
-        text-base 
+  #button-singup-text {
+    @apply text-base 
         text-white
         mb-1;
-    }
+  }
 
-    #button-signup:hover {
-        @apply 
-        border-custom-green-gray
+  #button-signup:hover {
+    @apply border-custom-green-gray
         bg-custom-green-gray;
-        transition: all 0.2s ease;
-    }
+    transition: all 0.2s ease;
+  }
 
-    .profile{
-        @apply
-        px-2 
+  .profile {
+    @apply px-2 
         mt-2 
         font-sidebar-name
-        text-sm
-    }
+        text-sm;
+  }
 
+  /* sidebar */
 
-/* sidebar */
-
-    #sidebar{
-        @apply
-        sticky
+  #sidebar {
+    @apply sticky
         top-28
         w-80;
-    }
+  }
 
-    #sidebar-name{
-        @apply
-        mt-3
+  #sidebar-name {
+    @apply mt-3
         mb-6
         text-xl 
         font-sidebar-name
         text-center;
-    }
+  }
 
-    .sidebar-menu{
-        @apply
-        flex 
+  .sidebar-menu {
+    @apply flex 
         flex-row 
         items-center 
         mb-4 
         ml-8 
         text-sm
         font-sidebar-menu;
-    }
+  }
 
-    .sidebar-menu:hover{
-        cursor:pointer;
-    }
-    
-    .sidebar-menu:hover img {
-        transform: scale(1.2); 
-        transition: all 0.2s ease;
-    }
-    
-    .sidebar-menu .sidebar-team {
-        text-decoration: none; 
-        text-decoration-color: transparent; 
-    }
+  .sidebar-menu:hover {
+    cursor: pointer;
+  }
 
-    .sidebar-menu:hover .sidebar-team {
-        margin-left: 10px;
-        transform: scale(1.2); 
-        color: #393a3a; 
-        transition: all 0.2s ease;
-        text-decoration: underline; 
-        text-decoration-color: #393a3a; 
-    }
+  .sidebar-menu:hover img {
+    transform: scale(1.2);
+    transition: all 0.2s ease;
+  }
 
-/* chat */    
-    #chat{
-        @apply
-        sticky
+  .sidebar-menu .sidebar-team {
+    text-decoration: none;
+    text-decoration-color: transparent;
+  }
+
+  .sidebar-menu:hover .sidebar-team {
+    margin-left: 10px;
+    transform: scale(1.2);
+    color: #393a3a;
+    transition: all 0.2s ease;
+    text-decoration: underline;
+    text-decoration-color: #393a3a;
+  }
+
+  /* chat */
+  #chat {
+    @apply sticky
         w-80
-        top-28
-    }
+        top-28;
+  }
 
-    #chat-ui{
-        @apply
-        relative 
+  #chat-ui {
+    @apply relative 
         flex 
         items-center 
         justify-end 
@@ -207,133 +186,120 @@
         transition-all 
         duration-300 
         cursor-pointer;
-      }      
+  }
 
-    #chat-name{
-        @apply
-        absolute 
+  #chat-name {
+    @apply absolute 
         whitespace-nowrap 
         text-custom-dark
         font-semibold
         text-[16px];
-        right : 0;
-        transform: translateX(-100%);
-    }
+    right: 0;
+    transform: translateX(-100%);
+  }
 
-    #chat-room {
-        @apply
-        w-60;
-        background-color: #f9f9f9;
-        border: 3px solid #d1cdcd;
-        padding: 10px;
-    }  
-  
-    #chat-room p {
-        font-weight: bold;
-        color: #333;
-    }
-  
-    #chat-room button {
-        @apply
-        ml-2
+  #chat-room {
+    @apply w-60;
+    background-color: #f9f9f9;
+    border: 3px solid #d1cdcd;
+    padding: 10px;
+  }
+
+  #chat-room p {
+    font-weight: bold;
+    color: #333;
+  }
+
+  #chat-room button {
+    @apply ml-2
         w-52
         h-8;
-        display: flex; 
-        margin: 5px 0;
-        align-items: center; 
-        padding: 10px; 
-    }
+    display: flex;
+    margin: 5px 0;
+    align-items: center;
+    padding: 10px;
+  }
 
-    .chat-room-name{
-        @apply
-        text-sm
-        mb-1
-    }
+  .chat-room-name {
+    @apply text-sm
+        mb-1;
+  }
 
-    .room-status-indicator {
-        flex-shrink: 0; 
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: #fff; 
-        margin-right: 10px; 
-    }
+  .room-status-indicator {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-right: 10px;
+  }
 
-    #chat-room button div {
-        overflow: hidden; 
-        text-overflow: ellipsis; 
-        white-space: nowrap; 
-    }
-  
-    .current-room .room-status-indicator {
-        background-color: #00ff00; 
-    }
-  
-    #chat-room button:hover {
-        background-color: #e8e8e8;
-    }
+  #chat-room button div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-    #chat-message{
-        @apply
-        flex
+  .current-room .room-status-indicator {
+    background-color: #00ff00;
+  }
+
+  #chat-room button:hover {
+    background-color: #e8e8e8;
+  }
+
+  #chat-message {
+    @apply flex
         flex-col
         items-center
         w-60
         bg-custom-chat;
-        border: 3px solid #d1cdcd;
-    }
+    border: 3px solid #d1cdcd;
+  }
 
-    #chat-message-room{
-        @apply
-        h-96
+  #chat-message-room {
+    @apply h-96
         w-full
-        overflow-y-auto; 
-    }
-  
-    #chat-message-room .chat-content {
-        @apply
-        break-words
+        overflow-y-auto;
+  }
+
+  #chat-message-room .chat-content {
+    @apply break-words
         overflow-hidden;
-    }
-    
-    #chat-input {
-        @apply
-        w-60
+  }
+
+  #chat-input {
+    @apply w-60
         flex
         justify-center;
-    }
-    
-    #chat-input input[type="text"] {
-        @apply
-        border
+  }
+
+  #chat-input input[type='text'] {
+    @apply border
         border-solid
         border-gray-300
         p-2
         mt-2
         mb-2
-        w-full; 
-    }
+        w-full;
+  }
 
-
-/* main overview */
-    #ad {
-        @apply
-        mx-auto
+  /* main overview */
+  #ad {
+    @apply mx-auto
         w-[60rem] 
         h-[24rem];
-        cursor:pointer;
-    }
+    cursor: pointer;
+  }
 
-    #mainoverview-table {
-        @apply
-        w-full
+  #mainoverview-table {
+    @apply w-full
         max-w-[60rem]
         mx-auto;
-    }
+  }
 
-    .table-header{
-        @apply
-        px-5 
+  .table-header {
+    @apply px-5 
         py-3 
         text-sm 
         font-detail-content
@@ -342,198 +308,172 @@
         text-left 
         bg-gray-100 
         border-b-2 
-        text-gray-950
-    }
+        text-gray-950;
+  }
 
-    .table-body{
-        @apply
-        text-gray-950
+  .table-body {
+    @apply text-gray-950
         text-sm 
         bg-white;
-        cursor: pointer;
-    }
+    cursor: pointer;
+  }
 
-    .table-body-button{
-        @apply
-        border-b 
-        border-gray-200 
-    }
+  .table-body-button {
+    @apply border-b 
+        border-gray-200;
+  }
 
-    .table-body-button:hover{
-        @apply
-        bg-gray-100;
-        transition: all 0.1s ease;
-    }
+  .table-body-button:hover {
+    @apply bg-gray-100;
+    transition: all 0.1s ease;
+  }
 
-    .table-body-text{
-        @apply
-        px-5 
+  .table-body-text {
+    @apply px-5 
         py-3 
         text-sm
-        font-detail-content
-    }
+        font-detail-content;
+  }
 
-
-/* posts */
-    #post {
-        @apply
-        mt-24
+  /* posts */
+  #post {
+    @apply mt-24
         w-[60rem]
         mx-auto
         content-center 
         justify-center;
-    }
+  }
 
-    #top3{
-        @apply
-        flex 
+  #top3 {
+    @apply flex 
         items-center 
         justify-between 
         mb-6
         mt-3
         ml-2;
-    }
+  }
 
-    #top3-name{
-        @apply
-        text-2xl;
-    }
+  #top3-name {
+    @apply text-2xl;
+  }
 
-    #button-post {
-        @apply
-        bg-white 
+  #button-post {
+    @apply bg-white 
         border-2 
         border-green-500
         w-24 
         h-8
         mr-12;
-    }
+  }
 
-    #button-post-disabled {
-        @apply
-        bg-white 
+  #button-post-disabled {
+    @apply bg-white 
         border-2 
         border-custom-white-gray
         w-24 
         h-8
         mr-12;
-    }
+  }
 
-    #button-post-disabled{
-        @apply
-        text-base 
+  #button-post-disabled {
+    @apply text-base 
         text-custom-white-gray
         font-bold;
-    }
+  }
 
-    #button-post-text{
-        @apply
-        text-base 
+  #button-post-text {
+    @apply text-base 
         text-green-500
         font-bold;
-    }
+  }
 
-    #button-post:hover {
-        @apply 
-        border-custom-white-green;
-        transition: all 0.2s ease;
-    }
-    
-    #button-post:hover #button-post-text {
-        @apply 
-        text-custom-white-green;
-        transition: all 0.2s ease;
-    }
+  #button-post:hover {
+    @apply border-custom-white-green;
+    transition: all 0.2s ease;
+  }
 
-    #create-post{
-        
-    }
+  #button-post:hover #button-post-text {
+    @apply text-custom-white-green;
+    transition: all 0.2s ease;
+  }
 
-    #top3-posts{
-        @apply
-        flex 
+  #create-post {
+  }
+
+  #top3-posts {
+    @apply flex 
         items-center 
         justify-between 
         mt-6
-        mb-8
-    }
+        mb-8;
+  }
 
-    #top3-post-name{
-        @apply
-        text-2xl
+  #top3-post-name {
+    @apply text-2xl
         font-sidebar-menu
-        ml-2
-    }
+        ml-2;
+  }
 
-    #top3-contents{
-        @apply
-        flex 
+  #top3-contents {
+    @apply flex 
         flex-wrap
         items-center 
         justify-center 
-        gap-12;
-    }
+        gap-8;
+  }
 
-    .top3-button{
-        @apply
-        border-b-2
+  .top3-button {
+    @apply border-b-2
         flex
         rounded-lg;
-        cursor:pointer
-    }
+    cursor: pointer;
+  }
 
-    .top3-button:hover{
-        @apply
+  .top3-button:hover {
+    @apply border-b-custom-gray2;
+    transition: all 0.2s ease;
+  }
+
+  .top3-button:hover .top3-image {
+    @apply opacity-100
         border-b-custom-gray2;
-        transition: all 0.2s ease;
-    }
+  }
 
-    .top3-button:hover .top3-image{
-        @apply
-        opacity-100
-        border-b-custom-gray2;
-    }
-
-    .top3-image{
-        @apply
-        border-b
+  .top3-image {
+    @apply border-b
         opacity-90
-        w-[16rem] 
-        h-[10rem];
-    }
+        w-[15rem] 
+        h-[10rem]
+        object-cover;
+  }
 
-    .top3-account{
-        @apply
-        flex 
+  .top3-account {
+    @apply flex 
         items-center 
         my-2;
-    }
+  }
 
-    .top3-profile-image {
-        @apply
-        w-[2.5rem] 
+  .top3-profile-image {
+    @apply w-[2.5rem] 
         h-[2.5rem]
         rounded-full
         ml-2;
-    }
+  }
 
-    .top3-author{
-        @apply
-        text-base
+  .top3-author {
+    @apply text-base
         text-black
         font-sidebar-name;
-    }
+  }
 
-    .top3-time{
-        @apply
-        text-xs
+  .top3-time {
+    @apply text-xs
         text-custom-gray3
         font-sidebar-name;
-    }
+  }
 
-    .top3-content{
-        @apply
-        text-[14px]
+  .top3-content {
+    @apply text-[14px]
         font-bold
         font-sans
         ml-3
@@ -542,132 +482,121 @@
         overflow-ellipsis 
         max-w-[12rem]
         mb-2;
-    }
+  }
 
-    #recent-name{
-        @apply
-        justify-start
+  #recent-name {
+    @apply justify-start
         text-2xl
         font-sidebar-menu
         ml-2
-        mb-5
-    }
+        mb-5;
+  }
 
-    #recent-grid{
-        @apply
-        gap-4
+  #recent-grid {
+    @apply gap-4
         items-center 
         justify-center 
         grid 
         grid-cols-2
-        w-[56rem]
-        ml-6
-    }
+        gap-y-10
+        w-[48rem];
+    /* ml-6; */
+  }
 
-    .recent-button{
-        @apply
-        flex
+  .recent-button {
+    @apply flex
         ml-5
         rounded
-        border-b-2;
-        cursor:pointer
-    }
+        border-b-2
+        h-[10rem];
+    cursor: pointer;
+  }
 
-    .recent-title{
-        @apply
-        text-[14px]
+  .recent-title {
+    @apply text-[14px]
         font-bold
         font-sans
         whitespace-nowrap 
         overflow-hidden 
         overflow-ellipsis 
         max-w-[13rem]
-        mt-3
-    }
+        mt-3;
+  }
 
-    .recent-content{
-        @apply
-        text-[13px]
+  .recent-content {
+    @apply text-[13px]
         font-sans
         overflow-hidden 
         line-clamp-3
         max-w-[13rem]
-        mt-1
-    }
+        mt-1;
+  }
 
-    .recent-image{
-        @apply
-        flex
-        justify-end
-        opacity-90
-        border-b
-        w-[8rem] 
-        h-[9rem]
+  .recent-image {
+    @apply flex
+        justify-center
+        items-center
+        w-[6rem] 
+        h-[7rem]
+        mt-2
         mb-2
-    }
+        object-cover;
+  }
 
-    .recent-button:hover{
-        @apply
+  .recent-button:hover {
+    @apply border-b-custom-gray2;
+    transition: all 0.2s ease;
+  }
+
+  .recent-button:hover {
+    @apply opacity-100
         border-b-custom-gray2;
-        transition: all 0.2s ease;
-    }
+  }
 
-    .recent-button:hover .recent-image{
-        @apply
-        opacity-100
-        border-b-custom-gray2;
-    }
-
-/*PostDetail*/
-    .detail-profile-image {
-        @apply
-        w-[2.5rem] 
+  /*PostDetail*/
+  .detail-profile-image {
+    @apply w-[2.5rem] 
         h-[2.5rem]
         rounded-full
         ml-2;
-    }
+  }
 
-    .detail-author{
-        @apply
-        text-base
+  .detail-author {
+    @apply text-base
         text-black
         font-sidebar-name;
-    }
+  }
 
-    .detail-time{
-        @apply
-        text-xs
+  .detail-time {
+    @apply text-xs
         text-custom-gray3
         font-sidebar-name;
-    }
+  }
 
-    .detail-title{
-        @apply
-        font-bold 
+  .detail-title {
+    @apply font-bold 
         break-words 
         text-4xl 
         font-detail-title
         mt-2
-        mb-4
-    }
+        mb-4;
+  }
 
-    .detail-img{
-        @apply
-        ml-20
+  .detail-img {
+    @apply ml-20
         mr-16
         w-[40rem] 
-        max-h-[80rem]
-    }
+        max-h-[80rem];
+  }
 
-    .detail-text{
-        @apply
-        text-justify
+  .detail-text {
+    @apply text-justify
         font-detail-content 
         text-xl
         max-w-[46rem]
         ml-4
         mr-5
         mb-4
-        break-words
-    }
+        break-words;
+  }
 }
