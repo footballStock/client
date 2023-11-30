@@ -45,7 +45,7 @@ const Layout = (): JSX.Element => {
         <div className="flex-none">
           <Sidebar />
         </div>
-        <div className="grow mt-24">
+        <div className="mt-24 grow">
           <Outlet />
         </div>
         <div className="flex-none">

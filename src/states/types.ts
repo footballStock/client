@@ -134,3 +134,58 @@ export type NewsData = {
   author: string;
   team: number;
 };
+
+export type incomeStatement = {
+  totalSales: number[];
+  totalProfit: number[];
+  operatingProfit: number[];
+  netProfit: number[];
+  grossProfitMargin: number[];
+  operatingProfitMargin: number[];
+  netProfitMargin: number[];
+  returnOnInvestment: number[];
+};
+
+export type BalanceSheet = {
+  quickRatio: number[];
+  currentRatio: number[];
+  longTermDebtRatio: number[];
+  totalDebtRatio: number[];
+  totalAsset: number[];
+  totalDebt: number[];
+  totalCapital: number[];
+};
+
+export type CashFlowStatement = {
+  cash: number[];
+  cashFlowPerShare: number[];
+  EarningsPerShare: number[];
+  operatingCashFlow: number[];
+  cashFromOperatingActivities: number[];
+  cashFlowFromInvestingActivities: number[];
+  cashFromFinancialActivities: number[];
+  netChangeInCash: number[];
+};
+
+export type Financials = {
+  incomeStatement: incomeStatement;
+  balanceSheet: BalanceSheet;
+  cashFlowStatement: CashFlowStatement;
+};
+
+export type ClubFinancials = {
+  [key: string]: Financials;
+};
+
+export type Club = {
+  [key: string]: {
+    league: string;
+    ticker: string;
+    code: string;
+    financial: {
+      incomeStatement: incomeStatement;
+      balanceSheet: BalanceSheet;
+      cashFlowStatement: CashFlowStatement;
+    };
+  };
+};

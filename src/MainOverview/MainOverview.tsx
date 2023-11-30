@@ -109,19 +109,25 @@ const MainOverview = () => {
         Cell: ({value}) => {
           const isNegative = value.startsWith('-');
           return (
-            <span className={isNegative ? 'text-red-500' : 'text-blue-500'}>
+            <p className={isNegative ? 'text-red-500' : 'text-blue-500'}>
               {value}
-            </span>
+            </p>
           );
         },
       },
       {
         accessor: 'market_cap',
         Header: 'Market Cap',
+        Cell: ({value}) => {
+          return <p>{value}</p>;
+        },
       },
       {
         accessor: 'volume',
         Header: 'Volume',
+        Cell: ({value}) => {
+          return <p>{value}</p>;
+        },
       },
     ],
     [],

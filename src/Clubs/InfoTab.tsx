@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import News from './News';
 import Overview from './Overview';
 import Squad from './Squad';
+import Financial from './Financial';
+import {Financials} from '../states/types';
 
-const tablist = ['Overview', 'Squad', 'News'];
+const tablist = ['Overview', 'Squad', 'News', 'Financial'];
 const TabBtn = ({
   tabName,
   isSelected,
@@ -26,24 +28,40 @@ const TabBtn = ({
   );
 };
 
-const TabContents = ({curTab, fullData}: {curTab: string; fullData: any}) => {
+const TabContents = ({
+  curTab,
+  fullData,
+  financials,
+}: {
+  curTab: string;
+  fullData: any;
+  financials: Financials;
+}) => {
   switch (curTab) {
     case 'Overview':
       return <Overview seasonData={fullData.season} />;
     case 'Squad':
       return <Squad playerDict={fullData.player} />;
+    case 'Financial':
+      return <Financial financials={financials} />;
     default:
     case 'News':
       return <News newsList={fullData.news} />;
   }
 };
 
-const InfoTab = ({fullData}: {fullData: any}) => {
+const InfoTab = ({
+  fullData,
+  financials,
+}: {
+  fullData: any;
+  financials: Financials;
+}) => {
   const [tab, setTab] = useState<string>('Overview');
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row  gap-x-4">
+      <div className="flex flex-row gap-x-4">
         {tablist.map(item => (
           <TabBtn
             key={item}
@@ -53,7 +71,7 @@ const InfoTab = ({fullData}: {fullData: any}) => {
           />
         ))}
       </div>
-      <TabContents curTab={tab} fullData={fullData} />
+      <TabContents curTab={tab} fullData={fullData} financials={financials} />
     </div>
   );
 };
