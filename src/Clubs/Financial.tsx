@@ -1,106 +1,84 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {FinancialData} from 'src/states/types';
 import ResponseBar from './ResponseBar';
+import {Column} from 'react-table';
 
 const Financial = ({financialData}: {financialData: FinancialData}) => {
-  const data1 = [
-    {
-      country: 'Sep 22',
-      sales: financialData.sales[0],
-      salesColor: 'hsl(92, 70%, 50%)',
-      netProfit: financialData.netProfit[0],
-      netProfitColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Dec 22',
-      sales: financialData.sales[1],
-      salesColor: 'hsl(92, 70%, 50%)',
-      netProfit: financialData.netProfit[1],
-      netProfitColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Mar 23',
-      sales: financialData.sales[2],
-      salesColor: 'hsl(92, 70%, 50%)',
-      netProfit: financialData.netProfit[2],
-      netProfitColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Jun 23',
-      sales: financialData.sales[3],
-      salesColor: 'hsl(92, 70%, 50%)',
-      netProfit: financialData.netProfit[3],
-      netProfitColor: 'hsl(290, 70%, 50%)',
-    },
-  ];
+  interface DataObject {
+    country: string;
+    [key: string]: string | number;
+  }
+
+  function createDataArray(
+    keys: string[],
+    periods: string[],
+    financialData: FinancialData,
+  ): DataObject[] {
+    return periods.map((period, index) => {
+      const dataObject: DataObject = {country: period};
+
+      keys.forEach(key => {
+        dataObject[key] = financialData[key as keyof FinancialData][index];
+        dataObject[`${key}Color`] =
+          key === 'sales' || key === 'totalAsset' || key === 'CFO'
+            ? 'hsl(92, 70%, 50%)'
+            : 'hsl(290, 70%, 50%)';
+        if (key === 'CFI') dataObject[`${key}Color`] = 'hsl(357, 70%, 50%)';
+      });
+
+      return dataObject;
+    });
+  }
+
+  const periods = ['Sep 22', 'Dec 22', 'Mar 23', 'Jun 23'];
 
   const key1 = ['sales', 'netProfit'];
-
-  const data2 = [
-    {
-      country: 'Sep 22',
-      totalAsset: financialData.totalAsset[0],
-      totalAssetColor: 'hsl(92, 70%, 50%)',
-      totalDebt: financialData.totalDebt[0],
-      totalDebtColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Dec 22',
-      totalAsset: financialData.totalAsset[1],
-      totalAssetColor: 'hsl(92, 70%, 50%)',
-      totalDebt: financialData.totalDebt[1],
-      totalDebtColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Mar 23',
-      totalAsset: financialData.totalAsset[2],
-      totalAssetColor: 'hsl(92, 70%, 50%)',
-      totalDebt: financialData.totalDebt[2],
-      totalDebtColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Jun 23',
-      totalAsset: financialData.totalAsset[3],
-      totalAssetColor: 'hsl(92, 70%, 50%)',
-      totalDebt: financialData.totalDebt[3],
-      totalDebtColor: 'hsl(290, 70%, 50%)',
-    },
-  ];
-
   const key2 = ['totalAsset', 'totalDebt'];
+  const key3 = ['CFO', 'CFI', 'CFF'];
+  const data1 = createDataArray(key1, periods, financialData);
+  const data2 = createDataArray(key2, periods, financialData);
+  const data3 = createDataArray(key3, periods, financialData);
 
-  const data3 = [
-    {
-      country: 'Sep 22',
-      CFO: financialData.CFO[0],
-      CFOColor: 'hsl(92, 70%, 50%)',
-      CFI: financialData.CFI[0],
-      CFIColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Dec 22',
-      CFO: financialData.CFO[1],
-      CFOColor: 'hsl(92, 70%, 50%)',
-      CFI: financialData.CFI[1],
-      CFIColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Mar 23',
-      CFO: financialData.CFO[2],
-      CFOColor: 'hsl(92, 70%, 50%)',
-      CFI: financialData.CFI[2],
-      CFIColor: 'hsl(290, 70%, 50%)',
-    },
-    {
-      country: 'Jun 23',
-      CFO: financialData.CFO[3],
-      CFOColor: 'hsl(92, 70%, 50%)',
-      CFI: financialData.CFI[3],
-      CFIColor: 'hsl(290, 70%, 50%)',
-    },
-  ];
+  const columns: Column<any>[] = useMemo(
+    () => [
+      {
+        accessor: 'number',
+        Header: '#',
+      },
+      {
+        accessor: 'team_image',
+        Header: '2023년 06월 30일',
+      },
+      {
+        accessor: 'Price',
+        Header: '2023년 03월 31일',
+      },
+      {
+        accessor: 'change_percentage',
+        Header: '2022년 12월 31일',
+      },
+      {
+        accessor: 'market_cap',
+        Header: '2022년 09월 30일',
+      },
+    ],
+    [],
+  );
 
-  const key3 = ['CFO', 'CFI'];
+  //   const mergeTeamData = (teams: Image[], stockData: StockOverview[]) => {
+  //     return stockData.map(stock => {
+  //       const teamImage = teams.find(team => team.name === stock.team_name);
+  //       return {
+  //         ...stock,
+  //         team_image: teamImage
+  //           ? {...teamImage}
+  //           : {src: '', alt: '', name: stock.team_name},
+  //       };
+  //     });
+  //   };
+
+  //   const mergedData = mergeTeamData(teamsImage, teamsStockOverview);
+  //   const data = useMemo(() => mergedData, [mergedData]);
 
   return (
     <>
