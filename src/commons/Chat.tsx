@@ -11,8 +11,6 @@ import {User} from '../states/types';
 
 import Swal from 'sweetalert2';
 
-import account from '../myaccount.png';
-
 //TODO
 interface ChatType {
   content: string;
@@ -66,7 +64,7 @@ const Chat = () => {
   };
 
   const user = useRecoilValue(userState);
-  
+
   const toggleChat = () => {
     if (!user) {
       Swal.fire({
@@ -78,9 +76,8 @@ const Chat = () => {
 
     setShowChat(prev => !prev);
     setIsClicked(prev => !prev);
-    setIsHovered(false); 
+    setIsHovered(false);
   };
-
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView();
@@ -267,86 +264,95 @@ const Chat = () => {
   }, [isFetching]);
 
   return (
-    <div id='chat'>
-    <div className="flex flex-col mr-4 items-end">
-    <div
-      id="chat-ui"
-      className={`${
-        isClicked ? 'w-60 h-10 rounded-none' : isHovered ? 'w-32 h-10 rounded-full' : 'w-10 h-10 rounded-full'
-      } relative flex items-center justify-end bg-custom-gray4 p-1 transition-all duration-300 cursor-pointer`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={toggleChat}
-    >
-      {(isClicked || isHovered) && (
-        <span id="chat-name" className={`${
-          isClicked ? 'mr-30' : 'mr-0'
-        } absolute whitespace-nowrap text-custom-dark font-semibold text-[16px]`}>CHAT</span>
-      )}
-      <ChatIcon className="text-custom-dark scale-105 mr-1" />
-    </div>
-      {showChat && (
-        <div>
-          <div id = 'chat-room'>
-            <p className="border-b-black border-b-2">Room</p>
-            {rooms.map((room, i) => (
-                <button
-                onClick={handleChangeRoom}
-                name={room.name}
-                key={i}
-                className={currentRoom === room.name ? "current-room" : ""}
-              >
-                <div className="room-status-indicator"></div>
-                <div className='chat-room-name'>{room.name}</div>
-              </button>
-            ))}
-          </div>
-
-          <div id="chat-message">
-            <div
-              id="chat-message-room" className=" hide-scrollbar"
-              ref={chatsRef}>
-              <div ref={chatStartRef}></div>
-              {chats.length > 0 ? (
-                <>
-                  {chats.map((chat, i) => (
-                    <div key={i} className="p-2 ">
-                      <div className="flex flex-row">
-                        <img
-                          // src={chat.user.profile.src}
-                          src={account}
-                          alt={chat.user.profile.alt}
-                          className="w-10 h-10" // Adjust size as needed
-                        />
-                        <p className="ml-2 chat-content text-sm font-sidebar-name">{chat.user.nickname}</p>
-                      </div>
-                      <p className="chat-content text-sm font-detail-content mt-1">{chat.content}</p>
-                    </div>
-                  ))}
-                </>
-              ) : (
-                <></>
-              )}
-              <div ref={chatEndRef}></div>
-            </div>
-            <div id="chat-input">
-              <form onSubmit={onSendMessage}>
-                <input
-                  type="text"
-                  name="text"
-                  required
-                  value={message}
-                  onChange={e => setMessage(e.target.value)}
-                  disabled={status !== 'CONNECTED'}
-                />
-              </form>
-            </div>
-          </div>
-
-
+    <div id="chat">
+      <div className="flex flex-col items-end mr-4">
+        <div
+          id="chat-ui"
+          className={`${
+            isClicked
+              ? 'w-60 h-10 rounded-none'
+              : isHovered
+              ? 'w-32 h-10 rounded-full'
+              : 'w-10 h-10 rounded-full'
+          } relative flex items-center justify-end bg-custom-gray4 p-1 transition-all duration-300 cursor-pointer`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={toggleChat}>
+          {(isClicked || isHovered) && (
+            <span
+              id="chat-name"
+              className={`${
+                isClicked ? 'mr-30' : 'mr-0'
+              } absolute whitespace-nowrap text-custom-dark font-semibold text-[16px]`}>
+              CHAT
+            </span>
+          )}
+          <ChatIcon className="mr-1 scale-105 text-custom-dark" />
         </div>
+        {showChat && (
+          <div>
+            <div id="chat-room">
+              <p className="border-b-2 border-b-black">Room</p>
+              {rooms.map((room, i) => (
+                <button
+                  onClick={handleChangeRoom}
+                  name={room.name}
+                  key={i}
+                  className={currentRoom === room.name ? 'current-room' : ''}>
+                  <div className="room-status-indicator"></div>
+                  <div className="chat-room-name">{room.name}</div>
+                </button>
+              ))}
+            </div>
+
+            <div id="chat-message">
+              <div
+                id="chat-message-room"
+                className=" hide-scrollbar"
+                ref={chatsRef}>
+                <div ref={chatStartRef}></div>
+                {chats.length > 0 ? (
+                  <>
+                    {chats.map((chat, i) => (
+                      <div key={i} className="p-2 ">
+                        <div className="flex flex-row">
+                          <img
+                            // src={chat.user.profile.src}
+                            src="https://github.com/footballStock/client/assets/99087502/22c7a2c9-e815-462e-8d3b-9f7f8cf860d3"
+                            alt={chat.user.profile.alt}
+                            className="w-10 h-10" // Adjust size as needed
+                          />
+                          <p className="ml-2 text-sm chat-content font-sidebar-name">
+                            {chat.user.nickname}
+                          </p>
+                        </div>
+                        <p className="mt-1 text-sm chat-content font-detail-content">
+                          {chat.content}
+                        </p>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <></>
+                )}
+                <div ref={chatEndRef}></div>
+              </div>
+              <div id="chat-input">
+                <form onSubmit={onSendMessage}>
+                  <input
+                    type="text"
+                    name="text"
+                    required
+                    value={message}
+                    onChange={e => setMessage(e.target.value)}
+                    disabled={status !== 'CONNECTED'}
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
         )}
-    </div>
+      </div>
     </div>
   );
 };
