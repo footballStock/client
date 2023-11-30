@@ -5,7 +5,7 @@ import InfoTab from '../Clubs/InfoTab';
 import TradingViewWidget from './TradingViewWidget';
 import SideView from '../Clubs/SideView';
 import {clubs} from '../states/constants';
-import {FinancialData} from '../states/types';
+import {Financials} from '../states/types';
 
 const getClubImg = (clubId: string) => {
   return {
@@ -28,7 +28,7 @@ const financialOverview = getFinancialOverview('MANU'); //삭제할것
 const DetailPage = () => {
   const {clubCode} = useParams();
   const [clubData, setClubData] = useState();
-  const [financialData, setFinancialData] = useState<FinancialData>();
+  const [financials, setFinancials] = useState<Financials>();
   // MEMO: can use the clubId to fetch data or perform other actions
   // For example)
   // const clubData = fetchClubData(clubId);
@@ -48,7 +48,7 @@ const DetailPage = () => {
       for (const clubName in clubs) {
         if (clubs.hasOwnProperty(clubName)) {
           const club = clubs[clubName];
-          setFinancialData(club.financial);
+          setFinancials(club.financial);
         }
       }
     };
@@ -74,8 +74,8 @@ const DetailPage = () => {
       </div>
       <div className="flex flex-row">
         <div className="flex-auto">
-          {clubData && financialData ? (
-            <InfoTab fullData={clubData} financialData={financialData} />
+          {clubData && financials ? (
+            <InfoTab fullData={clubData} financials={financials} />
           ) : null}
         </div>
       </div>

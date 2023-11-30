@@ -3,7 +3,7 @@ import News from './News';
 import Overview from './Overview';
 import Squad from './Squad';
 import Financial from './Financial';
-import {FinancialData} from '../states/types';
+import {Financials} from '../states/types';
 
 const tablist = ['Overview', 'Squad', 'News', 'Financial'];
 const TabBtn = ({
@@ -31,11 +31,11 @@ const TabBtn = ({
 const TabContents = ({
   curTab,
   fullData,
-  financialData,
+  financials,
 }: {
   curTab: string;
   fullData: any;
-  financialData: FinancialData;
+  financials: Financials;
 }) => {
   switch (curTab) {
     case 'Overview':
@@ -43,7 +43,7 @@ const TabContents = ({
     case 'Squad':
       return <Squad playerDict={fullData.player} />;
     case 'Financial':
-      return <Financial financialData={financialData} />;
+      return <Financial financials={financials} />;
     default:
     case 'News':
       return <News newsList={fullData.news} />;
@@ -52,10 +52,10 @@ const TabContents = ({
 
 const InfoTab = ({
   fullData,
-  financialData,
+  financials,
 }: {
   fullData: any;
-  financialData: FinancialData;
+  financials: Financials;
 }) => {
   const [tab, setTab] = useState<string>('Overview');
 
@@ -71,11 +71,7 @@ const InfoTab = ({
           />
         ))}
       </div>
-      <TabContents
-        curTab={tab}
-        fullData={fullData}
-        financialData={financialData}
-      />
+      <TabContents curTab={tab} fullData={fullData} financials={financials} />
     </div>
   );
 };
