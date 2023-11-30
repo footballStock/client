@@ -54,7 +54,7 @@ const RecentPosts: React.FC<{}> = ({}) => {
   };
 
   return (
-    <div className="justify-center mt-10">
+    <div className="flex flex-col items-center mt-10">
       <h1 id="recent-name">Recent</h1>
       <div id="recent-grid">
         {postdatas?.map((postdata, index) => (
@@ -62,7 +62,7 @@ const RecentPosts: React.FC<{}> = ({}) => {
             key={index}
             onClick={() => handlePostClick(postdata.id)}
             className="recent-button">
-            <div className="">
+            <div>
               <div className="flex items-center my-2">
                 <img
                   src={process.env.REACT_APP_BASEURL + postdata.author_profile}

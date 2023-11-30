@@ -457,6 +457,7 @@
     @apply w-[2.5rem] 
         h-[2.5rem]
         rounded-full
+        object-cover
         ml-2;
   }
 
@@ -486,6 +487,7 @@
 
   #recent-name {
     @apply justify-start
+        self-start
         text-2xl
         font-sidebar-menu
         ml-2

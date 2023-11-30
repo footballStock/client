@@ -10,6 +10,7 @@ import Profile from './Profile';
 
 import NavButton from '../components/NavButton';
 import {tokenState, userState} from '../states/recoil';
+import UserInfo from './UserInfo';
 
 const Header = () => {
   const [token, setToken] = useRecoilState(tokenState);
@@ -67,10 +68,14 @@ const Header = () => {
 
         <div id="header-buttons">
           {user ? (
-            <Profile
-              src={process.env.REACT_APP_BASEURL + user.profile.src}
-              alt={user.profile.alt}
-              nickname={user.nickname}
+            <UserInfo
+              component={
+                <Profile
+                  src={process.env.REACT_APP_BASEURL + user.profile.src}
+                  alt={user.profile.alt}
+                  nickname={user.nickname}
+                />
+              }
             />
           ) : (
             <>
