@@ -53,8 +53,10 @@ export type Accountdata = {
 };
 
 export type ButtonProps = {
+  onClick: any;
   emoji: string;
   count: number | string;
+  pushed: Boolean;
 };
 
 export type User = {

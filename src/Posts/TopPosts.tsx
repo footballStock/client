@@ -34,19 +34,17 @@ const TopPosts: React.FC<{}> = ({}) => {
 
   return (
     <div className="justify-center">
-      
       <div id="top3-posts">
         <h1 id="top3-post-name">Top3 Posts</h1>
         <CreatePost />
       </div>
-      
+
       <div id="top3-contents">
-        
         {postdatas?.map((postdata, index) => (
           <div
             key={index}
             onClick={() => handlePostClick(postdata.id)}
-            className='top3-button'>
+            className="top3-button">
             <div className="">
               <img
                 src={process.env.REACT_APP_BASEURL + postdata.image}
@@ -67,15 +65,11 @@ const TopPosts: React.FC<{}> = ({}) => {
                 </div>
               </div>
 
-              <h5 className="top3-content">
-                {postdata.title}
-              </h5>
-
+              <h5 className="top3-content">{postdata.title}</h5>
             </div>
           </div>
         ))}
       </div>
-
     </div>
   );
 };

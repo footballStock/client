@@ -54,7 +54,7 @@ const DetailPage = () => {
     };
 
     findFinancialData();
-  }, []);
+  }, [clubCode]);
 
   return (
     <div>
