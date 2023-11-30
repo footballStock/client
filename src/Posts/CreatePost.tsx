@@ -57,24 +57,12 @@ const CreatePost: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    if (token === null) {
-      return;
-    }
-
-    console.log(token);
-  }, [token]);
-
   const uploadPost = async (
     title: string,
     content: string,
     image: File | null,
   ) => {
     const formData = new FormData();
-    const reader = new FileReader();
-    reader.onload = () => {
-      console.log(reader.result);
-    };
     formData.append('title', title);
     if (image) {
       formData.append('image', image);

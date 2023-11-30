@@ -599,6 +599,7 @@
         ml-4
         mr-5
         mb-4
+        whitespace-pre-wrap
         break-words;
   }
 }

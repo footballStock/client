@@ -97,7 +97,6 @@ const PostDetail: React.FC = () => {
   useEffect(() => {
     getPostList().then(data => {
       if (data) {
-        console.log(data);
         setPostdata({
           ...data,
           time: getTimeAgo(data.created_at),
@@ -140,7 +139,7 @@ const PostDetail: React.FC = () => {
             />
           </div>
 
-          <div className="flex my-5 ml-5 border-b border-b-gray-150">
+          <div className="flex justify-center my-5 ml-5 border-b border-b-gray-150">
             <h1 className="detail-text">{postdata.content}</h1>
           </div>
 
@@ -158,7 +157,7 @@ const PostDetail: React.FC = () => {
               pushed={postdata.dislike}
             />
             <div className="flex justify-end w-full">
-              <ReportPost></ReportPost>
+              <ReportPost />
             </div>
           </div>
         </div>
