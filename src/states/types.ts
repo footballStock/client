@@ -142,17 +142,17 @@ export type incomeStatement = {
   totalProfit: number[];
   operatingProfit: number[];
   netProfit: number[];
-  grossProfitMargin: number[];
-  operatingProfitMargin: number[];
-  netProfitMargin: number[];
-  returnOnInvestment: number[];
+  grossProfitMargin: number;
+  operatingProfitMargin: number;
+  netProfitMargin: number;
+  returnOnInvestment: number;
 };
 
 export type BalanceSheet = {
-  quickRatio: number[];
-  currentRatio: number[];
-  longTermDebtRatio: number[];
-  totalDebtRatio: number[];
+  quickRatio: number;
+  currentRatio: number;
+  longTermDebtRatio: number;
+  totalDebtRatio: number;
   totalAsset: number[];
   totalDebt: number[];
   totalCapital: number[];
@@ -160,9 +160,9 @@ export type BalanceSheet = {
 
 export type CashFlowStatement = {
   cash: number[];
-  cashFlowPerShare: number[];
-  EarningsPerShare: number[];
-  operatingCashFlow: number[];
+  cashFlowPerShare: number;
+  EarningsPerShare: number;
+  operatingCashFlow: number;
   cashFromOperatingActivities: number[];
   cashFlowFromInvestingActivities: number[];
   cashFromFinancialActivities: number[];

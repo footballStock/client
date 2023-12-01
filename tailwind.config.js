@@ -15,8 +15,8 @@ module.exports = {
         'custom-gray2': '#c2c2c2',
         'custom-gray3': '#adacac',
         'custom-gray4': '#d1cdcd',
-        'custom-dark' : '#474747',
-        'custom-gray5': '#e0dede'
+        'custom-dark': '#474747',
+        'custom-gray5': '#e0dede',
       },
       boxShadow: {
         red: '2px 4px 0px 1px rgba(255,0,0,0.75)',
@@ -27,6 +27,7 @@ module.exports = {
         indigo: '2px 4px 0px 1px rgba(75,0,130,0.75)',
         violet: '2px 4px 0px 1px rgba(238,130,238,0.75)',
         black: '2px 4px 0px 1px rgba(0,0,0,0.75)',
+        bottom: '0 2px 2px -1px rgba(0, 0, 0, 0.4)',
       },
       fontFamily: {
         'sidebar-name': ['Georgia', 'Cambria', 'Times New Roman'],

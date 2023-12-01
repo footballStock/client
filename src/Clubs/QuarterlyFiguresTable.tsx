@@ -10,24 +10,28 @@ interface TableData {
 const QuarterlyFiguresTable = ({
   datas,
   names,
-  periods,
+  dates,
 }: {
   datas: number[][];
   names: string[];
-  periods: string[];
+  dates: string[];
 }) => {
   const columns: Column<TableData>[] = useMemo(
     () => [
       {
-        Header: 'Metric',
+        Header: '',
         accessor: 'metric', // accessor is the "key" in the data
+        //TODO
+        Cell: ({value}: {value: any}) => <div className="w-60">{value}</div>,
       },
-      ...periods.map((period, index) => ({
+      ...dates.map((period, index) => ({
         Header: period,
         accessor: period.replace(/\s+/g, '_'),
+        //TODO
+        Cell: ({value}: {value: any}) => <div className="w-32 ">{value}</div>,
       })),
     ],
-    [periods],
+    [dates],
   );
 
   // Transform datas to match the structure required for useTable
@@ -35,7 +39,7 @@ const QuarterlyFiguresTable = ({
     () =>
       names.map((name, rowIndex) => ({
         metric: name,
-        ...periods.reduce(
+        ...dates.reduce(
           (acc, period, colIndex) => {
             const periodKey = period.replace(/\s+/g, '_');
             acc[periodKey] = datas[rowIndex][colIndex];
@@ -44,7 +48,7 @@ const QuarterlyFiguresTable = ({
           {} as Record<string, number>,
         ),
       })),
-    [names, datas, periods],
+    [names, datas, dates],
   );
 
   return <TableSheet columns={columns} data={data} />;

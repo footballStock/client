@@ -2,7 +2,8 @@ import {ResponsiveBar} from '@nivo/bar';
 
 const ResponseBar = ({data, keys}: {data: any; keys: any}) => {
   return (
-    <div style={{width: '800px', height: '500px', margin: '0 auto'}}>
+    // <div style={{width: '800px', height: '500px', margin: '0 auto'}}>
+    <div className="w-1/2 ml-40 mr-8 h-96">
       <ResponsiveBar
         data={data}
         keys={keys}
@@ -57,6 +58,7 @@ const ResponseBar = ({data, keys}: {data: any; keys: any}) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
+          //TODO
           legend: 'Date',
           legendPosition: 'middle',
           legendOffset: 32,
@@ -66,6 +68,7 @@ const ResponseBar = ({data, keys}: {data: any; keys: any}) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
+          //TODO
           legend: '(M)',
           legendPosition: 'middle',
           legendOffset: -40,

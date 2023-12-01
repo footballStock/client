@@ -5,6 +5,10 @@ import ResponseBar from './ResponseBar';
 import DisplayPanel from './DisplayPanel';
 import QuarterlyFiguresTable from './QuarterlyFiguresTable';
 
+const Title = ({title}: {title: any}) => {
+  return <div className="m-auto text-lg font-bold">{title}</div>;
+};
+
 const Financial = ({financials}: {financials: Financials}) => {
   type barData = {
     country: string;
@@ -13,10 +17,10 @@ const Financial = ({financials}: {financials: Financials}) => {
 
   const createDataArray = (
     keys: string[],
-    periods: string[],
+    dates: string[],
     datas: [number[], number[]],
   ): barData[] => {
-    return periods.map((period, index) => {
+    return dates.map((period, index) => {
       const dataObject: barData = {country: period};
 
       keys.forEach((key, keyIndex) => {
@@ -31,28 +35,74 @@ const Financial = ({financials}: {financials: Financials}) => {
     });
   };
 
-  const periods = ['Sep 22', 'Dec 22', 'Mar 23', 'Jun 23'];
+  // const dates = ['Jun 22', 'Sep 22', 'Dec 22', 'Mar 23'];
+  const dates = [
+    'Mar 31, 2023',
+    'Dec 31, 2022',
+    'Sep 30, 2022',
+    'Jun 30, 2022',
+  ];
   const key1 = ['totalSales', 'netProfit'];
   const key2 = ['totalAsset', 'totalDebt'];
   const key3 = ['cash', 'netChangeInCash'];
 
-  const data1 = createDataArray(key1, periods, [
+  const data1 = createDataArray(key1, dates, [
     financials.incomeStatement.totalSales,
     financials.incomeStatement.netProfit,
   ]);
-  const data2 = createDataArray(key2, periods, [
+  const data2 = createDataArray(key2, dates, [
     financials.balanceSheet.totalAsset,
     financials.balanceSheet.totalDebt,
   ]);
-  const data3 = createDataArray(key3, periods, [
+  const data3 = createDataArray(key3, dates, [
     financials.cashFlowStatement.cash,
     financials.cashFlowStatement.netChangeInCash,
   ]);
 
+  //TODO : 이름 수정!
+  const titles = ['CCP 손익 계산서', 'CCP 대차 대조표', 'CCP 현금 흐름표'];
+
+  const incomePanelNames = [
+    'grossProfitMargin',
+    'operatingProfitMargin',
+    'netProfitMargin',
+    'returnOnInvestment',
+  ];
+
+  const incomeFigureNames = [
+    'totalSales',
+    'totalProfit',
+    'operatingProfit',
+    'netProfit',
+  ];
+
+  const balancePanelNames = [
+    'quickRatio',
+    'currentRatio',
+    'longTermDebtRatio',
+    'totalDebtRatio',
+  ];
+
+  const cashFlowPanelNames = [
+    'cashFlowPerShare',
+    'EarningsPerShare',
+    'operatingCashFlow',
+  ];
+
+  const cashFlowFigureNames = [
+    'cashFromOperatingActivities',
+    'cashFlowFromInvestingActivities',
+    'cashFromFinancialActivities',
+    'netChangeInCash',
+  ];
+
+  const balanceFigureNames = ['totalAsset', 'totalDebt', 'totalCapital'];
+
   return (
-    <>
-      <div>
-        <div>
+    <div>
+      <div className="flex flex-col mt-5 mb-5 border border-b-black">
+        <Title title={titles[0]} />
+        <div className="flex flex-row">
           <ResponseBar data={data1} keys={key1} />
           <DisplayPanel
             datas={[
@@ -61,13 +111,8 @@ const Financial = ({financials}: {financials: Financials}) => {
               financials.incomeStatement.netProfitMargin,
               financials.incomeStatement.returnOnInvestment,
             ]}
-            names={[
-              'grossProfitMargin',
-              'operatingProfitMargin',
-              'netProfitMargin',
-              'returnOnInvestment',
-            ]}
-            periods={periods}
+            names={incomePanelNames}
+            times={['TTM', 'TTM', 'TTM', 'TTM']}
           />
         </div>
         <QuarterlyFiguresTable
@@ -77,48 +122,49 @@ const Financial = ({financials}: {financials: Financials}) => {
             financials.incomeStatement.operatingProfit,
             financials.incomeStatement.netProfit,
           ]}
-          names={['totalSales', 'totalProfit', 'operatingProfit', 'netProfit']}
-          periods={periods}
+          names={incomeFigureNames}
+          dates={dates}
         />
       </div>
-      <div>
-        <ResponseBar data={data2} keys={key2} />
-        <DisplayPanel
-          datas={[
-            financials.balanceSheet.quickRatio,
-            financials.balanceSheet.currentRatio,
-            financials.balanceSheet.longTermDebtRatio,
-            financials.balanceSheet.totalDebtRatio,
-          ]}
-          names={[
-            'quickRatio',
-            'currentRatio',
-            'longTermDebtRatio',
-            'totalDebtRatio',
-          ]}
-          periods={periods}
-        />
+      <div className="flex flex-col mt-5 mb-5 border border-b-black">
+        <Title title={titles[1]} />
+        <div className="flex flex-row">
+          <ResponseBar data={data2} keys={key2} />
+          <DisplayPanel
+            datas={[
+              financials.balanceSheet.quickRatio,
+              financials.balanceSheet.currentRatio,
+              financials.balanceSheet.longTermDebtRatio,
+              financials.balanceSheet.totalDebtRatio,
+            ]}
+            names={balancePanelNames}
+            times={['MRQ', 'MRQ', 'MRQ', 'MRQ']}
+          />
+        </div>
         <QuarterlyFiguresTable
           datas={[
             financials.balanceSheet.totalAsset,
             financials.balanceSheet.totalDebt,
             financials.balanceSheet.totalCapital,
           ]}
-          names={['totalAsset', 'totalDebt', 'totalCapital']}
-          periods={periods}
+          names={balanceFigureNames}
+          dates={dates}
         />
       </div>
-      <div>
-        <ResponseBar data={data3} keys={key3} />
-        <DisplayPanel
-          datas={[
-            financials.cashFlowStatement.cashFlowPerShare,
-            financials.cashFlowStatement.EarningsPerShare,
-            financials.cashFlowStatement.operatingCashFlow,
-          ]}
-          names={['cashFlowPerShare', 'EarningsPerShare', 'operatingCashFlow']}
-          periods={periods}
-        />
+      <div className="flex flex-col mt-5 mb-5 border border-b-black">
+        <Title title={titles[2]} />
+        <div className="flex flex-row">
+          <ResponseBar data={data3} keys={key3} />
+          <DisplayPanel
+            datas={[
+              financials.cashFlowStatement.cashFlowPerShare,
+              financials.cashFlowStatement.EarningsPerShare,
+              financials.cashFlowStatement.operatingCashFlow,
+            ]}
+            names={cashFlowPanelNames}
+            times={['TTM', 'TTM', '']}
+          />
+        </div>
         <QuarterlyFiguresTable
           datas={[
             financials.cashFlowStatement.cashFromOperatingActivities,
@@ -126,16 +172,11 @@ const Financial = ({financials}: {financials: Financials}) => {
             financials.cashFlowStatement.cashFromFinancialActivities,
             financials.cashFlowStatement.netChangeInCash,
           ]}
-          names={[
-            'cashFromOperatingActivities',
-            'cashFlowFromInvestingActivities',
-            'cashFromFinancialActivities',
-            'netChangeInCash',
-          ]}
-          periods={periods}
+          names={cashFlowFigureNames}
+          dates={dates}
         />
       </div>
-    </>
+    </div>
   );
 };
 

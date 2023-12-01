@@ -7,26 +7,26 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
 
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -42,25 +42,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -75,25 +75,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -108,25 +108,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -141,25 +141,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -174,25 +174,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -207,25 +207,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -240,25 +240,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -273,25 +273,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -307,25 +307,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -340,25 +340,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
@@ -373,25 +373,25 @@ const financialData: ClubFinancials = {
       totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
       operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
       netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: [100000, 100000, 100000, 100000], //? 매출총이익률
-      operatingProfitMargin: [100000, 100000, 100000, 100000], //? 영업이익률
-      netProfitMargin: [100000, 100000, 100000, 100000], //? 순이익률
-      returnOnInvestment: [100000, 100000, 100000, 100000], //? 투자수익률
+      grossProfitMargin: 10, //? 매출총이익률
+      operatingProfitMargin: 10, //? 영업이익률
+      netProfitMargin: 10, //? 순이익률
+      returnOnInvestment: 10, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: [100000, 100000, 100000, 100000], //? 당좌비율
-      currentRatio: [100000, 100000, 100000, 100000], //? 유동비율
-      longTermDebtRatio: [100000, 100000, 100000, 100000], //? 장기부채비율
-      totalDebtRatio: [100000, 100000, 100000, 100000], //? 총부채비율
+      quickRatio: 10, //? 당좌비율
+      currentRatio: 10, //? 유동비율
+      longTermDebtRatio: 10, //? 장기부채비율
+      totalDebtRatio: 10, //? 총부채비율
       totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
       totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
       totalCapital: [100000, 100000, 100000, 100000], //? 총자본
     },
     cashFlowStatement: {
-      cash: [100000, 100000, 100000, 100000], //? 현금
-      cashFlowPerShare: [100000, 100000, 100000, 100000], //? 현금흐름표
-      EarningsPerShare: [100000, 100000, 100000, 100000], //? 주당수익
-      operatingCashFlow: [100000, 100000, 100000, 100000], //? 영업현금흐름
+      cash: [10000, 10000, 10000, 10000], //? 현금
+      cashFlowPerShare: 10, //? 현금흐름표
+      EarningsPerShare: 10, //? 주당수익
+      operatingCashFlow: 10, //? 영업현금흐름
       cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
       cashFlowFromInvestingActivities: [
         -92760000, -30500000, -11440000, -5460000,
