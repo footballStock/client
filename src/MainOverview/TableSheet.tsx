@@ -9,21 +9,19 @@ const TableSheet: React.FC<{
     useTable({columns, data});
 
   return (
-    <table {...getTableProps()} id="mainoverview-table" >
+    <table {...getTableProps()} id="mainoverview-table">
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()} className="text-left">
             {headerGroup.headers.map(column => (
-              <th
-                {...column.getHeaderProps()}
-                className="table-header">
+              <th {...column.getHeaderProps()} className="table-header">
                 {column.render('Header')}
               </th>
             ))}
           </tr>
         ))}
       </thead>
-      <tbody {...getTableBodyProps()} className="table-body" >
+      <tbody {...getTableBodyProps()} className="table-body">
         {rows.map(row => {
           prepareRow(row);
           return (
