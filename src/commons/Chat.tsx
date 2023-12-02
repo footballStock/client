@@ -113,38 +113,23 @@ const Chat = () => {
 
   const onSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (socket) {
+    const now = new Date();
+    if (socket && user) {
       const postData: ChatType = {
-        content: 'Some content',
+        content: message,
         id: 0,
         room: 1,
         user: {
           profile: {
-            src: 'image_source',
-            alt: 'image_alt',
+            src: user.profile.src,
+            alt: user.profile.alt,
           },
-          nickname: 'UserNickname',
+          nickname: user.nickname,
         },
-        timestamp: '12312312',
+        timestamp: '',
       };
 
-      const postDataToLog = async () => {
-        try {
-          // Make the POST request
-          const response = await axios.post('/log', postData);
-
-          if (response.status === 201) {
-            console.log('Log updated successfully:', response.data);
-          } else {
-            console.error('Unexpected response status:', response.status);
-          }
-        } catch (error) {
-          console.error('Error making POST request:', error);
-        }
-      };
-
-      postDataToLog();
-      setChats(prev => [...prev, postData]);
+      const result = socket.send(JSON.stringify(postData));
       setMessage('');
     }
   };
@@ -189,7 +174,9 @@ const Chat = () => {
 
             if (id) {
               try {
-                const res = await axios.get(`/log/room=${room}/${id}`);
+                const res = await axios.get(
+                  `${process.env.REACT_APP_BASEURL}/api/chats/${room}/?last=${id}`,
+                );
 
                 if (res.status === 200) {
                   const newChats: ChatType[] = res.data;
@@ -208,12 +195,12 @@ const Chat = () => {
                   }
                   setIsFetching(true);
                 }
-              } catch (error) {
-                console.log(error);
-              }
+              } catch (error) {}
             } else {
               try {
-                const res = await axios.get(`/log/room=${room}/`);
+                const res = await axios.get(
+                  `${process.env.REACT_APP_BASEURL}/api/chats/${room}/`,
+                );
 
                 if (res.status === 200) {
                   const newChats: ChatType[] = res.data;
@@ -223,15 +210,15 @@ const Chat = () => {
                       ? Math.min(...newChats.map(chat => chat.id))
                       : null;
 
+                  setId(initId);
+
                   // Only update the chats state if there are new chats
                   if (newChats.length > 0) {
                     setChats(newChats);
                   }
                   setIsFetching(true);
                 }
-              } catch (error) {
-                console.log(error);
-              }
+              } catch (error) {}
             }
           };
 
@@ -249,13 +236,19 @@ const Chat = () => {
   }, [room, id]);
 
   useEffect(() => {
+    setId(null);
+  }, [room]);
+
+  useEffect(() => {
     if (isFetching) {
       requestAnimationFrame(() => {
         const scrollHeight = chatsRef.current?.scrollHeight ?? 0;
         chatsRef.current?.scrollTo(0, scrollHeight - prevScrollHeight);
       });
 
-      const minId = Math.min(...chats.map(chat => chat.id));
+      const minId =
+        chats.length > 0 ? Math.min(...chats.map(chat => chat.id)) : 0;
+
       if (id !== minId) {
         setId(minId);
       }
@@ -317,8 +310,10 @@ const Chat = () => {
                       <div key={i} className="p-2 ">
                         <div className="flex flex-row">
                           <img
-                            // src={chat.user.profile.src}
-                            src="https://github.com/footballStock/client/assets/99087502/22c7a2c9-e815-462e-8d3b-9f7f8cf860d3"
+                            src={
+                              process.env.REACT_APP_BASEURL +
+                              chat.user.profile.src
+                            }
                             alt={chat.user.profile.alt}
                             className="w-10 h-10" // Adjust size as needed
                           />

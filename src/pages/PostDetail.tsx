@@ -15,10 +15,8 @@ const Button: React.FC<ButtonProps> = ({onClick, emoji, count, pushed}) => {
     <button
       onClick={onClick}
       className={
-        'flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full shadow hover:bg-gray-100' +
-        (pushed
-          ? 'outline-none ring-2 ring-offset-2 ring-indigo-500 bg-indigo-500 text-white'
-          : 'bg-white ')
+        'flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full shadow hover:bg-gray-100 outline-none' +
+        (pushed ? ' bg-indigo-500 text-white' : 'bg-white ')
       }>
       <span className="text-xl">{emoji}</span>
       <span className="ml-2 font-bold">{count}</span>
