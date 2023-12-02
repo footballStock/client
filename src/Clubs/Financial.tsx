@@ -59,44 +59,47 @@ const Financial = ({financials}: {financials: Financials}) => {
     financials.cashFlowStatement.netChangeInCash,
   ]);
 
-  //TODO : 이름 수정!
-  const titles = ['CCP 손익 계산서', 'CCP 대차 대조표', 'CCP 현금 흐름표'];
+  const titles = ['Income Statement', 'Balance Sheet', 'Cash Flow Statement'];
 
   const incomePanelNames = [
-    'grossProfitMargin',
-    'operatingProfitMargin',
-    'netProfitMargin',
-    'returnOnInvestment',
+    'Gross Margin',
+    'Operating Margin',
+    'Net Profile Margin',
+    'Return on Investment',
   ];
 
   const incomeFigureNames = [
-    'totalSales',
-    'totalProfit',
-    'operatingProfit',
-    'netProfit',
+    'Total Revenue',
+    'Gross Profit',
+    'Operating Income',
+    'Net Income',
   ];
 
   const balancePanelNames = [
-    'quickRatio',
-    'currentRatio',
-    'longTermDebtRatio',
-    'totalDebtRatio',
+    'Quick Ratio',
+    'Current Ratio',
+    'LT Debt to Equity',
+    'Total Debt to Equity',
   ];
 
   const cashFlowPanelNames = [
-    'cashFlowPerShare',
-    'EarningsPerShare',
-    'operatingCashFlow',
+    'Cash Flow / Share',
+    'Revenue / Share',
+    'Operating Cash Flow',
   ];
 
   const cashFlowFigureNames = [
-    'cashFromOperatingActivities',
-    'cashFlowFromInvestingActivities',
-    'cashFromFinancialActivities',
-    'netChangeInCash',
+    'Cash From Operating Activities',
+    'Cash From Investing Activities',
+    'Cash From Financing Activities',
+    'Net Change In Cash',
   ];
 
-  const balanceFigureNames = ['totalAsset', 'totalDebt', 'totalCapital'];
+  const balanceFigureNames = [
+    'Total Assets',
+    'Total Liabilities',
+    'Total Equity',
+  ];
 
   return (
     <div>

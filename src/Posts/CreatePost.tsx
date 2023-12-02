@@ -51,7 +51,7 @@ const CreatePost: React.FC = () => {
     if (!user) {
       Swal.fire({
         title: 'Please log in first',
-        html: 'You need login to create new post.',
+        html: 'You need login to create a new post.',
       });
       return;
     }
