@@ -130,8 +130,6 @@ const Chat = () => {
       };
 
       const result = socket.send(JSON.stringify(postData));
-      console.log(result);
-
       setMessage('');
     }
   };
@@ -197,9 +195,7 @@ const Chat = () => {
                   }
                   setIsFetching(true);
                 }
-              } catch (error) {
-                console.log(error);
-              }
+              } catch (error) {}
             } else {
               try {
                 const res = await axios.get(
@@ -214,15 +210,15 @@ const Chat = () => {
                       ? Math.min(...newChats.map(chat => chat.id))
                       : null;
 
+                  setId(initId);
+
                   // Only update the chats state if there are new chats
                   if (newChats.length > 0) {
                     setChats(newChats);
                   }
                   setIsFetching(true);
                 }
-              } catch (error) {
-                console.log(error);
-              }
+              } catch (error) {}
             }
           };
 
@@ -240,13 +236,19 @@ const Chat = () => {
   }, [room, id]);
 
   useEffect(() => {
+    setId(null);
+  }, [room]);
+
+  useEffect(() => {
     if (isFetching) {
       requestAnimationFrame(() => {
         const scrollHeight = chatsRef.current?.scrollHeight ?? 0;
         chatsRef.current?.scrollTo(0, scrollHeight - prevScrollHeight);
       });
 
-      const minId = Math.min(...chats.map(chat => chat.id), 0);
+      const minId =
+        chats.length > 0 ? Math.min(...chats.map(chat => chat.id)) : 0;
+
       if (id !== minId) {
         setId(minId);
       }
