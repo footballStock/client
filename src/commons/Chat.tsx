@@ -1,6 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useRecoilValue} from 'recoil';
+import Swal from 'sweetalert2';
 import axios from 'axios';
+import {format, utcToZonedTime} from 'date-fns-tz';
+import {ko} from 'date-fns/locale';
 
 import SocketInterface from '../interface/SocketInterface';
 
@@ -8,8 +11,6 @@ import {userState} from '../states/recoil';
 
 import ChatIcon from '@mui/icons-material/Chat';
 import {User} from '../states/types';
-
-import Swal from 'sweetalert2';
 
 //TODO
 interface ChatType {
@@ -256,6 +257,31 @@ const Chat = () => {
     }
   }, [isFetching]);
 
+  // 시간 문자열을 한국 시간대의 '오전/오후 시:분' 형식으로 변환하는 함수
+  function formatKoreanTime(timeStr: string): string {
+    // 한국 시간대로 변환 (한국은 UTC+9)
+    const koreaTimeZone = 'Asia/Seoul';
+    const date = new Date(timeStr);
+    const koreaTime = utcToZonedTime(date, koreaTimeZone);
+
+    // '오전/오후 시:분' 형식으로 포매팅
+    return format(koreaTime, 'aaaa hh:mm', {timeZone: koreaTimeZone});
+  }
+
+  // 타임스탬프에서 날짜를 추출하여 특정 포맷으로 반환하는 함수
+  function extractDateFromTimestamp(timestamp: string): string {
+    const date = new Date(timestamp);
+
+    // 'yyyy년 M월 d일 EEEE' 형식으로 포매팅 (예: '2023년 4월 23일 월요일')
+    return format(date, 'yyyy년 M월 d일 EEEE', {locale: ko});
+  }
+
+  function isDateChanged(prevTimestamp: string, currentTimestamp: string) {
+    const prevDate = extractDateFromTimestamp(prevTimestamp);
+    const currentDate = extractDateFromTimestamp(currentTimestamp);
+    return prevDate !== currentDate;
+  }
+
   return (
     <div id="chat">
       <div className="flex flex-col items-end mr-4">
@@ -308,6 +334,15 @@ const Chat = () => {
                   <>
                     {chats.map((chat, i) => (
                       <div key={i} className="p-2 ">
+                        {i === 0 ||
+                        isDateChanged(
+                          chats[i - 1].timestamp,
+                          chat.timestamp,
+                        ) ? (
+                          <div className="date-display">
+                            {extractDateFromTimestamp(chat.timestamp)}
+                          </div>
+                        ) : null}
                         <div className="flex flex-row">
                           <img
                             src={
@@ -317,8 +352,9 @@ const Chat = () => {
                             alt={chat.user.profile.alt}
                             className="w-10 h-10" // Adjust size as needed
                           />
-                          <p className="ml-2 text-sm chat-content font-sidebar-name">
-                            {chat.user.nickname}
+                          <p className="flex flex-col ml-2 text-sm chat-content font-sidebar-name">
+                            <p>{chat.user.nickname}</p>
+                            <p>{formatKoreanTime(chat.timestamp)}</p>
                           </p>
                         </div>
                         <p className="mt-1 text-sm chat-content font-detail-content">

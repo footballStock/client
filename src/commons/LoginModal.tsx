@@ -46,8 +46,37 @@ const LoginModal: React.FC<{
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
+
+    if (!email.includes('@') || !email.includes('.')) {
+      alert('Invalid e-mail format');
+      setEmail('');
+      setPassword('');
+      return;
+    }
+
+    const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      alert(
+        'The password (length >= 8) must contain alphabet, number, special character.',
+      );
+      setEmail('');
+      setPassword('');
+      return;
+    }
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        async () => {
+          await signInWithEmailAndPassword(auth, email, password).then(
+            response => {
+              const token = (response as any)._tokenResponse.idToken;
+              localStorage.setItem('token', token);
+              setToken(token);
+            },
+          );
+
+          onRequestCloseModal();
+        },
+      );
     } catch (error) {
       if ((error as FirebaseError).code === 'auth/email-already-in-use') {
         alert('This email is already in use.');
@@ -69,7 +98,7 @@ const LoginModal: React.FC<{
         setToken(token);
       });
 
-      setModalIsOpen(false);
+      onRequestCloseModal();
     } catch (error) {
       if ((error as FirebaseError).code === 'auth/invalid-login-credentials') {
         alert('Unregistered Email');
@@ -97,7 +126,7 @@ const LoginModal: React.FC<{
           setToken(token);
         });
         //TODO: CORS 이슈
-        setModalIsOpen(false);
+        onRequestCloseModal();
       }
     } catch (error) {
       console.log(error);
