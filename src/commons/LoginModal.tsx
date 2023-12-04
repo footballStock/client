@@ -57,7 +57,7 @@ const LoginModal: React.FC<{
     const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$/;
     if (!passwordRegex.test(password)) {
       alert(
-        'The password must be at least 8 characters long and contain at least one number and one special character.',
+        'The password (length >= 8) must contain alphabet, number, special character.',
       );
       setEmail('');
       setPassword('');
