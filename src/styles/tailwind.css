@@ -172,7 +172,7 @@
   #chat {
     @apply sticky
         w-80
-        top-28;
+        top-28
   }
 
   #chat-ui {
@@ -200,7 +200,7 @@
 
   #chat-room {
     @apply w-60;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border: 3px solid #d1cdcd;
     padding: 10px;
   }
@@ -230,8 +230,9 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #ffffff;
     margin-right: 10px;
+    border: 1px solid #555555;
   }
 
   #chat-room button div {
@@ -252,13 +253,16 @@
     @apply flex
         flex-col
         items-center
-        w-60
-        bg-custom-chat;
-    border: 3px solid #d1cdcd;
+        w-60;
+    background-color: #ffffff;
+    border-bottom: 3px solid #d1cdcd;
+    border-left: 3px solid #d1cdcd;
+    border-right: 3px solid #d1cdcd;
   }
 
   #chat-message-room {
-    @apply h-96
+    @apply 
+        h-60
         w-full
         overflow-y-auto;
   }
@@ -288,7 +292,8 @@
   #ad {
     @apply mx-auto
         w-[60rem] 
-        h-[24rem];
+        h-[24rem]
+        mt-2;
     cursor: pointer;
   }
 

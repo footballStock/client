@@ -3,7 +3,7 @@ import {useRecoilValue} from 'recoil';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import {format, utcToZonedTime} from 'date-fns-tz';
-import {ko} from 'date-fns/locale';
+import {enGB, ko} from 'date-fns/locale';
 
 import SocketInterface from '../interface/SocketInterface';
 
@@ -273,7 +273,7 @@ const Chat = () => {
     const date = new Date(timestamp);
 
     // 'yyyy년 M월 d일 EEEE' 형식으로 포매팅 (예: '2023년 4월 23일 월요일')
-    return format(date, 'yyyy년 M월 d일 EEEE', {locale: ko});
+    return format(date, 'yyyy. M. d. EEEE', {locale: enGB});
   }
 
   function isDateChanged(prevTimestamp: string, currentTimestamp: string) {
@@ -339,7 +339,7 @@ const Chat = () => {
                           chats[i - 1].timestamp,
                           chat.timestamp,
                         ) ? (
-                          <div className="date-display">
+                          <div className="date-display mb-2 text-base font-sidebar-name">
                             {extractDateFromTimestamp(chat.timestamp)}
                           </div>
                         ) : null}
@@ -350,14 +350,14 @@ const Chat = () => {
                               chat.user.profile.src
                             }
                             alt={chat.user.profile.alt}
-                            className="w-10 h-10" // Adjust size as needed
+                            className="w-8 h-8 rounded" // Adjust size as needed
                           />
-                          <p className="flex flex-col ml-2 text-sm chat-content font-sidebar-name">
-                            <p>{chat.user.nickname}</p>
-                            <p>{formatKoreanTime(chat.timestamp)}</p>
+                          <p className="flex flex-col chat-content font-sidebar-name">
+                            <p className="text-sm ml-2 mb-0">{chat.user.nickname}</p>
+                            <p className="text-xs ml-2 mt-0 text-custom-gray3">{formatKoreanTime(chat.timestamp)}</p>
                           </p>
                         </div>
-                        <p className="mt-1 text-sm chat-content font-detail-content">
+                        <p className="mt-1 ml-1 text-sm chat-content font-detail-content">
                           {chat.content}
                         </p>
                       </div>
