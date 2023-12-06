@@ -42,9 +42,9 @@ const Financial = ({financials}: {financials: Financials}) => {
     'Sep 30, 2022',
     'Jun 30, 2022',
   ];
-  const key1 = ['totalSales', 'netProfit'];
-  const key2 = ['totalAsset', 'totalDebt'];
-  const key3 = ['cash', 'netChangeInCash'];
+  const key1 = ['Total Revenue', 'Net Income'];
+  const key2 = ['Total Assets', 'Total Liabilities'];
+  const key3 = ['Cash', 'Net Cash Change'];
 
   const data1 = createDataArray(key1, dates, [
     financials.incomeStatement.totalSales,
