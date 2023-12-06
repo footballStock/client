@@ -3,7 +3,7 @@ import React, {useEffect, useRef} from 'react';
 // Define type for the script loading promise
 let tvScriptLoadingPromise: Promise<void> | null = null;
 
-const TradingViewWidget: React.FC = () => {
+const TradingViewWidget = ({symbol}: {symbol: string}) => {
   const onLoadScriptRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const TradingViewWidget: React.FC = () => {
         // Explicitly cast window to any to access TradingView
         new (window as any).TradingView.widget({
           autosize: true,
-          symbol: 'MIL:JUVE',
+          symbol: symbol,
           interval: 'D',
           timezone: 'Asia/Seoul',
           theme: 'light',
@@ -49,7 +49,7 @@ const TradingViewWidget: React.FC = () => {
         });
       }
     }
-  }, []);
+  }, [symbol]);
 
   return (
     <div

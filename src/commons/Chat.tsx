@@ -11,6 +11,7 @@ import {userState} from '../states/recoil';
 
 import ChatIcon from '@mui/icons-material/Chat';
 import {User} from '../states/types';
+import {getData} from '../commons/api';
 
 //TODO
 interface ChatType {
@@ -38,6 +39,7 @@ const Chat = () => {
   const [status, setStatus] = useState<string>('DISCONNECTED');
   const [socket, setSocket] = useState<SocketInterface | null>(null);
   const [room, setRoom] = useState<string | null>(null);
+  const [roomList, setRoomList] = useState<any | null>(null);
 
   const [prevScrollHeight, setPrevScrollHeight] = useState<number>(0);
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -257,6 +259,16 @@ const Chat = () => {
     }
   }, [isFetching]);
 
+  const getRoomList = async () => {
+    return getData('/chats/rooms/').then(result => result);
+  };
+
+  useEffect(() => {
+    getRoomList().then((data: any[]) => {
+      setRoomList(data);
+    });
+  }, []);
+
   // 시간 문자열을 한국 시간대의 '오전/오후 시:분' 형식으로 변환하는 함수
   function formatKoreanTime(timeStr: string): string {
     // 한국 시간대로 변환 (한국은 UTC+9)
@@ -312,14 +324,14 @@ const Chat = () => {
           <div>
             <div id="chat-room">
               <p className="border-b-2 border-b-black">Room</p>
-              {rooms.map((room, i) => (
+              {roomList?.map((room: any) => (
                 <button
                   onClick={handleChangeRoom}
-                  name={room.name}
-                  key={i}
+                  name={room.id}
+                  key={room.id}
                   className={currentRoom === room.name ? 'current-room' : ''}>
                   <div className="room-status-indicator"></div>
-                  <div className="chat-room-name">{room.name}</div>
+                  <div className="chat-room-name">{room.team}</div>
                 </button>
               ))}
             </div>
@@ -353,8 +365,12 @@ const Chat = () => {
                             className="w-8 h-8 rounded" // Adjust size as needed
                           />
                           <p className="flex flex-col chat-content font-sidebar-name">
-                            <p className="text-sm ml-2 mb-0">{chat.user.nickname}</p>
-                            <p className="text-xs ml-2 mt-0 text-custom-gray3">{formatKoreanTime(chat.timestamp)}</p>
+                            <p className="text-sm ml-2 mb-0">
+                              {chat.user.nickname}
+                            </p>
+                            <p className="text-xs ml-2 mt-0 text-custom-gray3">
+                              {formatKoreanTime(chat.timestamp)}
+                            </p>
                           </p>
                         </div>
                         <p className="mt-1 ml-1 text-sm chat-content font-detail-content">
