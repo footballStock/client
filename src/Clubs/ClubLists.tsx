@@ -38,22 +38,24 @@ const ClubLists: React.FC<{
 
   return (
     <div>
-      <section>
-        <img src={league.src} alt={league.alt} className="w-44" />
-      </section>
-      <section className="flex flex-wrap gap-2.5 py-4">
+      <section className="flex flex-wrap gap-1.5 py-4">
         {clubsImage.map((club, index) => (
           <button
             key={index}
             onClick={() => handlePostClick(findCode(club.name))}
-            className={` flex flex-col items-start justify-center h-32 p-4 bg-white border-2 border-gray-300 rounded-lg w-44 ${color}`}>
+            className={`relative flex flex-col items-start justify-center h-32 p-4 bg-white border-2 border-gray-300 rounded-lg w-44 ${color} hover:bg-gray-100 hover:shadow-lg transition duration-300 ease-in-out`}>
+            <img
+              src={league.src} 
+              alt={league.name}
+              className="absolute top-1 right-1 w-8 h-8 object-contain"
+            />
             <img
               src={club.src}
               alt={club.alt}
               className="w-8 mb-2 object-contain"
             />
             <div className="flex items-center justify-between w-full">
-              <span className="font-semibold">{club.name}</span>
+              <span className="font-detail-title font-bold text-left">{club.name}</span>
               <span>
                 <ArrowRightAltIcon />
               </span>
