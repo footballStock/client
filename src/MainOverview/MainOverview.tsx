@@ -151,7 +151,7 @@ const MainOverview = () => {
     <section>
       <div>
         <img
-          src="https://github.com/footballStock/client/assets/99087502/971fe851-5d49-4b77-a13a-547f64f6cf04"
+          src="https://images.squarespace-cdn.com/content/v1/5ced6b7a1046fc00011611d7/1570873153520-JVMFAKFINYKM2TWNJGJU/Ad-gif-1.gif"
           alt="advertise"
           id="ad"
           className=""></img>

@@ -10,24 +10,6 @@ import {clubs} from '../states/constants';
 import {Financials, Image} from '../states/types';
 import {teamsImageState} from '../states/recoil';
 
-const getClubImg = (clubId: string) => {
-  return {
-    src: 'https://github.com/footballStock/client/blob/main/src/static/subClubs/manchester_united.png?raw=true',
-  }; // 나중에 구현 해야됨, 일단 깃허브 서버에서 가져옴.
-};
-
-const getFinancialOverview = (clubID: string) => {
-  return {
-    price: 19.09,
-    change24h: 1.54, // 얘네 tradingview에서 보이긴 함. 여기서 데이터 받아와야되나
-    volume: 560656,
-    marketCap: 3147000000,
-  };
-};
-
-// 삭제할것
-const financialOverview = getFinancialOverview('MANU'); //삭제할것
-
 const DetailPage = () => {
   const {clubCode} = useParams();
   const [clubData, setClubData] = useState();
@@ -44,22 +26,26 @@ const DetailPage = () => {
     });
   };
 
+  const findClubByCode = (code: string) => {
+    for (const clubName in clubs) {
+      if (clubs[clubName].code === code) {
+        return {name: clubName, ...clubs[clubName]};
+      }
+    }
+    return null;
+  };
+
   useEffect(() => {
     getPostList().then((data: any) => {
       setClubData(data);
     });
-
-    const findFinancialData = () => {
-      for (const clubName in clubs) {
-        if (clubs.hasOwnProperty(clubName)) {
-          const club = clubs[clubName];
-          setSymbol(club.ticker);
-          setFinancials(club.financial);
-        }
+    if (clubCode) {
+      const curTeam = findClubByCode(clubCode);
+      if (curTeam) {
+        setFinancials(curTeam.financial);
+        setSymbol(curTeam.ticker);
       }
-    };
-
-    findFinancialData();
+    }
   }, [clubCode, teamsImage]);
 
   useEffect(() => {

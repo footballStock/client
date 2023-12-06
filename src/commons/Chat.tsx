@@ -329,7 +329,7 @@ const Chat = () => {
                   onClick={handleChangeRoom}
                   name={room.id}
                   key={room.id}
-                  className={currentRoom === room.name ? 'current-room' : ''}>
+                  className={currentRoom == room.id ? 'current-room' : ''}>
                   <div className="room-status-indicator"></div>
                   <div className="chat-room-name">{room.team}</div>
                 </button>
