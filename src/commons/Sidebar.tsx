@@ -14,7 +14,7 @@ const Sidebar = () => {
 
   return (
     <div id="sidebar">
-      <div id="sidebar-name">Teams</div>
+      <div id="sidebar-name">Clubs</div>
       <ul className="flex flex-col">
         {teamsImage.map((team, index) => (
           <button
