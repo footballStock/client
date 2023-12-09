@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom';
 import {getData} from '../commons/api';
 import InfoTab from '../Clubs/InfoTab';
 import TradingViewWidget from './TradingViewWidget';
+import ComingSoon from './ComingSoon';
 import SideView from '../Clubs/SideView';
 import {clubs} from '../states/constants';
 import {Financials, Image} from '../states/types';
@@ -90,7 +91,12 @@ const DetailPage = () => {
         </div>
       </div>
       <div className="h-96">
-        {symbol && <TradingViewWidget symbol={symbol} />}
+        {symbol &&
+          (!symbol.includes('EURONEXT') ? (
+            <TradingViewWidget symbol={symbol} />
+          ) : (
+            <ComingSoon />
+          ))}
       </div>
       <div className="flex flex-row">
         <div className="flex-auto">
