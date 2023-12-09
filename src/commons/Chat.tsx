@@ -83,7 +83,11 @@ const Chat = () => {
   };
 
   const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView();
+    const chatContainer = chatsRef.current;
+    if (chatContainer) {
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+    // chatEndRef.current?.scrollIntoView();
   };
 
   const onMessage = async (msg: any) => {
@@ -351,7 +355,7 @@ const Chat = () => {
                           chats[i - 1].timestamp,
                           chat.timestamp,
                         ) ? (
-                          <div className="date-display mb-2 text-base font-sidebar-name">
+                          <div className="mb-2 text-base date-display font-sidebar-name">
                             {extractDateFromTimestamp(chat.timestamp)}
                           </div>
                         ) : null}
@@ -364,14 +368,14 @@ const Chat = () => {
                             alt={chat.user.profile.alt}
                             className="w-8 h-8 rounded" // Adjust size as needed
                           />
-                          <p className="flex flex-col chat-content font-sidebar-name">
-                            <p className="text-sm ml-2 mb-0">
+                          <div className="flex flex-col chat-content font-sidebar-name">
+                            <p className="mb-0 ml-2 text-sm">
                               {chat.user.nickname}
                             </p>
-                            <p className="text-xs ml-2 mt-0 text-custom-gray3">
+                            <p className="mt-0 ml-2 text-xs text-custom-gray3">
                               {formatKoreanTime(chat.timestamp)}
                             </p>
-                          </p>
+                          </div>
                         </div>
                         <p className="mt-1 ml-1 text-sm chat-content font-detail-content">
                           {chat.content}
