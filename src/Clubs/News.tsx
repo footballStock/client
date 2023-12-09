@@ -4,7 +4,11 @@ import {NewsData} from '../states/types';
 
 const Item = ({newsData}: {newsData: NewsData}) => {
   return (
-    <a href={newsData.url} className="flex flex-col justify-center w-56 h-52">
+    <a
+      href={newsData.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-col justify-center w-56 h-52">
       <img
         src={newsData.thumbnail}
         alt={newsData.title}
