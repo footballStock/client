@@ -3,36 +3,36 @@ import {Club, ClubFinancials} from './types';
 const financialData: ClubFinancials = {
   AJA: {
     incomeStatement: {
-      totalSales: [143650000, 167370000, 170050000, 167330000], // 총매출
-      totalProfit: [100000, 100000, 100000, 100000], //? 총 이익
-      operatingProfit: [100000, 100000, 100000, 100000], //? 영업 이익
-      netProfit: [-26620000, 6310000, -5550000, -2920000], // 순이익
-      grossProfitMargin: 10, //? 매출총이익률
-      operatingProfitMargin: 10, //? 영업이익률
-      netProfitMargin: 10, //? 순이익률
-      returnOnInvestment: 10, //? 투자수익률
+      totalSales: [59880000, 0, 38270000, 38270000], // 총매출
+      totalProfit: [54660000, 0, 33860000, 33860000], //? 총 이익
+      operatingProfit: [0, -3990000, -22200000, -22200000], //? 영업 이익
+      netProfit: [38020000, 0, -18530000, -18530000], // 순이익
+      grossProfitMargin: 90.18, //? 매출총이익률
+      operatingProfitMargin: -26.07, //? 영업이익률
+      netProfitMargin: 19.85, //? 순이익률
+      returnOnInvestment: -10.9, //? 투자수익률
     },
     balanceSheet: {
-      quickRatio: 10, //? 당좌비율
-      currentRatio: 10, //? 유동비율
-      longTermDebtRatio: 10, //? 장기부채비율
-      totalDebtRatio: 10, //? 총부채비율
+      quickRatio: 0.71, //? 당좌비율
+      currentRatio: 1.05, //? 유동비율
+      longTermDebtRatio: 0, //? 장기부채비율
+      totalDebtRatio: 44.34, //? 총부채비율
 
-      totalAsset: [1421030000, 1426960000, 1374140000, 1317940000], // 총자산
-      totalDebt: [1319800000, 1317210000, 1269630000, 1213990000], // 총부채
-      totalCapital: [100000, 100000, 100000, 100000], //? 총자본
+      totalAsset: [607940000, 0, 548020000, 548020000], // 총자산
+      totalDebt: [334270000, 0, 311410000, 311410000], // 총부채
+      totalCapital: [0, 0, 236610000, 236610000], //? 총자본
     },
     cashFlowStatement: {
       cash: [10000, 10000, 10000, 10000], //? 현금
-      cashFlowPerShare: 10, //? 현금흐름표
-      EarningsPerShare: 10, //? 주당수익
-      operatingCashFlow: 10, //? 영업현금흐름
-      cashFromOperatingActivities: [-6040000, -61510000, 54060000, 109260000], // 영업활동현금
+      cashFlowPerShare: -0.45, //? 현금흐름표
+      EarningsPerShare: 10.71, //? 주당수익
+      operatingCashFlow: -9.15, //? 영업현금흐름
+      cashFromOperatingActivities: [8100000, 0, -12240000, -12240000], // 영업활동현금
       cashFlowFromInvestingActivities: [
-        -92760000, -30500000, -11440000, -5460000,
+        4130000, 4130000, -1880000, -1880000,
       ], // 투자활동현금흐름
-      cashFromFinancialActivities: [-878000, 99430000, -153000, -100350000], // 재무활동현금
-      netChangeInCash: [100000, 100000, 100000, 100000], //? 현금순변동
+      cashFromFinancialActivities: [0, 0, -1070000, -1070000], // 재무활동현금
+      netChangeInCash: [0, 0, -15200000, -15200000], //? 현금순변동
     },
   },
 
