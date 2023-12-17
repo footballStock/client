@@ -17,7 +17,7 @@ Many investors are looking to sport club stocks as a new investment sector. This
 
 As mentioned earlier, analyzing the value of soccer club stocks requires different data than that of other companies. However, there is no service that provides game scores, player performances, etc. in one place along with financial information of soccer clubs.
 
-Therefore, we would like to create a service that brings together and displays various information needed to analyze the value of soccer club stocks. We predict that many more sports clubs will list in the near future, and we want to be a pioneer in this trend. For example, a site called [coinmarketcap.com](http://coinmarketcap.com/), which gathers and displays information on blockchain-based cryptocurrencies, was not popular for several years after its launch in 2013, but now that the size of the cryptocurrency market has grown, the number of monthly visits exceeds 100 million. Our team will also start with information on about 20 soccer clubs and grow into a service that encompasses stocks of all sports clubs in the future.
+Therefore, we would like to create a service that brings together and displays various information needed to analyze the value of soccer club stocks. We predict that many more sports clubs will list in the near future, and we want to be a pioneer in this trend. For example, a site called [coinmarketcap.com](http://coinmarketcap.com/), which gathers and displays information on blockchain-based cryptocurrencies, was not popular for several years after its launch in 2013, but now that the size of the cryptocurrency market has grown, the number of monthly visits exceeds 100 million. Our team will also start with information on about 12 soccer clubs and grow into a service that encompasses stocks of all sports clubs in the future.
 
 ## 2. Development Environment
 
@@ -62,144 +62,122 @@ Therefore, we would like to create a service that brings together and displays v
 ```
 src
 ├── App.tsx
+├── ClubDetail
+│   ├── Financial
+│   │   ├── DisplayPanel.tsx
+│   │   ├── Financial.tsx
+│   │   ├── QuarterlyFiguresTable.tsx
+│   │   └── ResponseBar.tsx
+│   ├── InfoTab.tsx
+│   ├── News.tsx
+│   ├── Overview.tsx
+│   ├── SideView.tsx
+│   └── Squad.tsx
 ├── Clubs
-│ ├── ClubLists.tsx
-│ ├── DisplayPanel.tsx
-│ ├── Financial.tsx
-│ ├── InfoTab.tsx
-│ ├── News.tsx
-│ ├── Overview.tsx
-│ ├── QuarterlyFiguresTable.tsx
-│ ├── ResponseBar.tsx
-│ ├── SideView.tsx
-│ └── Squad.tsx
-├── Financial
+│   └── ClubLists.tsx
 ├── Layout.tsx
-├── MainOverview
-│ ├── MainOverview.tsx
-│ └── TableSheet.tsx
 ├── Posts
-│ ├── CreatePost.tsx
-│ ├── RecentPosts.tsx
-│ ├── ReportPost.tsx
-│ └── TopPosts.tsx
+│   ├── CreatePost.tsx
+│   ├── RecentPosts.tsx
+│   ├── ReportPost.tsx
+│   └── TopPosts.tsx
 ├── commons
-│ ├── Chat.tsx
-│ ├── Header.tsx
-│ ├── Login.test.tsx
-│ ├── Login.tsx
-│ ├── LoginModal.tsx
-│ ├── Profile.tsx
-│ ├── Sidebar.tsx
-│ ├── SignUp.test.tsx
-│ ├── SignUp.tsx
-│ ├── UserInfo.tsx
-│ ├── api.ts
-│ ├── fire-base.ts
-│ └── util.ts
-├── components
-│ └── NavButton.tsx
-├── hooks
-│ └── useChatData.ts
+│   ├── Chat.tsx
+│   ├── Header
+│   │   ├── Header.tsx
+│   │   ├── Login.tsx
+│   │   ├── LoginModal.tsx
+│   │   ├── Profile.tsx
+│   │   ├── SignUp.tsx
+│   │   └── UserInfo.tsx
+│   ├── Sidebar.tsx
+│   └── TableSheet.tsx
 ├── index.tsx
 ├── interface
-│ ├── AWSInterface.ts
-│ └── SocketInterface.ts
+│   ├── AWSInterface.ts
+│   ├── FirebaseInterface.ts
+│   └── SocketInterface.ts
 ├── mocks
-│ ├── browsers.ts
-│ └── handler.ts
+│   ├── browsers.ts
+│   └── handler.ts
 ├── pages
-│ ├── Clubs.tsx
-│ ├── DetailPage.tsx
-│ ├── Main.tsx
-│ ├── NotFound.tsx
-│ ├── PostDetail.tsx
-│ ├── PostList.tsx
-│ └── TradingViewWidget.tsx
+│   ├── Clubs.tsx
+│   ├── ComingSoon.tsx
+│   ├── DetailPage.tsx
+│   ├── MainOverview.tsx
+│   ├── NotFound.tsx
+│   ├── PostDetail.tsx
+│   ├── PostList.tsx
+│   └── TradingViewWidget.tsx
 ├── states
-│ ├── constants.ts
-│ ├── recoil.ts
-│ └── types.ts
+│   ├── constants.ts
+│   ├── recoil.ts
+│   └── types.ts
 ├── styles
-│ └── tailwind.css
-└── types.ts
+│   └── tailwind.css
+├── types.ts
+└── utils
+    ├── api.ts
+    └── util.ts
 ```
 
-## 4. Features
+## 4. Features Present on All Pages
 
-### Stocks
+Before explaining the implementation, it's important to note that the file or folder location for each category has been documented. You can start exploring the features from these specified locations.
 
-<img width="824" alt="image" src="https://github.com/footballStock/client/assets/99087502/ba8c5e8e-87e4-40cd-b602-767c3359eb7f">
+Our website includes a header, sidebar, and chat feature on every page. These components are organized within the `commons` folder, categorized by their functionalities.
 
-<p>The main page of our service is a page where you can see all the stocks of all clubs we own in a table format at a glance. For each team's stock, price, market cap, 1-day volume, 1-day price change, 1-week price change, 1-week mini price chart, and 1-month mini price chart are displayed at a glance. When user clicks on each club's stock, he will be taken to the [Detailed Information] page.</p>
+### 1. Header (`/commons/Header/*`)
 
-### Log In & Sign Up
+- **Description**: The header is responsible for navigation, login, and profile modification features.
 
-<img width="163" alt="image" src="https://github.com/footballStock/client/assets/99087502/15993bda-24c3-4570-a3bd-4d527dd837c3">
+  - `Header.tsx`: Manages the overall layout of the Header. It displays navigation options like Stocks, Posts, Clubs, and shows Login, SignUp when not logged in. After login, it displays the user's profile.
+  - `Login.tsx`: Contains the login button UI and manages the login process through `LoginModal`.
+  - `SignUp.tsx`: Contains the SignUp button UI and manages the registration process through `LoginModal`.
+  - `LoginModal.tsx`: Handles the actual login and registration functionalities. It includes email and password login via Firebase, and Google social login.
+  - `Profile.tsx`: Manages the profile display post-login.
+  - `UserInfo.tsx`: Provides the UI for profile modification when the profile is clicked. It includes functionalities for changing the photo and nickname.
 
-<img width="292" alt="image" src="https://github.com/footballStock/client/assets/99087502/297021a0-f5b4-4935-9581-15b0debd0af0"><img width="292" alt="image" src="https://github.com/footballStock/client/assets/99087502/14b71b67-c5de-4fcf-a3a1-25cb320f58b5">
+### 2. Sidebar (`/commons/Sidebar.tsx`)
 
-<p>The login feature ensures secure and personalized access for returning users, while the sign-up option allows new users to join our community. Incorporating Google authentication streamlines the login process, offering a one-click sign-in alternative. These features are essential for enabling interactive elements like posting and chatting, creating a tailored user experience on the platform. Together, they facilitate easy entry and encourage user engagement within our website's ecosystem.
+- **Description**: The sidebar displays 12 football clubs currently listed on the stock market. Clicking on these clubs shows detailed information about them.
 
-</p>
+### 3. Chat (`/commons/Chat.tsx`)
 
-### Profile
+- **Description**: Real-time chatting is facilitated using a WebSocket interface, with an infinite scroll feature to minimize rendering. The configuration of the WebSocket interface can be found in `/interface/SocketInterface.ts`.
 
-<img width="166" alt="image" src="https://github.com/footballStock/client/assets/99087502/5c1939c7-80b1-4623-8403-970e7dcb8ffa">
+## 5. Detailed Overview of Key Pages
 
-<p>Our website includes a user profile feature that allows for customization of one's personal display within the community. Users can easily update their nickname and profile picture by navigating to the 'User Info' section, ensuring their identity on the platform is unique and recognizable. The process is streamlined with a simple 'CHANGE' button for quick edits.</p>
+Before explaining the implementation, it's important to note that the file or folder location for each category has been documented. You can start exploring the features from these specified locations.
 
-### Chatting
+Here's an in-depth look at the five primary pages of our website: MainOverview, PostList, PostDetail, Clubs, and DetailPage. Detailed information about each page is provided below:
 
-<img width="182" alt="image" src="https://github.com/footballStock/client/assets/99087502/47c361d1-fb75-4754-a59f-17a5587c9c46">
+### 1. MainOverview (`/pages/MainOverview.tsx`)
 
-<p>Real-time chat services are also designed to increase users' retention time and number of visits. In Korea, Naver Sports streaming has a real-time chat function, and when watching the Olympics or World Cup through Naver Sports streaming, a huge number of chats are posted. However, there is no place to chat in real time when watching the Premier League or Champions League. By incorporating a single-channel real-time chat function, we meet the needs of these sports fans and increase the competitiveness of our service.</p>
+- **Description**: This is the landing page that visitors first encounter. It displays stock information for various clubs, covering four key aspects: Price, 24h(%), Market Cap, and Volume.
 
-### Posts
+### 2. PostList (`/pages/PostList.tsx`, `/Posts/*`)
 
-<img width="824" alt="image" src="https://github.com/footballStock/client/assets/99087502/eb75af8b-8310-4285-bc0e-f054c18457ec">
+- **Description**: This page showcases the top 3 posts at the top, followed by a chronological list of posts. The posts are organized using pagination, displaying a set number of posts per page.
+  - `TopPosts.tsx`: Displays the top 3 posts and is located in the same row as the CreatePost feature.
+  - `CreatePost.tsx`: Handles the creation of new posts, allowing users to upload photos and write content.
+  - `RecentPosts.tsx`: Shows the most recent posts and utilizes pagination to manage the display of posts across multiple pages.
 
-<p>This page is a free-form board page. Users need to log in to use the board functionality. Users have the freedom to post articles, and they can also utilize features like liking, disliking, and reporting posts. A community always helps increase the time spent on the website and the number of visits. Therefore, we are installing a community function, Board, so that users can freely leave comments.</p>
+### 3. PostDetail (`/pages/PostDetail.tsx`, `/Posts/*`)
 
-### Create Post
+- **Description**: While PostList provides an overview of posts, PostDetail allows users to view the contents of an individual post. It includes features like upvoting, downvoting, and reporting.
 
-<img width="520" alt="image" src="https://github.com/footballStock/client/assets/99087502/c82ef9a2-98fd-4349-a656-073321ac8e48">
+### 4. Clubs (`/pages/Clubs.tsx`, `/Clubs/*`)
 
-<p>The "Create Post" feature allows users to share their thoughts and experiences with the community. By clicking on the create post button, a modal appears where users can enter a title and the main content of their post. Additionally, they have the option to upload images to accompany their text, enhancing the visual appeal and engagement of their post. Once the content is ready, hitting the "POST" button will publish it to the platform.</p>
+- **Description**: This page provides an overview of the football clubs featured on our site, along with the leagues they are part of. It's designed to offer easy access to club information.
 
-### Clubs
+### 5. DetailPage (`/pages/DetailPage.tsx`, `/ClubDetail/*`)
 
-<img width="824" alt="image" src="https://github.com/footballStock/client/assets/99087502/b41c08f4-b7b5-411b-90dd-f8d2b1bcb67c">
-
-<p>The "Clubs" feature on Trade2Goal is a specialized segment focused on football clubs with publicly traded shares. On the left sidebar of the page and "Clubs" page, users are greeted with a streamlined display of football clubs, each represented by their iconic logos. This visual directory serves as an interactive tool, allowing users to click on a club's emblem to learn more about their financial standing and stock market presence.</p>
-
-### Detailed Information
-
-<p>A detailed information page is provided for each club. The information provided on this page can be broadly classified into four categories. [Overview] [Squad] [News] [Financial]. Here, we list what information is included in each category.</p>
-
-- ### Overview
-
-<img width="824" alt="image" src="https://github.com/footballStock/client/assets/99087502/ea335278-11cd-4ad3-a1a4-c62aee163557">
-
-<p>The "Overview" tab is designed to give users a quick snapshot of a football club's performance in their respective league. When you click on a specific club like Manchester United, the overview tab will show detailed league information such as the number of games played (PL), wins (W), draws (D), losses (L), goal difference (+/-), total goals scored and conceded (GD), and the club's current points tally (PTS). This information is crucial for fans and analysts to understand the club's standing and form within the league at a glance.</p>
-
-- ### Squad
-
-<img width="824" alt="image" src="https://github.com/footballStock/client/assets/99087502/d014212e-b222-43e8-bc8b-39884e5758ec">
-
-<p>The "Squad" tab on the website provides a comprehensive view of a football club's current team roster, categorized by position groups: Attackers, Midfielders, Defenders, and Goalkeepers. Each player is represented with their name, photo, and jersey number, offering fans and visitors an easy way to familiarize themselves with the team members. This section is crucial for understanding the club's on-field strength and depth across various positions.</p>
-
-- ### News
-
-<img width="824" alt="image" src="https://github.com/footballStock/client/assets/99087502/f805aa74-dd77-4b7b-a72c-ae837393e1c7">
-
-<p>News tab crawls and provides news from various countries related to the club. Since there is no other site that shows news from various countries in one place, it increases the competitiveness of our service.</p>
-
-- ### Financial
-
-<img width="824" alt="image" src="https://github.com/footballStock/client/assets/99087502/80011572-0027-48f4-98fb-79f574699296">
-
-<p>The "Financial" tab on the website provides a detailed financial overview of a club, segmented into three key reports: the Income Statement, Balance Sheet, and Cash Flow Statement. These reports are updated quarterly to reflect the most recent financial data. The Income Statement reveals the club's revenue, costs, and profitability; the Balance Sheet displays assets, liabilities, and equity, indicating the club's financial health; and the Cash Flow Statement shows the actual cash generated and used over the period, providing insight into the club's liquidity.</p>
+- **Description**: DetailPage consists of five key features: TradingViewWidget and four tabs - Overview, Squad, News, and Financial.
+  - `TradingViewWidget.tsx`: Displays the TradingViewWidget at the top, providing real-time stock information.
+  - `Overview.tsx`: The first of the four tabs, Overview presents a general status of each club in their respective leagues.
+  - `Squad.tsx`: The second tab, offering information about the club's players, categorized into forwards, midfielders, defenders, and goalkeepers.
+  - `Financial/*`: Displays financial metrics of each club, using Nivo for stock information visualization. Data is updated every three months through web scraping.
 
 ## 5. Contributors
 
