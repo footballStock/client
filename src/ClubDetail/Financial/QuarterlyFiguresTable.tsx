@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {Column} from 'react-table';
-import TableSheet from '../commons/TableSheet';
+import TableSheet from '../../commons/TableSheet';
 
 interface TableData {
   metric: string;
