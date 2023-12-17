@@ -9,21 +9,6 @@ const config: AWSConfig = {
   region: process.env.REACT_APP_REGION!,
 };
 
-export const teamsImageState = atom<Image[]>({
-  key: 'teamsImageState',
-  default: [],
-});
-
-export const clubsImageState = atom<ClubImage[]>({
-  key: 'clubsImageState',
-  default: [],
-});
-
-export const leaguesImageState = atom<Image[]>({
-  key: 'leaguesImageState',
-  default: [],
-});
-
 export const awsState = atom<AWSInterface>({
   key: 'awsState',
   default: new AWSInterface(config),
@@ -37,12 +22,18 @@ export const bucketState = selector<AWS.S3>({
   },
 });
 
-export const userState = atom<User | null>({
-  key: 'userState',
-  default: null,
-});
-
+//* if page is refreshed, set the token using localStorage token that is stored at login
 export const tokenState = atom<string>({
   key: 'tokenState',
   default: localStorage.getItem('token') || '',
+});
+
+export const teamsImageState = atom<Image[]>({
+  key: 'teamsImageState',
+  default: [],
+});
+
+export const userState = atom<User | null>({
+  key: 'userState',
+  default: null,
 });

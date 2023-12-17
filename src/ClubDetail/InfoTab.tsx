@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import News from './News';
 import Overview from './Overview';
 import Squad from './Squad';
-import Financial from './Financial';
+import Financial from './Financial/Financial';
 import {Financials} from '../states/types';
 
 const tablist = ['Overview', 'Squad', 'News', 'Financial'];

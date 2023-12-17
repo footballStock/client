@@ -4,8 +4,8 @@ import axios from 'axios';
 
 import {Postdata, ButtonProps} from '../states/types';
 import ReportPost from '../Posts/ReportPost';
-import {getData} from '../commons/api';
-import {getTimeAgo} from '../commons/util';
+import {getData} from '../utils/api';
+import {getTimeAgo} from '../utils/util';
 import {useRecoilValue} from 'recoil';
 import {tokenState, userState} from '../states/recoil';
 import Swal from 'sweetalert2';

@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useRecoilValue} from 'recoil';
 
 import {useParams} from 'react-router-dom';
-import {getData} from '../commons/api';
-import InfoTab from '../Clubs/InfoTab';
-import TradingViewWidget from './TradingViewWidget';
-import ComingSoon from './ComingSoon';
-import SideView from '../Clubs/SideView';
+import {getData} from '../utils/api';
+import InfoTab from '../ClubDetail/InfoTab';
+import TradingViewWidget from '../ClubDetail/TradingViewWidget';
+import ComingSoon from '../ClubDetail/ComingSoon';
+import SideView from '../ClubDetail/SideView';
 import {clubs} from '../states/constants';
 import {Financials, Image} from '../states/types';
 import {teamsImageState} from '../states/recoil';
@@ -61,25 +61,25 @@ const DetailPage = () => {
   return (
     <div>
       <div className="flex">
-        <div className="flex flex-grow flex-row self-center">
+        <div className="flex flex-row self-center flex-grow">
           {logo && (
             <img
               src={logo.src}
               alt={logo.alt}
-              className="w-40 h-40 mb-4 object-contain"
+              className="object-contain w-40 h-40 mb-4"
             />
           )}
-          <div className="flex flex-col pl-6 justify-center">
-            <div className="font-medium text-xl">
+          <div className="flex flex-col justify-center pl-6">
+            <div className="text-xl font-medium">
               {clubData && (clubData as any).league.name}
             </div>
             <div className="flex flex-col mt-4">
-              <div className="font-semibold text-3xl">
+              <div className="text-3xl font-semibold">
                 {clubData && (clubData as any).team.name}
               </div>
               <div className="flex flex-row">
                 founded at
-                <div className="font-medium pl-1">
+                <div className="pl-1 font-medium">
                   {clubData && (clubData as any).team.founded}
                 </div>
               </div>

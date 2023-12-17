@@ -1,21 +1,12 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useRecoilValue} from 'recoil';
-import {Column} from 'react-table';
-
-import TableSheet from './TableSheet';
-
-import {
-  FootballTeamStockInfo,
-  StockOverview,
-  Image,
-  Team,
-} from '../states/types';
 import {teamsImageState} from '../states/recoil';
-import AD from '../static/others/AD.png';
-import {getData} from '../commons/api';
+import {FootballTeamStockInfo, Image, StockOverview} from '../states/types';
+import {getData} from '../utils/api';
 import {useNavigate} from 'react-router-dom';
-import {clubs} from '../states/constants';
-import {findCode} from '../commons/util';
+import {Column} from 'react-table';
+import {findCode} from '../utils/util';
+import TableSheet from '../commons/TableSheet';
 
 const MainOverview = () => {
   const teamsImage = useRecoilValue(teamsImageState);

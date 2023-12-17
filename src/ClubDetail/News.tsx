@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {getTimeAgo} from '../commons/util';
+import {getTimeAgo} from '../utils/util';
 import {NewsData} from '../states/types';
 
 const Item = ({newsData}: {newsData: NewsData}) => {

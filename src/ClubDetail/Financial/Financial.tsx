@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Financials} from '../states/types';
+import {Financials} from '../../states/types';
 import ResponseBar from './ResponseBar';
 import DisplayPanel from './DisplayPanel';
 import QuarterlyFiguresTable from './QuarterlyFiguresTable';

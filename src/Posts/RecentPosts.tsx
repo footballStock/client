@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Postdata} from 'src/states/types';
 import {useNavigate} from 'react-router-dom';
-import {getData} from '../commons/api';
-import {getTimeAgo} from '../commons/util';
+import {getData} from '../utils/api';
+import {getTimeAgo} from '../utils/util';
 
 const POSTS_PER_PAGE = 10;
 

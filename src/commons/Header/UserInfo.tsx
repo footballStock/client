@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ReactModal from 'react-modal';
-import CloseIcon from '@mui/icons-material/Close';
 import {useRecoilState, useRecoilValue} from 'recoil';
-import {tokenState, userState} from '../states/recoil';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+
+import CloseIcon from '@mui/icons-material/Close';
+
+import {tokenState, userState} from '../../states/recoil';
 
 type UserInfoProps = {
   component: React.ReactElement;
@@ -99,7 +101,7 @@ const UserInfo: React.FC<UserInfoProps> = ({component}) => {
               </div>
               <div className="flex justify-center p-4">
                 <label htmlFor="image-upload" className="cursor-pointer">
-                  <div className="w-16 h-16 relative">
+                  <div className="relative w-16 h-16">
                     {image ? (
                       <img
                         src={URL.createObjectURL(image)}
@@ -113,9 +115,9 @@ const UserInfo: React.FC<UserInfoProps> = ({component}) => {
                         className="object-cover w-full h-full rounded-full" // object-cover 사용
                       />
                     )}
-                    <div className="absolute flex -bottom-1 -right-1 bg-sky-500  w-5 h-5 rounded-full items-center justify-center round border-2 border-white">
+                    <div className="absolute flex items-center justify-center w-5 h-5 border-2 border-white rounded-full -bottom-1 -right-1 bg-sky-500 round">
                       <img
-                        className="flex w-2 h-2 object-contain"
+                        className="flex object-contain w-2 h-2"
                         src={
                           'https://private-user-images.githubusercontent.com/64965613/286912867-49c6e8f9-3a7b-490a-a4d5-ea79b2448c97.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDEzNDM2MDMsIm5iZiI6MTcwMTM0MzMwMywicGF0aCI6Ii82NDk2NTYxMy8yODY5MTI4NjctNDljNmU4ZjktM2E3Yi00OTBhLWE0ZDUtZWE3OWIyNDQ4Yzk3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzExMzAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMTMwVDExMjE0M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTQ2OTRkOTUxYzdjZjMzNWQwMTQ3NDlhYWI3NDljOTQ5NjhlNTc1ODJjZmE0ZTQ1YmFkNzYxNjQwNWIwZDczN2ImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.qcZb463pFJiwqYMC3G2hqhhGkTTipK9gSoabY-5pifA'
                         }

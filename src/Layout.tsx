@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {Outlet} from 'react-router-dom';
 
-import Header from './commons/Header';
+import Header from './commons/Header/Header';
 import Sidebar from './commons/Sidebar';
 import Chat from './commons/Chat';
 import {Image} from './states/types';
@@ -11,12 +11,15 @@ import {
   bucketState,
   teamsImageState,
   tokenState,
+  userState,
 } from './states/recoil';
+import {getData} from './utils/api';
 
 const Layout = (): JSX.Element => {
   const aws = useRecoilValue(awsState);
   const bucket = useRecoilValue(bucketState);
-  const setToken = useSetRecoilState(tokenState);
+  const token = useRecoilValue(tokenState);
+  const setUser = useSetRecoilState(userState);
   const setTeamsImage = useSetRecoilState(teamsImageState);
 
   useEffect(() => {
@@ -33,24 +36,35 @@ const Layout = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    //* if page is refreshed, set the token using localStorage token that is stored at login
-    const storageToken = localStorage.getItem('token') || '';
-    setToken(storageToken);
-  }, []);
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const data = await getData('/login/', token);
+          setUser(data);
+        } catch (error: any) {
+          if (error.response && error.response.status === 401) {
+            localStorage.removeItem('token');
+          }
+        }
+      };
+
+      fetchData();
+    }
+  }, [token]);
 
   return (
     <div className="w-screen h-24">
       <Header />
       <main className="flex py-4">
-        <div className="flex-none">
+        <aside className="flex-none">
           <Sidebar />
-        </div>
-        <div className="mt-24 grow">
+        </aside>
+        <section className="mt-24 grow">
           <Outlet />
-        </div>
-        <div className="flex-none">
+        </section>
+        <aside className="flex-none">
           <Chat />
-        </div>
+        </aside>
       </main>
     </div>
   );

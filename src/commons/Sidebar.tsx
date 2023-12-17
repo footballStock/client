@@ -1,8 +1,9 @@
 import React from 'react';
 import {useRecoilValue} from 'recoil';
-import {teamsImageState} from '../states/recoil';
 import {useNavigate} from 'react-router-dom';
-import {findCode} from '../commons/util';
+
+import {teamsImageState} from '../states/recoil';
+import {findCode} from '../utils/util';
 
 const Sidebar = () => {
   const teamsImage = useRecoilValue(teamsImageState);
@@ -24,7 +25,7 @@ const Sidebar = () => {
             <img
               src={team.src}
               alt={team.alt}
-              className="ml-5 w-7 h-7 object-contain"
+              className="object-contain ml-5 w-7 h-7"
             />
             <div className="px-3 sidebar-team">{team.name}</div>
           </button>

@@ -2,7 +2,7 @@ import React from 'react';
 import {Routes, Route} from 'react-router-dom';
 import {ReactQueryDevtools} from 'react-query/devtools';
 
-import Main from './pages/Main';
+import MainOverview from './pages/MainOverview';
 import Clubs from './pages/Clubs';
 import PostList from './pages/PostList';
 import PostDetail from './pages/PostDetail';
@@ -16,7 +16,7 @@ const App = (): JSX.Element => {
     <React.Fragment>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Main />} />
+          <Route index element={<MainOverview />} />
           <Route path="/posts/*" element={<PostList />} />
           <Route path="/posts/:id" element={<PostDetail />} />
           <Route path="/clubs/*" element={<Clubs />} />
