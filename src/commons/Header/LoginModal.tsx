@@ -9,12 +9,10 @@ import {
 } from 'firebase/auth';
 import {FirebaseError} from 'firebase/app';
 
-import {auth} from './fire-base';
-
-import GoogleLogin from '../static/others/GoogleLogin.png';
-import {tokenState} from '../states/recoil';
-
 import CloseIcon from '@mui/icons-material/Close';
+
+import {auth} from '../../interface/FirebaseInterface';
+import {tokenState} from '../../states/recoil';
 
 const LoginModal: React.FC<{
   modalIsOpen: boolean;

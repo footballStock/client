@@ -5,7 +5,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {ClubImage, Image} from '../states/types';
 import {leagues} from '../states/constants';
 import {useNavigate} from 'react-router-dom';
-import {findCode} from '../commons/util';
+import {findCode} from '../utils/util';
 
 const ClubLists: React.FC<{
   league: Image;
@@ -45,7 +45,7 @@ const ClubLists: React.FC<{
             onClick={() => handlePostClick(findCode(club.name))}
             className={`relative flex flex-col items-start justify-center h-32 p-4 bg-white border-2 border-gray-300 rounded-lg w-44 ${color} hover:bg-gray-100 hover:shadow-lg transition duration-300 ease-in-out`}>
             <img
-              src={league.src} 
+              src={league.src}
               alt={league.name}
               className="absolute top-1 right-1 w-8 h-8 object-contain"
             />
@@ -55,7 +55,9 @@ const ClubLists: React.FC<{
               className="w-8 mb-2 object-contain"
             />
             <div className="flex items-center justify-between w-full">
-              <span className="font-detail-title font-bold text-left">{club.name}</span>
+              <span className="font-detail-title font-bold text-left">
+                {club.name}
+              </span>
               <span>
                 <ArrowRightAltIcon />
               </span>

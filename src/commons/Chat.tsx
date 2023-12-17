@@ -3,15 +3,14 @@ import {useRecoilValue} from 'recoil';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import {format, utcToZonedTime} from 'date-fns-tz';
-import {enGB, ko} from 'date-fns/locale';
-
-import SocketInterface from '../interface/SocketInterface';
-
-import {userState} from '../states/recoil';
+import {enGB} from 'date-fns/locale';
 
 import ChatIcon from '@mui/icons-material/Chat';
+
+import SocketInterface from '../interface/SocketInterface';
+import {userState} from '../states/recoil';
 import {User} from '../states/types';
-import {getData} from '../commons/api';
+import {getData} from '../utils/api';
 
 //TODO
 interface ChatType {

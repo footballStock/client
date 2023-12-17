@@ -1,19 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useRecoilState, useRecoilValue} from 'recoil';
 
 import ClubLists from '../Clubs/ClubLists';
-import {ClubImage, Image, Team} from '../states/types';
-import {
-  awsState,
-  bucketState,
-  clubsImageState,
-  leaguesImageState,
-} from '../states/recoil';
+import {ClubImage, Image} from '../states/types';
+import {awsState, bucketState, teamsImageState} from '../states/recoil';
 import {clubs} from '../states/constants';
 
 const Clubs = () => {
-  const [clubsImage, setClubsImage] = useRecoilState(clubsImageState);
-  const [leaguesImage, setLeaguesImage] = useRecoilState(leaguesImageState);
+  const [leaguesImage, setLeaguesImage] = useState<Image[]>([]);
+  const [clubsImage, setClubsImage] = useState<ClubImage[]>([]);
+  const teamsImage = useRecoilValue(teamsImageState);
 
   const aws = useRecoilValue(awsState);
   const bucket = useRecoilValue(bucketState);
@@ -41,17 +37,13 @@ const Clubs = () => {
       return '';
     };
 
-    const folderName = 'clubs/';
-    aws.downloadFiles(bucket, folderName).then(images => {
-      const clubsImage: ClubImage[] = images.map((image, i) => {
-        const name = image.Key.replace('.png', '').replace(folderName, '');
-        const league = findLeagueByTeamName(name);
-        return {src: image.Image, alt: name, name: name, league: league};
-      });
-
-      setClubsImage(clubsImage);
+    const clubsImageData = teamsImage.map(image => {
+      const league = findLeagueByTeamName(image.name);
+      return {...image, league: league};
     });
-  }, []);
+
+    setClubsImage(clubsImageData);
+  }, [teamsImage]);
 
   return (
     <div className="flex flex-col flex-wrap justify-center">

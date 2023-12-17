@@ -15,7 +15,7 @@ const CreatePost: React.FC = () => {
   const [imageName, setImageName] = useState('');
 
   const token = useRecoilValue(tokenState);
-  const [user, setUser] = useRecoilState(userState);
+  const user = useRecoilValue(userState);
 
   const openModal = () => {
     setModalIsOpen(true);
