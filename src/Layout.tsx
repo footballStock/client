@@ -15,6 +15,8 @@ import {
 } from './states/recoil';
 import {getData} from './utils/api';
 
+1;
+
 const Layout = (): JSX.Element => {
   const aws = useRecoilValue(awsState);
   const bucket = useRecoilValue(bucketState);

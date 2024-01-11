@@ -63,6 +63,7 @@ Therefore, we would like to create a service that brings together and displays v
 src
 ├── App.tsx
 ├── ClubDetail
+│   ├── ComingSoon.tsx
 │   ├── Financial
 │   │   ├── DisplayPanel.tsx
 │   │   ├── Financial.tsx
@@ -72,7 +73,8 @@ src
 │   ├── News.tsx
 │   ├── Overview.tsx
 │   ├── SideView.tsx
-│   └── Squad.tsx
+│   ├── Squad.tsx
+│   └── TradingViewWidget.tsx
 ├── Clubs
 │   └── ClubLists.tsx
 ├── Layout.tsx
@@ -102,13 +104,11 @@ src
 │   └── handler.ts
 ├── pages
 │   ├── Clubs.tsx
-│   ├── ComingSoon.tsx
 │   ├── DetailPage.tsx
 │   ├── MainOverview.tsx
 │   ├── NotFound.tsx
 │   ├── PostDetail.tsx
-│   ├── PostList.tsx
-│   └── TradingViewWidget.tsx
+│   └── PostList.tsx
 ├── states
 │   ├── constants.ts
 │   ├── recoil.ts
